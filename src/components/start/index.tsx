@@ -6,6 +6,12 @@ import { useTranslations } from "next-intl";
 
 export default function Start() {
   const t = useTranslations("Index");
+
+  const renderIcon = (iconSrc: any) => (
+    <button className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700">
+      <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
+    </button>
+  );
   return (
     <div className="h-screen w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full flex justify-center flex-col">
@@ -26,25 +32,9 @@ export default function Start() {
           <div className="flex justify-end flex-1 text-right dark:text-white">
             <div className="flex justify-center items-center flex-col w-11">
               <div className="w-1 h-8 bg-primary dark:bg-white mb-2 rounded-full"></div>
-              <div className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2">
-                <Image src={MailIcon} alt="svg-icon" width={20} height={20} />
-              </div>
-              <div className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2">
-                <Image
-                  src={FacebookIcon}
-                  alt="svg-icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2">
-                <Image
-                  src={BehanceIcon}
-                  alt="svg-icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
+              {renderIcon(MailIcon)}
+              {renderIcon(FacebookIcon)}
+              {renderIcon(BehanceIcon)}
               <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
             </div>
           </div>
