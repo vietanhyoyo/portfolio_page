@@ -2,14 +2,18 @@ import MailIcon from "@/../public/images/icons/mail.svg";
 import FacebookIcon from "@/../public/images/icons/facebook.svg";
 import BehanceIcon from "@/../public/images/icons/behance.svg";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Start() {
+  const t = useTranslations("Index");
+  console.log(t);
   return (
     <div className="h-screen w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full flex justify-center flex-col">
         <div className="flex justify-between m-auto">
           <div className="flex-1">
             <p className="text-7xl font-semibold mb-4 dark:text-white text-primary">
+              {t("title")}
               Hello!!! <br />
               My name is Anh
             </p>
@@ -27,10 +31,20 @@ export default function Start() {
                 <Image src={MailIcon} alt="svg-icon" width={20} height={20} />
               </div>
               <div className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2">
-                <Image src={FacebookIcon} alt="svg-icon" width={20} height={20} />
+                <Image
+                  src={FacebookIcon}
+                  alt="svg-icon"
+                  width={20}
+                  height={20}
+                />
               </div>
               <div className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2">
-                <Image src={BehanceIcon} alt="svg-icon" width={20} height={20} />
+                <Image
+                  src={BehanceIcon}
+                  alt="svg-icon"
+                  width={20}
+                  height={20}
+                />
               </div>
               <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
             </div>
