@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 
 export default function Start() {
   const t = useTranslations("Index");
-  console.log(t);
   return (
     <div className="h-screen w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full flex justify-center flex-col">
