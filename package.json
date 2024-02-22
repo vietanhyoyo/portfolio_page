@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "flag-icons": "^7.1.0",
+    "framer-motion": "^11.0.5",
     "next": "14.1.0",
     "next-intl": "^3.8.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-type-animation": "^3.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

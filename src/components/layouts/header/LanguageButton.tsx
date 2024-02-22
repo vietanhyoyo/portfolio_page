@@ -40,7 +40,7 @@ export default function LanguageButton({ className, locale }: Props) {
     <div className={"flex relative h-9 justify-center flex-col " + className}>
       <button
         onClick={toggleDropdown}
-        className="rounded-3xl flex-shrink-0 z-10 inline-flex items-center h-full px-2 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+        className="rounded-3xl flex-shrink-0 z-10 inline-flex items-center h-full px-2 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-slate-800 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
         type="button"
       >
         <Image

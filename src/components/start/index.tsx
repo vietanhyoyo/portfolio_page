@@ -1,8 +1,13 @@
 import MailIcon from "@/../public/images/icons/mail.svg";
 import FacebookIcon from "@/../public/images/icons/facebook.svg";
 import BehanceIcon from "@/../public/images/icons/behance.svg";
+import DownloadIcon from "@/../public/images/icons/download.svg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import TypingText from "./TypingText";
+import Button from "../button/Button";
+import OutlineButton from "../button/OutlineButton";
+import Reveal from "../animation/Reveal";
 
 export default function Start() {
   const t = useTranslations("Index");
@@ -14,29 +19,44 @@ export default function Start() {
   );
   return (
     <div className="h-screen w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
-      <div className="py-10 max-w-7xl h-full flex justify-center flex-col">
-        <div className="flex justify-between m-auto">
-          <div className="flex-1">
-            <p className="text-7xl font-semibold mb-4 dark:text-white text-primary">
-              {t("title")}
-              Hello!!! <br />
-              My name is Anh
-            </p>
-            <p className="text-lg dark:text-white text-neutral-800">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
-              ultrices lectus, ut fringilla sem. Nulla facilisi. Phasellus in
-              nisl a ex bibendum dictum. Ut eget enim eget neque laoreet varius
-              a quis erat.
-            </p>
+      <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-4 xl:px-0">
+        <div className="flex justify-between m-auto items-center">
+          <div className="lg:flex-1">
+            <Reveal>
+              <p className="text-6xl font-semibold mb-4 dark:text-white text-slate-700">
+                {t("hello")}
+                <br />
+                My name is ANH
+              </p>
+              <TypingText />
+            </Reveal>
+            <Reveal>
+              <p className="mt-4 text-lg dark:text-white text-neutral-800">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
+                ultrices lectus, ut fringilla sem. Nulla facilisi. Phasellus in
+                nisl a ex bibendum dictum. Ut eget enim eget neque laoreet
+                varius a quis erat.
+              </p>
+            </Reveal>
+            <Reveal>
+              <div className="pt-3 items-center flex">
+                <Button>Hire Me</Button>
+                <OutlineButton className="ml-4" icon={DownloadIcon}>
+                  Download CV
+                </OutlineButton>
+              </div>
+            </Reveal>
           </div>
-          <div className="flex justify-end flex-1 text-right dark:text-white">
-            <div className="flex justify-center items-center flex-col w-11">
-              <div className="w-1 h-8 bg-primary dark:bg-white mb-2 rounded-full"></div>
-              {renderIcon(MailIcon)}
-              {renderIcon(FacebookIcon)}
-              {renderIcon(BehanceIcon)}
-              <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
-            </div>
+          <div className="flex justify-end xl:flex-1 text-right dark:text-white">
+            <Reveal>
+              <div className="flex justify-center items-center flex-col w-11">
+                <div className="w-1 h-8 bg-primary dark:bg-white mb-2 rounded-full"></div>
+                {renderIcon(MailIcon)}
+                {renderIcon(FacebookIcon)}
+                {renderIcon(BehanceIcon)}
+                <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
