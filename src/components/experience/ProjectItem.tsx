@@ -2,19 +2,32 @@ import Reveal from "../animation/Reveal";
 
 const ProjectItem = ({
   title,
+  technicals,
   descriptions,
 }: {
   title: string;
+  technicals: string[];
   descriptions: string[];
 }) => (
   <Reveal>
     <div className="mt-3">
-      <p className="dark:text-slate-50 text-xl font-semibold">
+      <div className="dark:text-slate-50 text-xl font-semibold text-slate-800">
         &#10022;&nbsp;{title}
-      </p>
+        <div className="inline ml-2">
+          {technicals.map((item, index) => {
+            return (
+              <div className="bg-slate-900 inline-flex p-1 mr-1 rounded items-center">
+                <span className="text-xs font-light" key={index}>
+                  {item}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <div className="pl-5 pt-1">
         {descriptions.map((item) => (
-          <p className="dark:text-slate-300 text-lg">{item}</p>
+          <p className="dark:text-slate-300 text-lg text-slate-700">{item}</p>
         ))}
       </div>
     </div>

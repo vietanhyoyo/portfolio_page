@@ -62,6 +62,3 @@ const Reveal: React.FC<Props> = ({
 };
 
 export default Reveal;
-function useRes(arg0: null) {
-  throw new Error("Function not implemented.");
-}

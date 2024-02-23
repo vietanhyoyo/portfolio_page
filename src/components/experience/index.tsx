@@ -5,8 +5,12 @@ import ProjectItem from "./ProjectItem";
 const Divider = () => {
   return (
     <div className="flex justify-start flex-col items-center">
-      <div className="w-7 h-7 bg-primary rounded-full"></div>
-      <div className="flex-1 w-1 bg-primary rounded-full"></div>
+      <div className="w-7 h-7 bg-primary rounded-full items-center flex justify-center">
+        <div className="w-5 h-5 bg-slate-200 dark:bg-slate-800 rounded-full  items-center flex justify-center">
+          <div className="w-2 h-2 bg-primary rounded-full"></div>
+        </div>
+      </div>
+      <div className="mt-1 flex-1 w-1 bg-primary rounded-full"></div>
     </div>
   );
 };
@@ -32,24 +36,34 @@ export default function Experience() {
                 company="VHEC - Can Tho City"
               />
               <ProjectItem
-                title="Banana disease analysis project (Flutter)"
+                title="Banana disease analysis project"
+                technicals={["flutter"]}
                 descriptions={[
                   "- I participate in improving the application, integrate Google Map into searching for diseased crop areas, process analytical data on UI",
                   "- I design a new UI with Figma to upgrade the UI for the app",
                 ]}
               />
               <ProjectItem
-                title="Mother and baby health care project (Flutter)"
+                title="Mother and baby health care project"
+                technicals={["flutter"]}
                 descriptions={[
                   "- I build the interface based on the Figma design and integrate API",
                 ]}
               />
               <ProjectItem
-                title="Diary management project (Flutter, Ruby on Rails)"
+                title="Diary management project"
+                technicals={["flutter", "ruby"]}
                 descriptions={[
                   "- I am responsible for managing, assigning tasks and rev iewing code for team members",
                   "- I build the interface based on the Figma design and integrate API, handle video uploads, handle notification",
                   "- I participate in writing some APIs in the backend with Ruby on Rails",
+                ]}
+              />
+              <ProjectItem
+                title="Asset management project"
+                technicals={["vuejs"]}
+                descriptions={[
+                  "- I build the interface based on the Figma design and integrate API",
                 ]}
               />
             </div>
@@ -60,13 +74,13 @@ export default function Experience() {
             <Divider />
             <div className="leading-7 ml-5">
               <CompanyInfo
-                date="05/2022 – 07/2022"
-                company="Maysoft Company – CanTho City"
+                date="05/2022 - 07/2022"
+                company="Maysoft Company - CanTho City"
               />
               <ProjectItem
                 title="Web and Mobile App development for
-                incident management project
-                (React/ReactNative)"
+                incident management project"
+                technicals={["react", "react native"]}
                 descriptions={[
                   "- I build the interface based on the Figma design and integrate API",
                 ]}

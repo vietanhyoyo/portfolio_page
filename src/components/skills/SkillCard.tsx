@@ -8,7 +8,11 @@ type SkillCardProps = {
 
 const SkillCard: React.FC<SkillCardProps> = ({ title, content, iconSrc }) => {
   return (
-    <div className="min-w-60 max-w-80 h-96 dark:bg-slate-800 bg-slate-100 shadow-md p-7 rounded-md flex items-center flex-col">
+    <div
+      className="min-w-60 max-w-80 h-96
+     dark:bg-slate-800 bg-slate-100  border border-slate-700
+     shadow-lg p-7 rounded-md flex items-center flex-col"
+    >
       <Image
         src={iconSrc}
         alt={title}

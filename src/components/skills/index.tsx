@@ -3,7 +3,9 @@ import ReactImg from "@/../public/images/skills/react.png";
 import FigmaImg from "@/../public/images/skills/figma.png";
 import NodeImg from "@/../public/images/skills/node.png";
 import GitImg from "@/../public/images/skills/git.png";
+import VueImg from "@/../public/images/skills/vue.png";
 import DatabseImg from "@/../public/images/skills/database.png";
+
 import SkillCard from "./SkillCard";
 import Reveal from "../animation/Reveal";
 
@@ -31,6 +33,13 @@ export default function Skills() {
             <SkillCard
               title="ReactJS"
               iconSrc={ReactImg}
+              content={
+                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+              }
+            />
+            <SkillCard
+              title="VueJS"
+              iconSrc={VueImg}
               content={
                 "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
               }
