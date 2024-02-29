@@ -1,4 +1,5 @@
 import Reveal from "../animation/Reveal";
+import TechTag from "../tag/TechTag";
 
 const ProjectItem = ({
   title,
@@ -14,14 +15,8 @@ const ProjectItem = ({
       <div className="dark:text-slate-50 text-xl font-semibold text-slate-800">
         &#10022;&nbsp;{title}
         <div className="inline ml-2">
-          {technicals.map((item, index) => {
-            return (
-              <div className="bg-slate-900 inline-flex p-1 mr-1 rounded items-center">
-                <span className="text-xs font-light" key={index}>
-                  {item}
-                </span>
-              </div>
-            );
+          {technicals.map((item) => {
+            return <TechTag>{item}</TechTag>;
           })}
         </div>
       </div>

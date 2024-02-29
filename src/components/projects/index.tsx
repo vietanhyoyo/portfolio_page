@@ -1,6 +1,6 @@
 import Reveal from "../animation/Reveal";
-import FigmaImg from "@/../public/images/skills/figma.png";
-import Image from "next/image";
+import ProjectItem from "./ProjectItem";
+import SoundAppImg from "@/../public/images/projects/app_sound.png";
 
 export default function Projects() {
   return (
@@ -14,22 +14,28 @@ export default function Projects() {
         <Reveal>
           <div className="w-96 h-2 bg-primary rounded-full mb-8"></div>
         </Reveal>
-        <div className="flex">
-          <img
-            src="https://help.apple.com/assets/656912ADA28BF1B7E90BF0F6/656912B3021EA3AD750FB887/en_US/c61bfbef2fc063162694b6f088e2a620.png"
-            alt="project-img"
-            style={{height: "300px"}}
+        <div className="mt-10">
+          <ProjectItem
+            image={SoundAppImg}
+            subTitle="App mobile"
+            title="Music listening app"
+            technicals={["flutter","getx", "figma"]}
+            content="Lorem ipsum dolor sit amet consectetur adipisicing 
+            elit. Corrupti, vel. Nobis enim 
+            unde voluptas, deserunt temporibus sed 
+            illum dolor quod ratione aperiam?"
           />
-          <div className="ml-5">
-            <h3 className="text-3xl font-semibold dark:text-white mb-8 mt-6">
-              App data
-            </h3>
-            <p className="dark:text-white flex-1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit
-              libero mollitia ipsum, obcaecati modi, accusantium molestiae botam
-              eligendi non sunt architecto dolore.
-            </p>
-          </div>
+          <ProjectItem
+            oppositeDirection
+            image={SoundAppImg}
+            subTitle="App mobile"
+            title="Music listening app"
+            technicals={["flutter", "figma"]}
+            content="Lorem ipsum dolor sit amet consectetur adipisicing 
+            elit. Corrupti, vel. Nobis enim 
+            unde voluptas, deserunt temporibus sed 
+            illum dolor quod ratione aperiam?"
+          />
         </div>
       </div>
     </div>
