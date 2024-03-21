@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`text-xl border-2 border-primary px-4 py-2 rounded-md text-white bg-primary hover:bg-primary800 focus:outline-none focus:bg-primary800 ${className}`}
+      className={`border-2 border-primary px-2 py-1 rounded-md text-white bg-primary hover:bg-primary800 focus:outline-none focus:bg-primary800 ${className}`}
     >
       <div className="flex items-center justify-center">
         {icon && (

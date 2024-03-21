@@ -1,39 +1,54 @@
-"use client";
-import Link from "next/link";
-import DarkModeSwitcher from "./DarkModeSwitcher";
-import LanguageButton from "./LanguageButton";
+'use client';
+import Link from 'next/link';
+import DarkModeSwitcher from './DarkModeSwitcher';
+import LanguageButton from './LanguageButton';
+import { useState } from 'react';
+import Sidebar from '../Sidebar';
+import Header2 from '../Header2';
+import useColorMode from '@/hook/useColorMode';
 
 type Props = {
   params: { locale: string };
+  children: React.ReactNode;
 };
 
-export default function Header({ params: { locale } }: Props) {
-  const navLinks = [
-    { href: "/", text: "Home" },
-    { href: "/skill", text: "Experience" },
-    { href: "/contact", text: "Contact" },
-  ];
+export default function Header({ params: { locale }, children }: Props) {
+  const [colorMode, setColorMode] = useColorMode();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <header className="bg-slate-200 dark:bg-slate-800 py-4 fixed top-0 left-0 w-full z-10">
-      <div className="container mx-auto flex justify-between items-center max-w-7xl px-4 xl:px-0">
-        <h1 className="text-primary dark:text-white text-xl font-bold mr-14">{"<V.A>"}</h1>
-        <nav className="space-x-4">
-          {navLinks.map(({ href, text }) => (
-            <Link
-              href={href}
-              key={href}
-              className="text-primary dark:text-white hover:text-gray-300 font-bold"
-            >
-              {text}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex">
-          <LanguageButton className="mr-3" locale={locale} />
-          <DarkModeSwitcher />
+    <>
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          <Header2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <main>
+            <div className="mx-auto max-w-screen-2xl">
+              {children}
+            </div>
+          </main>
         </div>
       </div>
-    </header>
+    </>
   );
 }
+
+const Drawer = ({
+  isOpen,
+  closeDrawer,
+}: {
+  isOpen: boolean;
+  closeDrawer: () => void;
+}) => {
+  return (
+    <div
+      className={`${
+        isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-0'
+      } transition-transform duration-300 ease-in-out top-0 left-0 h-full bg-gray-800 p-6 z-50 overflow-hidden`}
+    >
+      <button className="text-white" onClick={closeDrawer}>
+        Close
+      </button>
+    </div>
+  );
+};

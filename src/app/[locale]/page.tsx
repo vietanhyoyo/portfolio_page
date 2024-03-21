@@ -7,5 +7,5 @@ type Props = {
 
 export default function Home({ params: { locale } }: Props) {
   const t = useTranslations();
-  redirect(`/${locale}/portfolio`);
+  redirect(`/${locale}/login`);
 }
