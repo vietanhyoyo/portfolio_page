@@ -1,11 +1,8 @@
 'use client';
-import Link from 'next/link';
-import DarkModeSwitcher from './DarkModeSwitcher';
-import LanguageButton from './LanguageButton';
 import { useState } from 'react';
 import Sidebar from '../Sidebar';
-import Header2 from '../Header2';
-import useColorMode from '@/hook/useColorMode';
+import { usePathname } from 'next/navigation';
+import HeaderComponent from '../HeaderComponent';
 
 type Props = {
   params: { locale: string };
@@ -13,22 +10,29 @@ type Props = {
 };
 
 export default function Header({ params: { locale }, children }: Props) {
-  const [colorMode, setColorMode] = useColorMode();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathName = usePathname();
+  const isLoginPage = pathName.includes('/login');
 
   return (
     <>
-      <div className="flex h-screen overflow-hidden">
-        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-          <Header2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          <main>
-            <div className="mx-auto max-w-screen-2xl">
-              {children}
-            </div>
-          </main>
+      {isLoginPage ? (
+        <div>{children}</div>
+      ) : (
+        <div className="flex h-screen overflow-hidden">
+          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+            <HeaderComponent
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+              locale={locale}
+            />
+            <main>
+              <div className="mx-auto">{children}</div>
+            </main>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

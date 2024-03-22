@@ -1,4 +1,5 @@
 import Header from '@/components/layouts/header';
+import { ConfigProvider } from 'antd';
 
 export default function Layout({
   children,
@@ -7,16 +8,5 @@ export default function Layout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  return (
-    <div className="dark:bg-boxdark-2 dark:text-bodydark">
-      <Header
-        params={{
-          locale: locale,
-        }}
-      >
-        {' '}
-        <div>{children}</div>
-      </Header>
-    </div>
-  );
+  return <Header params={{ locale: locale }}>{children}</Header>;
 }

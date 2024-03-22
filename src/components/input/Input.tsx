@@ -6,7 +6,7 @@ interface InputProps {
     type: string;
     value?: string;
     onChange?: (value: string) => void;
-    autoComplete?: string;
+    autoComplete?: string | "off";
     required?: boolean;
     placeholder?: string;
 }
@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({ id, name, type, value, onChange, autoComp
             id={id}
             name={name}
             type={type}
-            autoComplete={autoComplete}
+            autoComplete={"false"}
             onChange={onChange ? (event) => {
                 onChange(event.target.value)
             } : () => { }}
