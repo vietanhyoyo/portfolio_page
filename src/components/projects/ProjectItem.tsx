@@ -1,14 +1,17 @@
+import Link from "next/link";
 import TechTag from "../tag/TechTag";
 
-import Image from "next/image";
-
 type Props = {
-  image: any;
+  image: React.ReactNode;
   subTitle: string;
   title: string;
   technicals: string[];
   content: string;
   oppositeDirection?: boolean;
+  imageWidth?: any;
+  gap?: any;
+  link?: string | null;
+  className?: string
 };
 
 const ProjectItem = ({
@@ -18,9 +21,13 @@ const ProjectItem = ({
   technicals,
   content,
   oppositeDirection = false,
+  imageWidth = 500,
+  gap = 0,
+  link,
+  className
 }: Props) => {
   return (
-    <div className="flex items-center">
+    <div className={`flex items-center ${className}`}>
       {oppositeDirection ? (
         <>
           <div className="h-full flex flex-col justify-center text-end">
@@ -36,17 +43,25 @@ const ProjectItem = ({
               ))}
             </div>
             <p className="dark:text-white flex-1 mt-2">{content}</p>
+            {link != null && (
+              <Link
+                href={link}
+                className="text-primary hover:text-blue-800"
+              >
+                {link}
+              </Link>
+            )}
           </div>
-          <div style={{ width: "500px" }}>
-            <Image src={image} alt="project-img" />
+          <div style={{ width: imageWidth, marginLeft: gap }}>
+            {image}
           </div>
         </>
       ) : (
         <>
-          <div style={{ width: "500px" }}>
-            <Image src={image} alt="project-img" />
+          <div style={{ width: imageWidth, marginRight: gap }}>
+          {image}
           </div>
-          <div className="ml-7 h-full flex flex-col justify-center">
+          <div className="h-full flex flex-col justify-center">
             <h4 className="text-1xl dark:text-slate-400 text-primary">
               {subTitle}
             </h4>
@@ -59,6 +74,14 @@ const ProjectItem = ({
               ))}
             </div>
             <p className="dark:text-white flex-1 mt-2">{content}</p>
+            {link != null && (
+              <Link
+                href={link}
+                className="text-primary hover:text-blue-800"
+              >
+                {link}
+              </Link>
+            )}
           </div>
         </>
       )}

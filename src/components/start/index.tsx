@@ -23,26 +23,26 @@ export default function Start() {
         <div className="flex justify-between m-auto items-center">
           <div className="lg:flex-1">
             <Reveal>
-              <p className="text-6xl font-semibold mb-4 dark:text-white text-slate-700">
+              <p className="text-5xl font-semibold mb-4 dark:text-white text-slate-700">
                 {t("hello")}
                 <br />
-                My name is ANH
+                {t("my_name")}
               </p>
-              <TypingText />
+              <TypingText
+                title={t("i_am_a_developer")}
+                titleTwo={t("i_am_a_ui/ux_designer")}
+              />
             </Reveal>
             <Reveal>
-              <p className="mt-4 text-lg dark:text-white text-neutral-800">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
-                ultrices lectus, ut fringilla sem. Nulla facilisi. Phasellus in
-                nisl a ex bibendum dictum. Ut eget enim eget neque laoreet
-                varius a quis erat.
+              <p className="mt-4 text-base dark:text-white text-neutral-800">
+                {t("resume_content")}
               </p>
             </Reveal>
             <Reveal>
               <div className="pt-3 items-center flex">
-                <Button>Hire Me</Button>
+                <Button>{t("hire_me")}</Button>
                 <OutlineButton className="ml-4" icon={DownloadIcon}>
-                  Download CV
+                  {t("download_cv")}
                 </OutlineButton>
               </div>
             </Reveal>

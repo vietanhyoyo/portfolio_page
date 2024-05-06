@@ -1,5 +1,11 @@
 {
   "Index": {
-    "hello": "Xin chào!"
+    "hello": "Xin chào!",
+    "my_name": "Tên tôi là Việt Anh",
+    "i_am_a_developer": "Tôi là developer",
+    "i_am_a_ui/ux_designer": "Tôi là designer",
+    "resume_content": "Là một Lập trình viên Frontend với hơn 1,5 năm kinh nghiệm thực tế, tôi chuyên tạo ra các trang web và ứng dụng thân thiện với người dùng. Hơn việc viết mã, tôi ưu tiên hiểu rõ nhu cầu của khách hàng, thiết kế giao diện thân thiện, xây dựng tính năng hiệu quả, tiến hành kiểm thử kỹ lưỡng và đảm bảo triển khai an toàn.",
+    "hire_me": "Tuyển dụng tôi",
+    "download_cv": "Tải CV"
   }
 }

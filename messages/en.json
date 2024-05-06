@@ -1,5 +1,11 @@
 {
   "Index": {
-    "hello": "Hello!"
+    "hello": "Hello!",
+    "my_name": "My name is Viet Anh",
+    "i_am_a_developer": "I'm a developer",
+    "i_am_a_ui/ux_designer": "I'm a designer",
+    "resume_content": "As a Frontend Developer with more than 1.5 years of experience, I specialize in creating user-friendly websites and applications. Beyond writing code, I prioritize understanding client needs, designing intuitive interfaces, building efficient features, conducting thorough testing, and ensuring safe deployment.",
+    "hire_me": "Hire Me",
+    "download_cv": "Download CV"
   }
 }

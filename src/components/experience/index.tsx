@@ -32,8 +32,8 @@ export default function Experience() {
             <Divider />
             <div className="leading-7 ml-5">
               <CompanyInfo
-                date="09/2022 - today"
-                company="VHEC - Can Tho City"
+                date="01/09/2022 - 31/03/2024"
+                company="Viet Nam Hi-Tech Engineering Company"
               />
               <ProjectItem
                 title="Banana disease analysis project"
@@ -74,8 +74,8 @@ export default function Experience() {
             <Divider />
             <div className="leading-7 ml-5">
               <CompanyInfo
-                date="05/2022 - 07/2022"
-                company="Maysoft Company - CanTho City"
+                date="05/2022 - 30/07/2022"
+                company="Maysoft Company"
               />
               <ProjectItem
                 title="Web and Mobile App development for
