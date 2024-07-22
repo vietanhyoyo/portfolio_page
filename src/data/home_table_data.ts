@@ -1,3 +1,5 @@
+import { Image } from 'antd';
+
 export const dataSource = [
   {
     key: '1',
@@ -15,18 +17,38 @@ export const dataSource = [
 
 export const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'Mã hàng hoá',
+    dataIndex: 'product_id',
+    key: 'product_id',
+  },
+  // {
+  //   title: 'Hình ảnh',
+  //   dataIndex: 'image',
+  //   key: 'image',
+  // },
+  {
+    title: 'Hàng hoá',
+    dataIndex: 'product_name',
+    key: 'product_name',
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Giá',
+    dataIndex: 'price',
+    key: 'price',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Số lượng',
+    dataIndex: 'amount',
+    key: 'amount',
+  },
+  {
+    title: 'Loại hàng hoá',
+    dataIndex: 'product_group_name',
+    key: 'product_group_name',
+  },
+  {
+    title: 'Kho',
+    dataIndex: 'warehouse_name',
+    key: 'warehouse_name',
   },
 ];
