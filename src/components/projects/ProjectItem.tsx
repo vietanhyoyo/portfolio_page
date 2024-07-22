@@ -38,8 +38,8 @@ const ProjectItem = ({
               {title}
             </h3>
             <div className="flex justify-end">
-              {technicals.map((item) => (
-                <TechTag>{item}</TechTag>
+              {technicals.map((item, index) => (
+                <TechTag key={index}>{item}</TechTag>
               ))}
             </div>
             <p className="dark:text-white flex-1 mt-2">{content}</p>
@@ -69,8 +69,8 @@ const ProjectItem = ({
               {title}
             </h3>
             <div className="flex">
-              {technicals.map((item) => (
-                <TechTag>{item}</TechTag>
+              {technicals.map((item, index) => (
+                <TechTag key={index}>{item}</TechTag>
               ))}
             </div>
             <p className="dark:text-white flex-1 mt-2">{content}</p>

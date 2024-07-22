@@ -24,7 +24,7 @@ const Reveal: React.FC<Props> = ({
       mainControls.start("visible");
       slideControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls, slideControls]);
   return (
     <div ref={ref} style={{ width, position: "relative" }}>
       <motion.div

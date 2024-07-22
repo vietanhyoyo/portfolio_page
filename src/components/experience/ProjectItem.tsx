@@ -15,14 +15,14 @@ const ProjectItem = ({
       <div className="dark:text-slate-50 text-xl font-semibold text-slate-800">
         &#10022;&nbsp;{title}
         <div className="inline ml-2">
-          {technicals.map((item) => {
-            return <TechTag>{item}</TechTag>;
+          {technicals.map((item, index) => {
+            return <TechTag key={index}>{item}</TechTag>;
           })}
         </div>
       </div>
       <div className="pl-5 pt-1">
-        {descriptions.map((item) => (
-          <p className="dark:text-slate-300 text-lg text-slate-700">{item}</p>
+        {descriptions.map((item, index) => (
+          <p key={index} className="dark:text-slate-300 text-lg text-slate-700">{item}</p>
         ))}
       </div>
     </div>
