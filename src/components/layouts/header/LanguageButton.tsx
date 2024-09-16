@@ -14,7 +14,7 @@ export default function LanguageButton({ className, locale }: Props) {
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const changeLanguage = (locale: string) => {
+  const changeLanguage = (locale: any) => {
     router.replace("/portfolio", { locale: locale });
     setSelectedLanguage(locale);
   };
@@ -59,9 +59,9 @@ export default function LanguageButton({ className, locale }: Props) {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 1 4 4 4-4"
           />
         </svg>
