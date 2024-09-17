@@ -9,10 +9,10 @@ export default function Layout({
   params: { locale: string };
 }>) {
   return (
-    <>
+    <div className={locale === "en" ? "font-english" : "font-roboto"}>
       <Header params={{ locale: locale }} />
       <div>{children}</div>
-      <SettingButton />
-    </>
+      <SettingButton locale={locale} />
+    </div>
   );
 }

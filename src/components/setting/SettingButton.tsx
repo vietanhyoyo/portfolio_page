@@ -2,8 +2,14 @@
 import { Settings } from "lucide-react";
 import ModeToggle from "./ModeToggle";
 import { useState } from "react";
+import LanguageButton from "./LanguageButton";
 
-export default function SettingButton() {
+type SettingButtonProps = {
+  className?: string;
+  locale: string;
+};
+
+export default function SettingButton({ locale, className }: SettingButtonProps) {
   const [showModeToggle, setShowModeToggle] = useState(false);
   const [animatingOut, setAnimatingOut] = useState(false);
 
@@ -28,7 +34,7 @@ export default function SettingButton() {
         >
           <div className="flex flex-col gap-4">
             <ModeToggle />
-            <ModeToggle />
+            <LanguageButton locale={locale} />
           </div>
         </div>
       )}

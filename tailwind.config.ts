@@ -17,6 +17,10 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        english: ["ui-sans-serif", "Rubik"],
+        roboto: ['Roboto', 'sans-serif']
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -94,10 +98,6 @@ const config: Config = {
           "0%, 100%": { boxShadow: "0 0 0 0 rgba(59, 130, 246, 0)" },
           "50%": { boxShadow: "0 0 20px 0 rgba(59, 130, 246, 0.3)" },
         },
-      },
-      backgroundImage: {
-        // 'hero-pattern': "var(--background-image')",
-        // 'hero-pattern': "url('../../public/images/Background.png')",
       },
     },
     screens: {

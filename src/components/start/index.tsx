@@ -10,6 +10,7 @@ import Button from "../button/Button";
 import OutlineButton from "../button/OutlineButton";
 import Reveal from "../animation/Reveal";
 import { ArrowDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Start() {
   const t = useTranslations("Index");
@@ -19,46 +20,55 @@ export default function Start() {
       <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
     </button>
   );
+
   return (
-    <div className="h-screen w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
-      <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-4 xl:px-0">
-        <div className="flex justify-between m-auto items-center">
-          <div className="lg:flex-1">
-            <Reveal>
-              <p className="text-5xl font-semibold mb-4 dark:text-white text-slate-700">
-                {t("hello")}
-                <br />
-                {t("my_name")}
-              </p>
-              <TypingText
-                title={t("i_am_a_developer")}
-                titleTwo={t("i_am_a_ui/ux_designer")}
-              />
-            </Reveal>
-            <Reveal>
-              <p className="mt-4 text-base dark:text-white text-neutral-800">
-                {t("resume_content")}
-              </p>
-            </Reveal>
-            <Reveal>
-              <div className="pt-3 items-center flex">
-                <Button>{t("hire_me")}</Button>
-                <OutlineButton className="ml-4" icon={<ArrowDown />}>
-                  {t("download_cv")}
-                </OutlineButton>
-              </div>
-            </Reveal>
-          </div>
-          <div className="flex justify-end xl:flex-1 text-right dark:text-white">
-            <Reveal>
-              <div className="flex justify-center items-center flex-col w-11">
-                <div className="w-1 h-8 bg-primary dark:bg-white mb-2 rounded-full"></div>
-                {renderIcon(MailIcon)}
-                {renderIcon(PhoneIcon)}
-                {renderIcon(BehanceIcon)}
-                <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
-              </div>
-            </Reveal>
+    <div className="relative h-screen flex justify-center items-center">
+      <div
+        className={cn(
+          "absolute inset-0 bg-[url('/images/backgrounds/miku-bg.jpg')] bg-center bg-cover",
+          "filter grayscale -z-10"
+        )}
+      />
+      <div className="h-screen bg-white/90 dark:bg-slate-800/95 w-full flex justify-center">
+        <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-4 xl:px-0">
+          <div className="flex justify-between m-auto items-center">
+            <div className="lg:flex-1">
+              <Reveal>
+                <p className="text-5xl font-semibold mb-4 dark:text-white text-slate-700">
+                  {t("hello")}
+                  <br />
+                  {t("my_name")}
+                </p>
+                <TypingText
+                  title={t("i_am_a_developer")}
+                  titleTwo={t("i_am_a_ui/ux_designer")}
+                />
+              </Reveal>
+              <Reveal>
+                <p className="mt-4 text-base dark:text-white text-neutral-800">
+                  {t("resume_content")}
+                </p>
+              </Reveal>
+              <Reveal>
+                <div className="pt-3 items-center flex">
+                  <Button>{t("hire_me")}</Button>
+                  <OutlineButton className="ml-4" icon={<ArrowDown />}>
+                    {t("download_cv")}
+                  </OutlineButton>
+                </div>
+              </Reveal>
+            </div>
+            <div className="flex justify-end xl:flex-1 text-right dark:text-white">
+              <Reveal>
+                <div className="flex justify-center items-center flex-col w-11">
+                  <div className="w-1 h-8 bg-slate-400 dark:bg-white mb-2 rounded-full"></div>
+                  {renderIcon(MailIcon)}
+                  {renderIcon(PhoneIcon)}
+                  {renderIcon(BehanceIcon)}
+                  <div className="w-1 h-8 bg-slate-400 dark:bg-white mt-2 rounded-full"></div>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </div>

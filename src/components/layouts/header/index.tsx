@@ -1,8 +1,5 @@
 "use client";
 import Link from "next/link";
-import DarkModeSwitcher from "./DarkModeSwitcher";
-import LanguageButton from "./LanguageButton";
-import ModeToggle from "@/components/setting/ModeToggle";
 
 type Props = {
   params: { locale: string };
@@ -11,29 +8,26 @@ type Props = {
 export default function Header({ params: { locale } }: Props) {
   const navLinks = [
     { href: "/", text: "Home" },
-    { href: "/skill", text: "Experience" },
+    { href: "/skill", text: "Skill" },
+    { href: "/experience", text: "Experience" },
     { href: "/contact", text: "Contact" },
   ];
 
   return (
-    <header className="bg-slate-200 dark:bg-slate-800 py-4 fixed top-0 left-0 w-full z-10">
+    <header className="py-4 fixed top-0 left-0 w-full z-10">
       <div className="container mx-auto flex justify-between items-center max-w-7xl px-4 xl:px-0">
-        <h1 className="text-primary dark:text-white text-xl font-bold mr-14">{"<V.A>"}</h1>
-        <nav className="space-x-4">
+        <h1 className="text-primary text-3xl font-bold">{"<A>"}</h1>
+        <nav className="space-x-12">
           {navLinks.map(({ href, text }) => (
             <Link
               href={href}
               key={href}
-              className="text-primary dark:text-white hover:text-gray-300 font-bold"
+              className="text-slate-800/75 text-xl dark:text-white hover:text-primary dark:hover:text-primary font-semibold"
             >
               {text}
             </Link>
           ))}
         </nav>
-        <div className="flex">
-          <LanguageButton className="mr-3" locale={locale} />
-          {/* <ModeToggle /> */}
-        </div>
       </div>
     </header>
   );
