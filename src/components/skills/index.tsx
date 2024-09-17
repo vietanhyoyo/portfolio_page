@@ -3,7 +3,9 @@ import ReactImg from "@/../public/images/skills/react.png";
 import FigmaImg from "@/../public/images/skills/figma.png";
 import NodeImg from "@/../public/images/skills/node.png";
 import GitImg from "@/../public/images/skills/git.png";
+import RubyImg from "@/../public/images/skills/ruby.png";
 import VueImg from "@/../public/images/skills/vue.png";
+import DockerImg from "@/../public/images/skills/docker.png";
 import DatabseImg from "@/../public/images/skills/database.png";
 
 import SkillCard from "./SkillCard";
@@ -22,55 +24,66 @@ export default function Skills() {
           <div className="w-96 h-2 bg-primary rounded-full mb-8"></div>
         </Reveal>
         <Reveal>
-          <div className="flex gap-4 mt-8 w-full justify-center flex-wrap">
+          <div className="flex gap-6 mt-8 w-full justify-center flex-wrap">
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "Clean architecture, Bloc, GetX, Provider, Map, Biometrics, Google ads, (Android/IOS)"
               }
+              starCount={3}
             />
             <SkillCard
               title="ReactJS"
               iconSrc={ReactImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "Next.js, Tailwind, MUI, CEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language"
               }
-            />
-            <SkillCard
-              title="VueJS"
-              iconSrc={VueImg}
-              content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
-              }
+              starCount={3}
             />
             <SkillCard
               title="Figma"
               iconSrc={FigmaImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "Knowledge about UI/UX, Proficient in figma, Web, Mobile App"
               }
+              starCount={3}
             />
             <SkillCard
               title="NodeJS"
               iconSrc={NodeImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule, I can use it at an intermediate level"
               }
+              starCount={3}
             />
             <SkillCard
-              title="Git"
-              iconSrc={GitImg}
+              title="VueJS"
+              iconSrc={VueImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "I can use Vue.js at an intermediate level, Element-plus, VueX"
               }
+              starCount={2}
             />
             <SkillCard
               title="Database"
               iconSrc={DatabseImg}
+              content={"MySQL, Mongo db, Postgres, SQL Server"}
+              starCount={2}
+            />
+            <SkillCard
+              title="Docker"
+              iconSrc={DockerImg}
               content={
-                "Lorem ipsum sit elit. Sapiente voluptatem iure voluptas! Debitis eaquetenetur distinctio recusandae? Quod, natus."
+                "I can use docker to run the project, deploy, CI/CD with Gitlab-runner, use Nginx to public server"
               }
+              starCount={1}
+            />
+            <SkillCard
+              title="Ruby"
+              iconSrc={RubyImg}
+              content={"I can create a basic api, write swagger file"}
+              starCount={1}
             />
           </div>
         </Reveal>

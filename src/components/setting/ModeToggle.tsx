@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import SunIcon from "@/../public/images/icons/sun.svg";
-import MoonIcon from "@/../public/images/icons/moon.svg";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
