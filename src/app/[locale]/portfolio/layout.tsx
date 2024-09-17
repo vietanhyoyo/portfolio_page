@@ -1,4 +1,5 @@
 import Header from "@/components/layouts/header";
+import SettingButton from "@/components/setting/SettingButton";
 
 export default function Layout({
   children,
@@ -11,6 +12,7 @@ export default function Layout({
     <>
       <Header params={{ locale: locale }} />
       <div>{children}</div>
+      <SettingButton />
     </>
   );
 }

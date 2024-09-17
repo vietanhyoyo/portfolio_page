@@ -32,7 +32,7 @@ export default function Header({ params: { locale } }: Props) {
         </nav>
         <div className="flex">
           <LanguageButton className="mr-3" locale={locale} />
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </div>
       </div>
     </header>
