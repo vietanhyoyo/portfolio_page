@@ -4,7 +4,7 @@ import Image from "next/image";
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
-  icon?: any;
+  icon?: React.ReactNode;
   className?: string;
   type?: "button" | "submit" | "reset";
 };
@@ -25,7 +25,7 @@ const OutlineButton: React.FC<ButtonProps> = ({
       <div className="flex items-center justify-center">
         {icon && (
           <span className="mr-2" style={{ marginLeft: "-6px" }}>
-            <Image src={icon} alt="svg-icon" width={20} height={20} />
+            {icon}
           </span>
         )}
         {children}

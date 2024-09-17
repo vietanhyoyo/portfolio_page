@@ -53,9 +53,9 @@ const Reveal: React.FC<Props> = ({
           left: 0,
           right: 0,
           borderRadius: 10,
-          background: "#3C50E0",
           zIndex: 20,
         }}
+        className="bg-primary"
       ></motion.div>
     </div>
   );

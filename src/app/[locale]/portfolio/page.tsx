@@ -1,5 +1,6 @@
 import Experience from "@/components/experience";
 import Projects from "@/components/projects";
+import SettingButton from "@/components/setting/SettingButton";
 import Skills from "@/components/skills";
 import Start from "@/components/start";
 
@@ -14,6 +15,7 @@ export default function Portfolio({ params: { locale } }: Props) {
       <Skills />
       <Experience />
       <Projects />
+      <SettingButton />
     </main>
   );
 }

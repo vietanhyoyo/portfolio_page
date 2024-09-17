@@ -2,12 +2,14 @@ import MailIcon from "@/../public/images/icons/mail.svg";
 import FacebookIcon from "@/../public/images/icons/facebook.svg";
 import BehanceIcon from "@/../public/images/icons/behance.svg";
 import DownloadIcon from "@/../public/images/icons/download.svg";
+import PhoneIcon from "@/../public/images/icons/phone.svg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import TypingText from "./TypingText";
 import Button from "../button/Button";
 import OutlineButton from "../button/OutlineButton";
 import Reveal from "../animation/Reveal";
+import { ArrowDown } from "lucide-react";
 
 export default function Start() {
   const t = useTranslations("Index");
@@ -41,7 +43,7 @@ export default function Start() {
             <Reveal>
               <div className="pt-3 items-center flex">
                 <Button>{t("hire_me")}</Button>
-                <OutlineButton className="ml-4" icon={DownloadIcon}>
+                <OutlineButton className="ml-4" icon={<ArrowDown />}>
                   {t("download_cv")}
                 </OutlineButton>
               </div>
@@ -52,7 +54,7 @@ export default function Start() {
               <div className="flex justify-center items-center flex-col w-11">
                 <div className="w-1 h-8 bg-primary dark:bg-white mb-2 rounded-full"></div>
                 {renderIcon(MailIcon)}
-                {renderIcon(FacebookIcon)}
+                {renderIcon(PhoneIcon)}
                 {renderIcon(BehanceIcon)}
                 <div className="w-1 h-8 bg-primary dark:bg-white mt-2 rounded-full"></div>
               </div>
