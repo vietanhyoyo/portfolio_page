@@ -24,7 +24,7 @@ export default function Skills() {
           <div className="w-96 h-2 bg-primary rounded-full mb-8"></div>
         </Reveal>
         <Reveal>
-          <div className="flex gap-6 mt-8 w-full justify-center flex-wrap">
+          <div className="flex gap-4 mt-8 w-full justify-center flex-wrap">
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}
@@ -32,14 +32,16 @@ export default function Skills() {
                 "Clean architecture, Bloc, GetX, Provider, Map, Biometrics, Google ads, (Android/IOS)"
               }
               starCount={3}
+              color="#29B5F6"
             />
             <SkillCard
-              title="ReactJS"
+              title="React"
               iconSrc={ReactImg}
               content={
                 "Next.js, Tailwind, MUI, CEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language"
               }
               starCount={3}
+              color="#15bede"
             />
             <SkillCard
               title="Figma"
@@ -48,28 +50,32 @@ export default function Skills() {
                 "Knowledge about UI/UX, Proficient in figma, Web, Mobile App"
               }
               starCount={3}
+              color="#A25BFF"
             />
             <SkillCard
-              title="NodeJS"
+              title="Node.js"
               iconSrc={NodeImg}
               content={
                 "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule, I can use it at an intermediate level"
               }
               starCount={3}
+              color="#60B147"
             />
             <SkillCard
-              title="VueJS"
+              title="Vue"
               iconSrc={VueImg}
               content={
                 "I can use Vue.js at an intermediate level, Element-plus, VueX"
               }
               starCount={2}
+              color="#41B782"
             />
             <SkillCard
               title="Database"
               iconSrc={DatabseImg}
               content={"MySQL, Mongo db, Postgres, SQL Server"}
               starCount={2}
+              color="#006CF0"
             />
             <SkillCard
               title="Docker"
@@ -78,12 +84,14 @@ export default function Skills() {
                 "I can use docker to run the project, deploy, CI/CD with Gitlab-runner, use Nginx to public server"
               }
               starCount={1}
+              color="#089CEC"
             />
             <SkillCard
               title="Ruby"
               iconSrc={RubyImg}
               content={"I can create a basic api, write swagger file"}
               starCount={1}
+              color="#AF1305"
             />
           </div>
         </Reveal>

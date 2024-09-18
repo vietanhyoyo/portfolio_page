@@ -19,7 +19,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         english: ["ui-sans-serif", "Rubik"],
-        roboto: ['Roboto', 'sans-serif']
+        roboto: ["Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

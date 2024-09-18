@@ -108,6 +108,22 @@ body {
     background-color: rgba(122, 122, 122, 0.5);
     box-shadow: 0 0 1px rgba(255, 255, 255, .5);
   }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .prespective {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
 
 .quillWrapper :global(.ql-container) {
