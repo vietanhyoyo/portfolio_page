@@ -18,7 +18,6 @@ const SkillCard: React.FC<SkillCardProps> = ({
   color,
 }) => {
   const totalStars = 3;
-  console.log(color)
   return (
     <div className="prespective group">
       <div className="group-hover:rotate-y-180 duration-500 preserve-3d w-[308px] h-[360px] relative">
@@ -66,9 +65,6 @@ const SkillCard: React.FC<SkillCardProps> = ({
           className={cn(
             "absolute h-full shadow-lg p-6 gap-4 rounded-3xl flex justify-center items-center flex-col",
             "text-white",
-            // color
-            //   ? "bg-[" + "color" + "] dark:bg-[" + "color" + "]/30"
-            //   : "bg-primary dark:bg-primary/30",
             "rotate-y-180 backface-hidden",
             "dark:shadow-primary/10 dark:shadow-2xl"
           )}
