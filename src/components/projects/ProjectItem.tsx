@@ -11,7 +11,7 @@ type Props = {
   imageWidth?: any;
   gap?: any;
   link?: string | null;
-  className?: string
+  className?: string;
 };
 
 const ProjectItem = ({
@@ -20,71 +20,33 @@ const ProjectItem = ({
   title,
   technicals,
   content,
-  oppositeDirection = false,
-  imageWidth = 500,
-  gap = 0,
   link,
-  className
+  className,
 }: Props) => {
   return (
-    <div className={`flex items-center ${className}`}>
-      {oppositeDirection ? (
-        <>
-          <div className="h-full flex flex-col justify-center text-end">
-            <h4 className="text-1xl dark:text-slate-400 text-primary">
-              {subTitle}
-            </h4>
-            <h3 className="text-3xl font-semibold dark:text-white mb-2 mt-1">
-              {title}
-            </h3>
-            <div className="flex justify-end">
-              {technicals.map((item, index) => (
-                <TechTag key={index}>{item}</TechTag>
-              ))}
-            </div>
-            <p className="dark:text-white flex-1 mt-2">{content}</p>
-            {link != null && (
-              <Link
-                href={link}
-                className="text-primary hover:text-blue-800"
-              >
-                {link}
-              </Link>
-            )}
-          </div>
-          <div style={{ width: imageWidth, marginLeft: gap }}>
-            {image}
-          </div>
-        </>
-      ) : (
-        <>
-          <div style={{ width: imageWidth, marginRight: gap }}>
-          {image}
-          </div>
-          <div className="h-full flex flex-col justify-center">
-            <h4 className="text-1xl dark:text-slate-400 text-primary">
-              {subTitle}
-            </h4>
-            <h3 className="text-3xl font-semibold dark:text-white mb-2 mt-1">
-              {title}
-            </h3>
-            <div className="flex">
-              {technicals.map((item, index) => (
-                <TechTag key={index}>{item}</TechTag>
-              ))}
-            </div>
-            <p className="dark:text-white flex-1 mt-2">{content}</p>
-            {link != null && (
-              <Link
-                href={link}
-                className="text-primary hover:text-blue-800"
-              >
-                {link}
-              </Link>
-            )}
-          </div>
-        </>
-      )}
+    <div
+      className={`flex flex-col items-center bg-card ${className} rounded-lg p-4 text-slate-800`}
+    >
+      <div className="w-404px rounded-lg overflow-x-hidden">{image}</div>
+      <div className="h-full flex flex-col justify-center pt-6">
+        <h4 className="text-1xl dark:text-slate-400 text-primary">
+          {subTitle}
+        </h4>
+        <h3 className="text-2xl font-semibold dark:text-white mb-2 mt-1">
+          {title}
+        </h3>
+        <p className="dark:text-white flex-1 my-1">{content}</p>
+        {link != null && (
+          <Link href={link} className="text-primary hover:text-blue-800">
+            {link}
+          </Link>
+        )}
+        <div className="flex mt-4">
+          {technicals.map((item, index) => (
+            <TechTag key={index}>{item}</TechTag>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
