@@ -8,12 +8,12 @@ export default function Projects() {
     <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
         <Reveal>
-          <h1 className="text-6xl font-bold dark:text-white text-primary mb-6">
+          <h1 className="text-4xl font-bold dark:text-white text-primary mb-6">
             Projects
           </h1>
         </Reveal>
         <Reveal>
-          <div className="w-96 h-2 bg-primary rounded-full mb-8"></div>
+          <div className="w-96 h-1 bg-primary rounded-full mb-8"></div>
         </Reveal>
         <div className="flex mt-10 gap-4 overflow-x-hidden hover:overflow-x-scroll w-full">
           <Reveal>
