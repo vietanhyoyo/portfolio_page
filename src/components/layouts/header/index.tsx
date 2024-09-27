@@ -43,7 +43,7 @@ export default function Header({ params: { locale } }: Props) {
             <Link
               href={href}
               key={href}
-              className="text-slate-800/75 text-xl dark:text-white hover:text-primary dark:hover:text-primary font-semibold"
+              className="text-slate-800/75 text-lg dark:text-white hover:text-primary dark:hover:text-primary"
             >
               {text}
             </Link>

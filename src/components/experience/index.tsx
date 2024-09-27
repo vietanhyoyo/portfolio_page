@@ -48,7 +48,11 @@ export default function Experience() {
               </svg>
             </CompanyInfo>
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
-              <p className="text-black/50 dark:text-primary">March 2024 - Present</p>
+              <Reveal>
+                <p className="text-black/50 dark:text-primary">
+                  March 2024 - Present
+                </p>
+              </Reveal>
               <ProjectItem
                 title="Labor management in Hau Giang province - (Vietnamese client)"
                 descriptions={[
@@ -83,7 +87,11 @@ export default function Experience() {
               </svg>
             </CompanyInfo>
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
-              <p className="text-black/50 dark:text-primary">September 2022 - March 2024</p>
+              <Reveal>
+                <p className="text-black/50 dark:text-primary">
+                  September 2022 - March 2024
+                </p>
+              </Reveal>
               <ProjectItem
                 title="Diary management project - (Japanese client)"
                 descriptions={[
@@ -150,7 +158,11 @@ export default function Experience() {
               </svg>
             </CompanyInfo>
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
-              <p className="text-black/50 dark:text-primary">May 2022 - September 2022</p>
+              <Reveal>
+                <p className="text-black/50 dark:text-primary">
+                  May 2022 - September 2022
+                </p>
+              </Reveal>
               <ProjectItem
                 title="Web and Mobile App development for incident management project"
                 descriptions={[

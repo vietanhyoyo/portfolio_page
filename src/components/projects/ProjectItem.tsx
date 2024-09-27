@@ -43,7 +43,7 @@ const ProjectItem = ({
     >
       <div
         className={cn(
-          `flex flex-col items-center bg-card ${className} rounded-2xl p-4 text-slate-800 select-none`,
+          `flex flex-col items-center bg-card backdrop-blur-lg ${className} rounded-2xl p-4 text-slate-800 select-none w-[440px]`,
           show ? "pointer-events-auto" : "pointer-events-none",
           // show ? "select-text" : "select-none"
         )}

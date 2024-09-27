@@ -49,14 +49,14 @@ export default function Start() {
                   {t("resume_content")}
                 </p>
               </Reveal>
-              <Reveal>
+              {/* <Reveal>
                 <div className="pt-3 items-center flex">
                   <Button>{t("hire_me")}</Button>
                   <OutlineButton className="ml-4" icon={<ArrowDown />}>
                     {t("download_cv")}
                   </OutlineButton>
                 </div>
-              </Reveal>
+              </Reveal> */}
             </div>
             <div className="flex justify-end xl:flex-1 text-right dark:text-white">
               <Reveal>
