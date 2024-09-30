@@ -27,9 +27,9 @@ const ModeToggle = () => {
       )}
     >
       {theme === "light" ? (
-        <Moon className="stroke-primary h-[24px] w-[24px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Sun className="stroke-primary h-[24px] w-[24px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       ) : (
-        <Sun className="h-[24px] w-[24px] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Moon className="h-[24px] w-[24px] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       )}
     </button>
   );

@@ -1,24 +1,43 @@
 import MailIcon from "@/../public/images/icons/mail.svg";
-import FacebookIcon from "@/../public/images/icons/facebook.svg";
 import BehanceIcon from "@/../public/images/icons/behance.svg";
-import DownloadIcon from "@/../public/images/icons/download.svg";
 import PhoneIcon from "@/../public/images/icons/phone.svg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import TypingText from "./TypingText";
-import Button from "../button/Button";
-import OutlineButton from "../button/OutlineButton";
 import Reveal from "../animation/Reveal";
-import { ArrowDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Start() {
   const t = useTranslations("Index");
 
-  const renderIcon = (iconSrc: any) => (
-    <button className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700">
-      <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
-    </button>
+  const renderIcon = (iconSrc: any, info: string, href?: string) => (
+    <div className="relative group">
+      {href ? (
+        <Link
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700"
+        >
+          <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
+        </Link>
+      ) : (
+        <button className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700">
+          <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
+        </button>
+      )}
+
+      <div className="absolute z-10 top-10 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        {href ? (
+          <Link href={href} target="_blank" rel="noopener noreferrer">
+            {info}
+          </Link>
+        ) : (
+          <span>{info}</span>
+        )}
+      </div>
+    </div>
   );
 
   return (
@@ -62,9 +81,17 @@ export default function Start() {
               <Reveal>
                 <div className="flex justify-center items-center flex-col w-11">
                   <div className="w-1 h-8 bg-slate-400 dark:bg-white mb-2 rounded-full"></div>
-                  {renderIcon(MailIcon)}
-                  {renderIcon(PhoneIcon)}
-                  {renderIcon(BehanceIcon)}
+                  {renderIcon(
+                    MailIcon,
+                    "vanhyoyo@gmail.com",
+                    "mailto:vanhyoyo@gmail.com"
+                  )}
+                  {renderIcon(PhoneIcon, "0358485077")}
+                  {renderIcon(
+                    BehanceIcon,
+                    "behance.net/vitanhbi4",
+                    "https://www.behance.net/vitanhbi4"
+                  )}
                   <div className="w-1 h-8 bg-slate-400 dark:bg-white mt-2 rounded-full"></div>
                 </div>
               </Reveal>

@@ -36,7 +36,7 @@ export default function LanguageButton({ className, locale }: Props) {
       )}
     >
       <Image
-        src={selectedLanguage === "en" ? VietNamIcon : USAIcon }
+        src={selectedLanguage === "en" ? USAIcon : VietNamIcon}
         alt="svg-icon"
         width={20}
         height={20}

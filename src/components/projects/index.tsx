@@ -42,6 +42,27 @@ export default function Projects() {
         <ProjectItem
           image={
             <iframe
+              src="https://www.behance.net/embed/project/198626625?ilo0=1"
+              height="316"
+              width="404"
+              allowFullScreen
+              allow="clipboard-write"
+            ></iframe>
+          }
+          gap={40}
+          subTitle="UI/UX desgin"
+          title="Manhwa page design"
+          technicals={["figma"]}
+          content="A personal project about designing a website for reading manhwa and news about popular anime."
+        />
+      ),
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <ProjectItem
+          image={
+            <iframe
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
               height="316"
               width="404"

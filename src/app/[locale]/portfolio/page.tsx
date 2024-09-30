@@ -10,10 +10,18 @@ type Props = {
 export default function Portfolio({ params: { locale } }: Props) {
   return (
     <main>
-      <Start />
-      <Skills />
-      <Experience />
-      <Projects />
+      <section id="home">
+        <Start />
+      </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="experience">
+        <Experience />
+      </section>
+      <section id="projects">
+        <Projects />
+      </section>
     </main>
   );
 }
