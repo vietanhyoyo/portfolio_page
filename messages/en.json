@@ -7,5 +7,15 @@
     "resume_content": "I am a developer with 2 years of experience in creating a complete mobile apps and websites. In addition to the ability to write code, I also have UI/UX design skills for web systems and apps. This skill has helped me supplement my frontend knowledge, thereby improving my work efficiency and helping the company a lot. I am eager to work in a modern environment where I can contribute with my burning passion for technology.",
     "hire_me": "Hire Me",
     "download_cv": "Download CV"
+  },
+  "Skill": {
+    "flutter": "Clean architecture, Bloc, GetX, Provider, Map, Biometrics, Google ads, (Android/IOS)",
+    "react": "Next.js, Tailwind, MUI, CEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language",
+    "figma": "Knowledge about UI/UX, Proficient in figma, Web, Mobile App",
+    "node": "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule",
+    "vue": "I can use Vue.js at an intermediate level, Element-plus, VueX",
+    "database": "MySQL, Mongo db, Postgres, SQL Server",
+    "docker": "I can use docker to run the project, deploy, CI/CD with Gitlab-runner, use Nginx to public server",
+    "ruby": "I can create a basic api, write swagger file"
   }
 }

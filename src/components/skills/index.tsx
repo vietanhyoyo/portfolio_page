@@ -10,8 +10,10 @@ import DatabseImg from "@/../public/images/skills/database.png";
 
 import SkillCard from "./SkillCard";
 import Reveal from "../animation/Reveal";
+import { useTranslations } from "next-intl";
 
 export default function Skills() {
+  const t = useTranslations("Skill");
   return (
     <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-10">
       <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
@@ -25,68 +27,56 @@ export default function Skills() {
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}
-              content={
-                "Clean architecture, Bloc, GetX, Provider, Map, Biometrics, Google ads, (Android/IOS)"
-              }
+              content={t("flutter")}
               starCount={3}
               color="#29B5F6"
             />
             <SkillCard
               title="React"
               iconSrc={ReactImg}
-              content={
-                "Next.js, Tailwind, MUI, CEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language"
-              }
+              content={t("react")}
               starCount={3}
               color="#15bede"
             />
             <SkillCard
               title="Figma"
               iconSrc={FigmaImg}
-              content={
-                "Knowledge about UI/UX, Proficient in figma, Web, Mobile App"
-              }
+              content={t("figma")}
               starCount={3}
               color="#A25BFF"
             />
             <SkillCard
               title="Node.js"
               iconSrc={NodeImg}
-              content={
-                "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule, I can use it at an intermediate level"
-              }
+              content={t("node")}
               starCount={3}
               color="#60B147"
             />
             <SkillCard
               title="Vue"
               iconSrc={VueImg}
-              content={
-                "I can use Vue.js at an intermediate level, Element-plus, VueX"
-              }
+              content={t("vue")}
               starCount={2}
               color="#41B782"
             />
             <SkillCard
               title="Database"
               iconSrc={DatabseImg}
-              content={"MySQL, Mongo db, Postgres, SQL Server"}
+              content={t("database")}
               starCount={2}
               color="#006CF0"
             />
             <SkillCard
               title="Docker"
               iconSrc={DockerImg}
-              content={
-                "I can use docker to run the project, deploy, CI/CD with Gitlab-runner, use Nginx to public server"
-              }
+              content={t("docker")}
               starCount={1}
               color="#089CEC"
             />
             <SkillCard
               title="Ruby"
               iconSrc={RubyImg}
-              content={"I can create a basic api, write swagger file"}
+              content={t("ruby")}
               starCount={1}
               color="#AF1305"
             />
