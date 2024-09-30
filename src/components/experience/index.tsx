@@ -18,14 +18,14 @@ const Divider = () => {
 export default function Experience() {
   return (
     <div className="w-full bg-slate-50 dark:bg-slate-800 flex justify-center">
-      <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0">
+      <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0">
         <Reveal>
           <div className="text-4xl font-bold dark:text-white text-black/50 dark:text-state-50 mb-6">
             Experience
           </div>
         </Reveal>
         <Reveal>
-          <div className="w-96 h-1 bg-primary rounded-full mb-8"></div>
+          <div className="w-80 md:w-96 h-1 bg-primary rounded-full mb-8"></div>
         </Reveal>
         <div className="w-full mb-5 flex flex-col gap-14">
           <div className="leading-7">

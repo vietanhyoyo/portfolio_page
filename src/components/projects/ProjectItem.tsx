@@ -27,7 +27,7 @@ const ProjectItem = ({
   className,
 }: Props) => {
   const [show, setShown] = useState(false);
-  console.log(show)
+  console.log(show);
 
   const props3 = useSpring({
     transform: show ? "scale(1.03)" : "scale(1)",
@@ -43,12 +43,18 @@ const ProjectItem = ({
     >
       <div
         className={cn(
-          `flex flex-col items-center bg-card backdrop-blur-lg ${className} rounded-2xl p-4 text-slate-800 select-none w-[440px]`,
-          show ? "pointer-events-auto" : "pointer-events-none",
+          `flex flex-col items-center bg-card backdrop-blur-lg ${className} rounded-2xl p-4 text-slate-800 select-none w-[290px] md:w-[440px]`,
+          show ? "pointer-events-auto" : "pointer-events-none"
           // show ? "select-text" : "select-none"
         )}
       >
-        <div className="rounded-2xl overflow-x-hidden pointer-events-none">{image}</div>
+        <div
+          className={cn(
+            "rounded-2xl overflow-x-hidden pointer-events-none",
+          )}
+        >
+          {image}
+        </div>
         <div className="h-full flex flex-col justify-center pt-6">
           <h4 className="text-1xl dark:text-slate-400 text-primary">
             {subTitle}

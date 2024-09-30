@@ -51,9 +51,9 @@ export default function Header({ params: { locale } }: Props) {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center max-w-7xl px-4 xl:px-0">
+      <div className="container mx-auto flex justify-between items-center max-w-7xl px-6 xl:px-0">
         <h1 className="text-primary text-3xl font-bold">{"<A>"}</h1>
-        <nav className="space-x-12">
+        <nav className="space-x-12 hidden md:block">
           {navLinks.map(({ href, text }) => (
             <Link
               href={href}

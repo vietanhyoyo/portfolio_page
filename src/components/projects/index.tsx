@@ -7,6 +7,7 @@ import ProjectItem from "./ProjectItem";
 import Carousel from "react-spring-3d-carousel";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { cn } from "@/lib/utils";
 
 // Dynamically import the AnimateCarousel with SSR disabled
 const AnimateCarousel = dynamic(() => import("./AnimateCarousel"), {
@@ -22,8 +23,10 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/132863579?ilo0=1"
-              height="316"
-              width="404"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[280px] h-[238px]"
+              )}
               allowFullScreen
               allow="clipboard-write"
             ></iframe>
@@ -43,8 +46,10 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/198626625?ilo0=1"
-              height="316"
-              width="404"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[140px] h-[208px]"
+              )}
               allowFullScreen
               allow="clipboard-write"
             ></iframe>
@@ -64,8 +69,10 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
-              height="316"
-              width="404"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[280px] h-[248px]"
+              )}
               allow="clipboard-write"
             ></iframe>
           }
@@ -85,8 +92,10 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
-              height="316"
-              width="404"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[280px] h-[248px]"
+              )}
               allow="clipboard-write"
               style={{ borderRadius: "0px" }}
             ></iframe>
@@ -108,8 +117,10 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/133727469?ilo0=1"
-              height="316"
-              width="404"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[280px] h-[248px]"
+              )}
               allow="clipboard-write"
             ></iframe>
           }
@@ -132,15 +143,8 @@ export default function Projects() {
           </h1>
         </Reveal>
         <Reveal>
-          <div className="py-12">
-            <AnimateCarousel
-              cards={slides}
-              height="600px"
-              width="600px"
-              margin="0 auto"
-              offset={2}
-              showArrows={false}
-            />
+          <div className="py-32">
+            <AnimateCarousel cards={slides} offset={2} showArrows={false} />
           </div>
         </Reveal>
 

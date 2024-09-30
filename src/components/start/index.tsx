@@ -18,12 +18,12 @@ export default function Start() {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700"
+          className="bg-primary w-9 h-9 grid place-items-center rounded-full hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700"
         >
           <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
         </Link>
       ) : (
-        <button className="bg-primary w-9 h-9 grid place-items-center rounded-full my-2 hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700">
+        <button className="bg-primary w-9 h-9 grid place-items-center rounded-full hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700">
           <Image src={iconSrc} alt="svg-icon" width={20} height={20} />
         </button>
       )}
@@ -49,11 +49,11 @@ export default function Start() {
         )}
       />
       <div className="h-screen bg-white/90 dark:bg-slate-800/95 w-full flex justify-center">
-        <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-4 xl:px-0">
-          <div className="flex justify-between m-auto items-center">
+        <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-6 xl:px-0">
+          <div className="flex md:flex-row flex-col justify-between m-auto w-full items-center">
             <div className="lg:flex-1">
               <Reveal>
-                <p className="text-5xl font-semibold mb-4 dark:text-white text-slate-700">
+                <p className="text-xl md:text-5xl font-semibold mb-4 dark:text-white text-slate-700">
                   {t("hello")}
                   <br />
                   {t("my_name")}
@@ -64,7 +64,7 @@ export default function Start() {
                 />
               </Reveal>
               <Reveal>
-                <p className="mt-4 text-base dark:text-white text-neutral-800">
+                <p className="mt-4 text-base dark:text-white text-neutral-800 w-[80%]">
                   {t("resume_content")}
                 </p>
               </Reveal>
@@ -79,7 +79,7 @@ export default function Start() {
             </div>
             <div className="flex justify-end xl:flex-1 text-right dark:text-white">
               <Reveal>
-                <div className="flex justify-center items-center flex-col w-11">
+                <div className="flex justify-center items-center md:flex-col flex-row gap-4 w-11 md:mt-0 mt-12">
                   <div className="w-1 h-8 bg-slate-400 dark:bg-white mb-2 rounded-full"></div>
                   {renderIcon(
                     MailIcon,

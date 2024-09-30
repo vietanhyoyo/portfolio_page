@@ -2,13 +2,11 @@
 import Carousel from "react-spring-3d-carousel";
 import { useState, useEffect } from "react";
 import { config } from "react-spring";
+import { cn } from "@/lib/utils";
 
 type AnimateCarouselProps = {
   cards: CardType[];
-  classNane?: string;
-  width: string;
-  height: string;
-  margin: string;
+  className?: string;
   offset: number;
   showArrows: boolean;
 };
@@ -35,7 +33,7 @@ export default function AnimateCarousel(props: AnimateCarouselProps) {
 
   return (
     <div
-      style={{ width: props.width, height: props.height, margin: props.margin }}
+      className={cn("w-[20px] h-[300px] md:w-[400px] md:h-[400px] md:m-2 m-0")}
     >
       <Carousel
         slides={cards}
