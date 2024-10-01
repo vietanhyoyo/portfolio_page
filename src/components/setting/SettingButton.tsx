@@ -27,7 +27,7 @@ export default function SettingButton({ locale, className }: SettingButtonProps)
     }
   };
   return (
-    <div className="fixed bottom-10 right-10 flex flex-col gap-4 items-center w-auto">
+    <div className="fixed bottom-2 md:bottom-10 right-2 md:right-10 flex flex-col gap-4 items-center w-auto">
       {showModeToggle && (
         <div
           className={animatingOut ? "animate-slide-down" : "animate-slide-up"}

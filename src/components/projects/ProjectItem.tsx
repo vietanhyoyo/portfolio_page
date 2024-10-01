@@ -43,28 +43,28 @@ const ProjectItem = ({
     >
       <div
         className={cn(
-          `flex flex-col items-center bg-card backdrop-blur-lg ${className} rounded-2xl p-4 text-slate-800 select-none w-[290px] md:w-[440px]`,
+          `flex flex-col items-center bg-card backdrop-blur-lg ${className} rounded-lg md:rounded-2xl p-4 text-slate-800 select-none w-[290px] md:w-[440px]`,
           show ? "pointer-events-auto" : "pointer-events-none"
           // show ? "select-text" : "select-none"
         )}
       >
         <div
           className={cn(
-            "rounded-2xl overflow-x-hidden pointer-events-none",
+            "rounded-lg md:rounded-2xl overflow-x-hidden pointer-events-none",
           )}
         >
           {image}
         </div>
-        <div className="h-full flex flex-col justify-center pt-6">
-          <h4 className="text-1xl dark:text-slate-400 text-primary">
+        <div className="h-full flex flex-col justify-center pt-6 w-full">
+          <h4 className="text-1xl dark:text-slate-400 text-primary md:text-base text-sm">
             {subTitle}
           </h4>
-          <h3 className="text-2xl font-semibold dark:text-white mb-2 mt-1">
+          <h3 className="md:text-2xl text-xl font-semibold dark:text-white mb-2 mt-1">
             {title}
           </h3>
-          <p className="dark:text-white flex-1 my-1">{content}</p>
+          <p className="dark:text-white flex-1 my-1 md:text-base text-sm">{content}</p>
           {link != null && (
-            <Link href={link} className="text-primary hover:text-blue-800">
+            <Link href={link} className="text-primary hover:text-blue-800 line-clamp-1">
               {link}
             </Link>
           )}

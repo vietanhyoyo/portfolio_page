@@ -25,7 +25,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/132863579?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
-                "w-[280px] h-[238px]"
+                "w-[256px] h-[178px]"
               )}
               allowFullScreen
               allow="clipboard-write"
@@ -48,7 +48,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/198626625?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
-                "w-[140px] h-[208px]"
+                "w-[256px] h-[178px]"
               )}
               allowFullScreen
               allow="clipboard-write"
@@ -71,7 +71,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
-                "w-[280px] h-[248px]"
+                "w-[256px] h-[178px]"
               )}
               allow="clipboard-write"
             ></iframe>
@@ -94,7 +94,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
-                "w-[280px] h-[248px]"
+                "w-[256px] h-[178px]"
               )}
               allow="clipboard-write"
               style={{ borderRadius: "0px" }}
@@ -119,7 +119,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/133727469?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
-                "w-[280px] h-[248px]"
+                "w-[256px] h-[178px]"
               )}
               allow="clipboard-write"
             ></iframe>
@@ -135,7 +135,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center">
+    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center absolute">
       <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
         <Reveal>
           <h1 className="text-4xl font-bold dark:text-white text-primary mb-6">
@@ -143,7 +143,7 @@ export default function Projects() {
           </h1>
         </Reveal>
         <Reveal>
-          <div className="py-32">
+          <div className="py-32 relative">
             <AnimateCarousel cards={slides} offset={2} showArrows={false} />
           </div>
         </Reveal>

@@ -33,7 +33,7 @@ export default function AnimateCarousel(props: AnimateCarouselProps) {
 
   return (
     <div
-      className={cn("w-[20px] h-[300px] md:w-[400px] md:h-[400px] md:m-2 m-0")}
+      className={cn("w-[94px] h-[300px] md:w-[400px] md:h-[400px] md:m-2 m-0")}
     >
       <Carousel
         slides={cards}
