@@ -27,7 +27,6 @@ const ProjectItem = ({
   className,
 }: Props) => {
   const [show, setShown] = useState(false);
-  console.log(show);
 
   const props3 = useSpring({
     transform: show ? "scale(1.03)" : "scale(1)",
