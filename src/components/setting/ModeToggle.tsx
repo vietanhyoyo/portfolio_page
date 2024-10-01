@@ -15,7 +15,7 @@ const ModeToggle = () => {
         setTheme(theme === "light" ? "dark" : "light");
       }}
       className={cn(
-        "w-12 h-12 flex justify-center place-items-center",
+        "w-12 h-12 flex justify-center place-items-center backdrop-blur-lg",
         "bg-white/50 dark:bg-slate-100/15 rounded-full",
         "dark:border-gray-600 p-2",
         "uppercase leading-normal text-white",

@@ -24,7 +24,7 @@ export default function LanguageButton({ className, locale }: Props) {
       type="button"
       onClick={() => changeLanguage(locale === "en" ? "vi" : "en")}
       className={cn(
-        "w-12 h-12 flex justify-center place-items-center",
+        "w-12 h-12 flex justify-center place-items-center backdrop-blur-lg",
         "bg-card rounded-full",
         "dark:border-gray-600 p-2",
         "uppercase leading-normal text-white",

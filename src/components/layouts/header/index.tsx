@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Drawer, { NavLink } from "../Drawer";
 
 type Props = {
   params: { locale: string };
@@ -9,7 +10,7 @@ type Props = {
 export default function Header({ params: { locale } }: Props) {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { href: "#home", text: "Home" },
     { href: "#skills", text: "Skill" },
     { href: "#experience", text: "Experience" },
@@ -31,11 +32,15 @@ export default function Header({ params: { locale } }: Props) {
     };
   }, []);
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
+  const handleScrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    id: string
+  ) => {
     e.preventDefault();
     const element = document.querySelector(id);
     if (element) {
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY; // Lấy vị trí tuyệt đối của phần tử
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY; // Lấy vị trí tuyệt đối của phần tử
       window.scrollTo({
         top: elementPosition - 60, // Cuộn tới vị trí của phần tử, trừ đi 100px
         behavior: "smooth", // Cuộn mượt
@@ -65,6 +70,10 @@ export default function Header({ params: { locale } }: Props) {
             </Link>
           ))}
         </nav>
+        <Drawer
+          handleScrollToSection={handleScrollToSection}
+          navLinks={navLinks}
+        />
       </div>
     </header>
   );
