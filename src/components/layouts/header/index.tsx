@@ -53,13 +53,13 @@ export default function Header({ params: { locale } }: Props) {
     >
       <div className="container mx-auto flex justify-between items-center max-w-7xl px-6 xl:px-0">
         <h1 className="text-primary text-3xl font-bold">{"<A>"}</h1>
-        <nav className="space-x-12 hidden md:block">
+        <nav className="md:space-x-12 space-x-6 hidden sm:block">
           {navLinks.map(({ href, text }) => (
             <Link
               href={href}
               key={href}
               onClick={(e) => handleScrollToSection(e, href)}
-              className="text-slate-800/75 text-lg dark:text-white hover:text-primary dark:hover:text-primary"
+              className="text-slate-800/75 text-base md:text-lg dark:text-white hover:text-primary dark:hover:text-primary"
             >
               {text}
             </Link>

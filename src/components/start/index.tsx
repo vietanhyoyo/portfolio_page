@@ -53,7 +53,7 @@ export default function Start() {
           <div className="flex md:flex-row flex-col justify-between m-auto w-full items-center">
             <div className="lg:flex-1">
               <Reveal>
-                <p className="text-xl md:text-5xl font-semibold mb-4 dark:text-white text-slate-700">
+                <p className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-4 dark:text-white text-slate-700">
                   {t("hello")}
                   <br />
                   {t("my_name")}
@@ -64,7 +64,7 @@ export default function Start() {
                 />
               </Reveal>
               <Reveal>
-                <p className="mt-4 text-base dark:text-white text-neutral-800 w-[80%]">
+                <p className="mt-4 text-base dark:text-white text-neutral-800 md:w-[80%]">
                   {t("resume_content")}
                 </p>
               </Reveal>
