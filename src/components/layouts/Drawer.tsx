@@ -20,7 +20,7 @@ const Drawer = ({ navLinks, handleScrollToSection }: DrawerProps) => {
   return (
     <div className="sm:hidden block">
       <button
-        className="p-2 dark:text-slate-200/80 dark:border-slate-200/80 text-character border-slate-300 border-2 rounded-md"
+        className="p-1 dark:text-slate-200/80 dark:border-slate-200/80 text-character border-slate-300 rounded-md"
         onClick={toggleDrawer}
       >
         <AlignJustify />

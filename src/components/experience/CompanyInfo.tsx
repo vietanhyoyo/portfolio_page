@@ -15,10 +15,10 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ role, company, children }) =>
           {children}
           
         </div>
-        <p className="dark:text-slate-50 text-2xl font-bold text-primary">
+        <p className="dark:text-slate-50 text-xl sm:text-2xl font-bold text-primary">
           {company}
         </p>
-        <p className="dark:text-slate-300/70 text-2xl font-bold text-black/50 pl-2">
+        <p className="dark:text-slate-300/70 text-xl sm:text-2xl font-bold text-black/50 pl-2">
           {" • "}
           {role}
         </p>
