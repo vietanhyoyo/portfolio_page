@@ -44,7 +44,7 @@ export default function Start() {
     <div className="relative h-screen flex justify-center items-center">
       <div
         className={cn(
-          "absolute inset-0 bg-[url('/images/backgrounds/miku-bg.jpg')] bg-center bg-cover",
+          "absolute inset-0 bg-[url('/images/backgrounds/bg-00.jpg')] bg-center bg-cover",
           "filter grayscale -z-10"
         )}
       />
