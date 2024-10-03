@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import TechTag from "../tag/TechTag";
 import { useState } from "react";

@@ -42,5 +42,19 @@
     "responsibility_2-4": "I participate in writing API using Nest.js framework.",
     "responsibility_2-5": "I build the UI on the Figma design and integrate API.",
     "responsibility_3-1": "I build the interface based on the Figma design and integrate API."
+  },
+  "Projects": {
+    "name_1": "Mini Pixel game",
+    "name_2": "Medical app design",
+    "name_3": "Music listening app",
+    "name_4": "Manhwa page design",
+    "name_5": "Kruskal Algorithm Graph editor webpage",
+    "name_6": "Tetris game",
+    "detail_1": "A simple game written in Java. You can control a character to defeat enemies.",
+    "detail_2": "Design a healthcare application for the Hậu Giang Provincial Department of Health.",
+    "detail_3": "An application that allows users to search for and listen to movie soundtracks.",
+    "detail_4": "A personal project about designing a website for reading manhwa and news about popular anime.",
+    "detail_5": "A website that allows users to draw graphs with vertices and edges. They can run Kruskal's algorithm to find the minimum spanning tree on the graph.",
+    "detail_6": "A simple block-stacking game developed using C/C++ for the console."
   }
 }

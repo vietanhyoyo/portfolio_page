@@ -1,13 +1,11 @@
-"use client";
 import Link from "next/link";
 import Reveal from "../animation/Reveal";
 import OutlineButton from "../button/OutlineButton";
 import { v4 as uuidv4 } from "uuid";
 import ProjectItem from "./ProjectItem";
-import Carousel from "react-spring-3d-carousel";
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 // Dynamically import the AnimateCarousel with SSR disabled
 const AnimateCarousel = dynamic(() => import("./AnimateCarousel"), {
@@ -15,6 +13,7 @@ const AnimateCarousel = dynamic(() => import("./AnimateCarousel"), {
 });
 
 export default function Projects() {
+  const t = useTranslations("Projects");
   const slides = [
     {
       key: uuidv4(),
@@ -33,9 +32,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="Java game"
-          title="Mini Pixel game"
+          title={t("name_1")}
           technicals={["java", "sql server"]}
-          content="A simple game written in Java. You can control a character to defeat enemies."
+          content={t("detail_1")}
         />
       ),
     },
@@ -56,9 +55,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="UI/UX desgin"
-          title="Meical app design"
+          title={t("name_2")}
           technicals={["figma"]}
-          content="Design a healthcare application for the Hậu Giang Provincial Department of Health."
+          content={t("detail_2")}
         />
       ),
     },
@@ -78,9 +77,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="App mobile / Website"
-          title="Music listening app"
+          title={t("name_3")}
           technicals={["flutter", "figma", "nextjs", "nodejs", "mongodb"]}
-          content="An application that allows users to search for and listen to movie soundtracks."
+          content={t("detail_3")}
           link={"https://popcornsound.com/"}
         />
       ),
@@ -102,9 +101,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="UI/UX desgin"
-          title="Manhwa page design"
+          title={t("name_4")}
           technicals={["figma"]}
-          content="A personal project about designing a website for reading manhwa and news about popular anime."
+          content={t("detail_4")}
         />
       ),
     },
@@ -125,9 +124,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="Webpage"
-          title="Kruskal Algorithm Graph editor webpage"
+          title={t("name_5")}
           technicals={["HTML DOM", "Javascript", "CSS"]}
-          content="A website that allows users to draw graphs with vertices and edges. They can run Kruskal's algorithm to find the minimum spanning tree on the graph."
+          content={t("detail_5")}
           link={"https://vietanhyoyo.github.io/graphEditor/"}
         />
       ),
@@ -148,9 +147,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="C/C++ Game"
-          title="Tetris game"
+          title={t("name_6")}
           technicals={["C/C++"]}
-          content="A simple block-stacking game developed using C/C++ for the console."
+          content={t("detail_6")}
         />
       ),
     },
