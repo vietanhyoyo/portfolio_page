@@ -17,5 +17,30 @@
     "database": "MySQL, Mongo db, Postgres, SQL Server",
     "docker": "Có thể cấu hình docker để deploy website, CI/CD bằng Gitlab-runner, dùng Nginx để triển khai server",
     "ruby": "Tôi có thể viết API cơ bản, cấu hình swagger"
+  },
+  "Experience": {
+    "time_1": "Tháng 3/2024 - Hiện tại",
+    "time_2": "Tháng 9/2022 - Tháng 3/2024",
+    "time_3": "Tháng 5/2022 - Tháng 9/2022",
+    "project_name_1-1": "Hệ thống quản lý lao động việc làm tỉnh Hậu Giang - (Việt Nam)",
+    "project_name_1-2": "Hệ thống quản lý ngành Y tế Hậu Giang - (Việt Nam)",
+    "project_name_2-1": "Ứng dụng viết nhật ký - (Nhật Bản)",
+    "project_name_2-2": "Ứng dụng phân tích bệnh trên cây chuối - (Châu Âu)",
+    "project_name_2-3": "Ứng dụng quản lý sức khoẻ mẹ và bé - (Nhật Bản)",
+    "project_name_2-4": "Website quản lý cuộc họp trực tuyến - (Nhật bản)",
+    "project_name_2-5": "Dự án quản lý tài sản Đảng - (Việt Nam)",
+    "project_name_3-1": "Phát triển website và ứng dụng di động cho nội bộ công ty",
+    "team_menbers": "Số thành viên",
+    "technologies": "Công nghệ",
+    "responsibility": "Trách nhiệm",
+    "design_figma_on_platform": "Thiết kế figma với nền tảng",
+    "responsibility_1-1": "Nhận yêu cầu từ BA để thiết kế giao diện người dùng, sau đó trình bày giao diện đến khách hàng, thực hiện chỉnh sửa điều chỉnh khi có phản hồi.",
+    "responsibility_1-2": "Nhận yêu cầu từ khách hàng, thiết kế web và mobile app, demo giao diện và chỉnh sửa phải hồi từ khách hàng.",
+    "responsibility_2-1": "Vị trí Sub-lead quản lý thành viên dự án, thực hiện review code, phân task, hỗ trợ về tech cho member. Tham gia viết API và code giao diện theo Figma. Xử lý trình phát video.",
+    "responsibility_2-2": "Tham gia cải thiện hiệu suất App, tích hợp Google Map vào việc tìm kiếm các khu vực cây trồng bị bệnh, xử lý dữ liệu phân tích trên UI. Thiết kế UI mới trên Figma để update UI mới cho App.",
+    "responsibility_2-3": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend.",
+    "responsibility_2-4": "Tham gia viết API bằng Nest.js framework.",
+    "responsibility_2-5": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend.",
+    "responsibility_3-1": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend."
   }
 }

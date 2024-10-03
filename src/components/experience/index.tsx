@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Reveal from "../animation/Reveal";
 import CompanyInfo from "./CompanyInfo";
 import ProjectItem from "./ProjectItem";
@@ -16,6 +17,7 @@ const Divider = () => {
 };
 
 export default function Experience() {
+  const t = useTranslations("Experience");
   return (
     <div className="w-full bg-slate-50 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0">
@@ -50,21 +52,21 @@ export default function Experience() {
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
               <Reveal>
                 <p className="text-black/50 dark:text-primary">
-                  March 2024 - Present
+                  {t("time_1")}
                 </p>
               </Reveal>
               <ProjectItem
-                title="Labor management in Hau Giang province - (Vietnamese client)"
+                title={t("project_name_1-1")}
                 descriptions={[
-                  "- Design figma on platform: Website",
-                  "- Responsibility: Receiving requests from the BA to design the user interface, then presenting the interface to the client for feedback and making adjustments if necessary",
+                  `- ${t("design_figma_on_platform")}: Website`,
+                  `- ${t("responsibility")}: ${t("responsibility_1-1")}`,
                 ]}
               />
               <ProjectItem
-                title="Medical record management - (Vietnamese client)"
+                title={t("project_name_1-2")}
                 descriptions={[
-                  "- Design figma on platform: Mobile app and website",
-                  "- Responsibility: Receive requests from clients, then design websites and mobile applications, conduct demos, and gather feedback from the clients.",
+                  `- ${t("design_figma_on_platform")}: Mobile app & website`,
+                  `- ${t("responsibility")}: ${t("responsibility_1-2")}`,
                 ]}
               />
             </div>
@@ -89,47 +91,47 @@ export default function Experience() {
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
               <Reveal>
                 <p className="text-black/50 dark:text-primary">
-                  September 2022 - March 2024
+                {t("time_2")}
                 </p>
               </Reveal>
               <ProjectItem
-                title="Diary management project - (Japanese client)"
+                title={t("project_name_2-1")}
                 descriptions={[
-                  "- Team Members: 4",
-                  "- Technologies: Flutter, Ruby on Rails",
-                  "- Responsibilities: Sub-lead managing progress, code review, task allocation, and providing technical support. Participated in writing APIs and developing the UI on Figma. Handle the video playback.",
+                  `- ${t("team_menbers")}: 4`,
+                  `- ${t("technologies")}: Flutter, Ruby on Rails`,
+                  `- ${t("responsibility")}: ${t("responsibility_2-1")}`,
                 ]}
               />
               <ProjectItem
-                title="Banana disease analysis app - (European client)"
+                title={t("project_name_2-2")}
                 descriptions={[
-                  "- Team Members: 3",
-                  "- Technologies: Flutter, Java",
-                  "- Responsibilities: I participate in improving the application, integrate Google Map into searching for diseased crop areas, process analytical data on UI. I design a new UI with Figma to upgrade the UI for the app.",
+                  `- ${t("team_menbers")}: 3`,
+                  `- ${t("technologies")}: Flutter, Java`,
+                  `- ${t("responsibility")}: ${t("responsibility_2-2")}`,
                 ]}
               />
               <ProjectItem
-                title="Mother and baby health care project - (Japanese client)"
+                title={t("project_name_2-3")}
                 descriptions={[
-                  "- Team Members: 4",
-                  "- Technologies: Flutter",
-                  "- Responsibilities: I build the UI on the Figma design and integrate API.",
+                  `- ${t("team_menbers")}: 4`,
+                  `- ${t("technologies")}: Flutter`,
+                  `- ${t("responsibility")}: ${t("responsibility_2-3")}`,
                 ]}
               />
               <ProjectItem
-                title="Zoom Meeting Management Website - (Japanese client)"
+                title={t("project_name_2-4")}
                 descriptions={[
-                  "- Team Members: 2",
-                  "- Technologies: Node.js (Nest.js), MySql",
-                  "- Responsibilities: I participate in writing API using Nest.js framework",
+                  `- ${t("team_menbers")}: 2`,
+                  `- ${t("technologies")}: Node.js (Nest.js), MySql`,
+                  `- ${t("responsibility")}: ${t("responsibility_2-4")}`,
                 ]}
               />
               <ProjectItem
-                title="Asset management project - (Vietnamese client)"
+                title={t("project_name_2-5")}
                 descriptions={[
-                  "- Team Members: 2",
-                  "- Technologies: Vue.js",
-                  "- Responsibilities: I build the UI on the Figma design and integrate API",
+                  `- ${t("team_menbers")}: 2`,
+                  `- ${t("technologies")}: Vue.js`,
+                  `- ${t("responsibility")}: ${t("responsibility_2-5")}`,
                 ]}
               />
             </div>
@@ -160,15 +162,15 @@ export default function Experience() {
             <div className="border-l-2 border-black/30 dark:border-primary ml-3 pl-7 mt-3">
               <Reveal>
                 <p className="text-black/50 dark:text-primary">
-                  May 2022 - September 2022
+                {t("time_3")}
                 </p>
               </Reveal>
               <ProjectItem
-                title="Web and Mobile App development for incident management project"
+                title={t("project_name_3-1")}
                 descriptions={[
-                  "- Team Members: 3",
-                  "- Technologies: React/React Native",
-                  "- Responsibilities: I build the interface based on the Figma design and integrate API.",
+                  `- ${t("team_menbers")}: 3`,
+                  `- ${t("technologies")}: React/React Native`,
+                  `- ${t("responsibility")}: ${t("responsibility_3-1")}`,
                 ]}
               />
             </div>

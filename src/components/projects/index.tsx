@@ -45,7 +45,7 @@ export default function Projects() {
         <ProjectItem
           image={
             <iframe
-              src="https://www.behance.net/embed/project/198626625?ilo0=1"
+            src="https://www.behance.net/embed/project/209349691?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
                 "w-[256px] h-[178px]"
@@ -56,9 +56,9 @@ export default function Projects() {
           }
           gap={40}
           subTitle="UI/UX desgin"
-          title="Manhwa page design"
+          title="Meical app design"
           technicals={["figma"]}
-          content="A personal project about designing a website for reading manhwa and news about popular anime."
+          content="Design a healthcare application for the Hậu Giang Provincial Department of Health."
         />
       ),
     },
@@ -91,6 +91,29 @@ export default function Projects() {
         <ProjectItem
           image={
             <iframe
+              src="https://www.behance.net/embed/project/198626625?ilo0=1"
+              className={cn(
+                "md:w-[404px] md:h-[316px]",
+                "w-[256px] h-[178px]"
+              )}
+              allowFullScreen
+              allow="clipboard-write"
+            ></iframe>
+          }
+          gap={40}
+          subTitle="UI/UX desgin"
+          title="Manhwa page design"
+          technicals={["figma"]}
+          content="A personal project about designing a website for reading manhwa and news about popular anime."
+        />
+      ),
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <ProjectItem
+          image={
+            <iframe
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
               className={cn(
                 "md:w-[404px] md:h-[316px]",
@@ -109,7 +132,6 @@ export default function Projects() {
         />
       ),
     },
-
     {
       key: uuidv4(),
       content: (
