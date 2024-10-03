@@ -55,6 +55,7 @@
     "detail_3": "An application that allows users to search for and listen to movie soundtracks.",
     "detail_4": "A personal project about designing a website for reading manhwa and news about popular anime.",
     "detail_5": "A website that allows users to draw graphs with vertices and edges. They can run Kruskal's algorithm to find the minimum spanning tree on the graph.",
-    "detail_6": "A simple block-stacking game developed using C/C++ for the console."
+    "detail_6": "A simple block-stacking game developed using C/C++ for the console.",
+    "button_see_more": "See more..."
   }
 }

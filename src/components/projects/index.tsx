@@ -172,7 +172,7 @@ export default function Projects() {
         <div className="mt-12">
           <Reveal>
             <Link href="https://www.behance.net/vitanhbi4" target="_blank">
-              <OutlineButton>You see more...</OutlineButton>
+              <OutlineButton>{t("button_see_more")}</OutlineButton>
             </Link>
           </Reveal>
         </div>
