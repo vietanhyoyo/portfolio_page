@@ -57,5 +57,12 @@
     "detail_5": "Website cho phép người dùng vẽ đồ thị với cung và đỉnh. Cho phép chạy thuật toán Kruskal's để tìm cây khung lớn nhất trên đồ thị.",
     "detail_6": "Game xếp gạch được phát triển bằng C/C++ hoạt động trên console.",
     "button_see_more": "Xem thêm..."
+  },
+  "Contact": {
+    "name": "Họ Tên",
+    "email": "Email",
+    "message": "Tin nhắn",
+    "send": "Gửi",
+    "message_sent": "Cảm ơn! Tin nhắn của bạn đã được gửi."
   }
 }

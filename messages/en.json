@@ -57,5 +57,12 @@
     "detail_5": "A website that allows users to draw graphs with vertices and edges. They can run Kruskal's algorithm to find the minimum spanning tree on the graph.",
     "detail_6": "A simple block-stacking game developed using C/C++ for the console.",
     "button_see_more": "See more..."
+  },
+  "Contact": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "message_sent": "Thank you! Your message has been sent."
   }
 }
