@@ -1,3 +1,4 @@
+import Contact from "@/components/contact";
 import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
@@ -21,6 +22,9 @@ export default function Portfolio({ params: { locale } }: Props) {
       </section>
       <section id="projects">
         <Projects />
+      </section>
+      <section id="contact">
+        <Contact />
       </section>
     </main>
   );

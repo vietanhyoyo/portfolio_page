@@ -22,10 +22,7 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/132863579?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
               allow="clipboard-write"
             ></iframe>
@@ -44,11 +41,8 @@ export default function Projects() {
         <ProjectItem
           image={
             <iframe
-            src="https://www.behance.net/embed/project/209349691?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              src="https://www.behance.net/embed/project/209349691?ilo0=1"
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
               allow="clipboard-write"
             ></iframe>
@@ -68,10 +62,7 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allow="clipboard-write"
             ></iframe>
           }
@@ -91,10 +82,7 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/198626625?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
               allow="clipboard-write"
             ></iframe>
@@ -114,10 +102,7 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allow="clipboard-write"
               style={{ borderRadius: "0px" }}
             ></iframe>
@@ -138,10 +123,7 @@ export default function Projects() {
           image={
             <iframe
               src="https://www.behance.net/embed/project/133727469?ilo0=1"
-              className={cn(
-                "md:w-[404px] md:h-[316px]",
-                "w-[256px] h-[178px]"
-              )}
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allow="clipboard-write"
             ></iframe>
           }
@@ -156,7 +138,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center absolute">
+    <div className="w-full bg-slate-50 dark:bg-slate-800 flex justify-center">
       <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
         <Reveal>
           <h1 className="text-4xl font-bold dark:text-white text-primary mb-6">
@@ -175,8 +157,8 @@ export default function Projects() {
               <OutlineButton>{t("button_see_more")}</OutlineButton>
             </Link>
           </Reveal>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
