@@ -8,20 +8,17 @@ import PhoneIcon from "@/../public/images/icons/phone.svg";
 import ContactForm from "./ContactForm";
 import ContactIcons from "./ContactIcons";
 import { useTranslations } from "next-intl";
+import ContactBackground from "./ContactBackgournd";
 
 export default function Contact() {
   const t = useTranslations("Contact");
 
   return (
     <div className="relative h-[800px] flex justify-center items-center">
-      <div
-        className={cn(
-          "absolute inset-0 bg-[url('/images/backgrounds/bg-02.png')] bg-center bg-fixed",
-          "filter grayscale -z-10"
-        )}
-      />
-      <div className="h-full w-full bg-white/90 dark:bg-slate-800/95 flex justify-center absolute">
-        <div className="py-10 h-full max-w-7xl w-full flex justify-center flex-col px-4 xl:px-0 items-center">
+      <ContactBackground />
+
+      <div className="flex justify-center absolute">
+        <div className="py-10 max-w-7xl md:w-1/3 min-w-[380px] md:min-w-[520px] px-4 flex justify-center flex-col items-center bg-white/95 dark:bg-slate-900/90 rounded-xl backdrop-blur-lg">
           <Reveal>
             <h1 className="text-4xl font-bold text-primary mb-6">Contact</h1>
           </Reveal>

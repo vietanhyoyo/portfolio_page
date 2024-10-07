@@ -33,7 +33,7 @@ export default function Start() {
           "absolute z-10 ",
           "top-10 right-1/2 transform translate-x-1/2",
           "md:top-1 md:right-0 md:-translate-x-10",
-          " bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          "bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
         )}
       >
         {href ? (
