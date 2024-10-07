@@ -37,6 +37,10 @@ export default function Contact() {
           </Reveal>
         </div>
       </div>
+
+      <div className="absolute w-full h-14 bg-white/85 dark:bg-slate-800/80 backdrop-blur-lg bottom-0 flex justify-center items-center text-slate-600 dark:text-white">
+        Viet Anh - 2024
+      </div>
     </div>
   );
 }
