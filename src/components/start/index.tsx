@@ -28,7 +28,14 @@ export default function Start() {
         </button>
       )}
 
-      <div className="absolute z-10 top-10 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div
+        className={cn(
+          "absolute z-10 ",
+          "top-10 right-1/2 transform translate-x-1/2",
+          "md:top-1 md:right-0 md:-translate-x-10",
+          " bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
+        )}
+      >
         {href ? (
           <Link href={href} target="_blank" rel="noopener noreferrer">
             {info}
@@ -41,17 +48,17 @@ export default function Start() {
   );
 
   return (
-    <div className="relative h-screen flex justify-center items-center">
+    <div className="relative h-screen overflow-x-clip flex justify-center items-center">
       <div
         className={cn(
           "absolute inset-0 bg-[url('/images/backgrounds/bg-00.jpg')] bg-center bg-cover",
           "filter grayscale -z-10"
         )}
       />
-      <div className="h-screen bg-white/90 dark:bg-slate-800/95 w-full flex justify-center">
-        <div className="py-10 max-w-7xl h-full flex justify-center flex-col px-6 xl:px-0">
-          <div className="flex md:flex-row flex-col justify-between m-auto w-full items-center">
-            <div className="lg:flex-1">
+      <div className="h-screen bg-white/90 dark:bg-slate-800/95 flex justify-center w-full">
+        <div className="flex justify-center flex-col mx-4 mb:mx-0 m-auto max-w-7xl">
+          <div className="flex md:flex-row flex-col justify-between items-center">
+            <div className="flex flex-col md:w-[80%]">
               <Reveal>
                 <p className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-4 dark:text-white text-slate-700">
                   {t("hello")}
@@ -64,7 +71,7 @@ export default function Start() {
                 />
               </Reveal>
               <Reveal>
-                <p className="mt-4 text-base dark:text-white text-neutral-800 md:w-[80%]">
+                <p className="mt-4 text-base dark:text-white text-neutral-800 w-full">
                   {t("resume_content")}
                 </p>
               </Reveal>
@@ -77,7 +84,7 @@ export default function Start() {
                 </div>
               </Reveal> */}
             </div>
-            <div className="flex justify-end xl:flex-1 text-right dark:text-white">
+            <div className="flex justify-end text-right dark:text-white">
               <Reveal>
                 <div className="flex justify-center items-center md:flex-col flex-row gap-4 w-11 md:mt-0 mt-12">
                   <div className="w-1 h-8 bg-slate-400 dark:bg-white mb-2 rounded-full"></div>

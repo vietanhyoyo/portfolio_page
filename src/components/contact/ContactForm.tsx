@@ -5,14 +5,20 @@ import emailjs from "emailjs-com";
 import Reveal from "../animation/Reveal";
 
 type ContactFormProps = {
-    name: string;
-    email: string;
-    message: string;
-    send: string;
-    thankMessage: string;
-}
+  name: string;
+  email: string;
+  message: string;
+  send: string;
+  thankMessage: string;
+};
 
-export default function ContactForm({name, email, message, send, thankMessage} : ContactFormProps) {
+export default function ContactForm({
+  name,
+  email,
+  message,
+  send,
+  thankMessage,
+}: ContactFormProps) {
   const {
     register,
     handleSubmit,
@@ -36,14 +42,17 @@ export default function ContactForm({name, email, message, send, thankMessage} :
       );
   };
   return (
-    <div>
-      <Reveal>
-        {isSubmitted ? (
-          <div className="text-green-500 text-xl">
-            <p>{thankMessage}</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="w-96 max-w-lg">
+    <>
+      {isSubmitted ? (
+        <div className="text-green-500 text-xl">
+          <p>{thankMessage}</p>
+        </div>
+      ) : (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full w-max-96 max-w-lg"
+        >
+          <Reveal>
             <div className="mb-4">
               <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
                 {name}
@@ -59,7 +68,9 @@ export default function ContactForm({name, email, message, send, thankMessage} :
                 </p>
               )}
             </div>
+          </Reveal>
 
+          <Reveal>
             <div className="mb-4">
               <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
                 {email}
@@ -75,7 +86,9 @@ export default function ContactForm({name, email, message, send, thankMessage} :
                 </p>
               )}
             </div>
+          </Reveal>
 
+          <Reveal>
             <div className="mb-4">
               <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
                 {message}
@@ -91,7 +104,9 @@ export default function ContactForm({name, email, message, send, thankMessage} :
                 </p>
               )}
             </div>
+          </Reveal>
 
+          <Reveal>
             <div className="flex items-center justify-between">
               <button
                 type="submit"
@@ -100,9 +115,9 @@ export default function ContactForm({name, email, message, send, thankMessage} :
                 {send}
               </button>
             </div>
-          </form>
-        )}
-      </Reveal>
-    </div>
+          </Reveal>
+        </form>
+      )}
+    </>
   );
 }
