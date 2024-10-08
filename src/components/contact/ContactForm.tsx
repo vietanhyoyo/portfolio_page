@@ -56,7 +56,7 @@ export default function ContactForm({
         <div
           className={cn(
             "absolute top-0 right-0 transform -translate-y-14 text-slate-800 dark:text-white flex justify-center border-2 rounded-full px-4 gap-2 cursor-pointer",
-            "bg-white/85 dark:bg-slate-800/90 backdrop-blur-lg"
+            "bg-white/80 dark:bg-slate-800/90 backdrop-blur-md"
           )}
           onClick={() => {
             setOpen(!open);
@@ -79,7 +79,7 @@ export default function ContactForm({
           ) : (
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="w-full w-max-96 max-w-lg"
+              className="w-full w-max-96"
             >
               <Reveal>
                 <div className="mb-4">
