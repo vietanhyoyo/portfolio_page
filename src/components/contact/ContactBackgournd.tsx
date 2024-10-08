@@ -16,17 +16,9 @@ export default function ContactBackground() {
   return (
     <div className={cn("inset-0 absolute ", "filter")}>
       {theme == "dark" ? (
-        <iframe
-          src="https://my.spline.design/3dglassherobgcopy-9e785f3caac349e77496d868067f0967/"
-          width="100%"
-          height="100%"
-        ></iframe>
+        <iframe src='https://my.spline.design/voiceinteractionanimationcopy-1f8b33488fa860c594937c701cfadcca/' width='100%' height='100%'></iframe>
       ) : (
-        <iframe
-          src="https://my.spline.design/3dglassherobg-f17eebca69d5c06ffb71de6ba7cf6d0f/"
-          width="100%"
-          height="100%"
-        ></iframe>
+        <iframe src='https://my.spline.design/voiceinteractionanimation-0658adfc2d83f3ec219d63168938831c/' width='100%' height='100%'></iframe>
       )}
     </div>
   );

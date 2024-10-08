@@ -14,32 +14,33 @@ export default function Contact() {
   const t = useTranslations("Contact");
 
   return (
-    <div className="relative h-[800px] flex justify-center items-center">
+    <div className="relative h-[850px] flex justify-center items-center">
       <ContactBackground />
 
-      <div className="flex justify-center absolute">
-        <div className="py-10 max-w-7xl md:w-1/3 min-w-[380px] md:min-w-[520px] px-4 flex justify-center flex-col items-center bg-white/95 dark:bg-slate-900/90 rounded-xl backdrop-blur-lg">
-          <Reveal>
-            <h1 className="text-4xl font-bold text-primary mb-6">Contact</h1>
-          </Reveal>
-
-          <ContactForm
-            name={t("name")}
-            email={t("email")}
-            message={t("message")}
-            send={t("send")}
-            thankMessage={t("message_sent")}
-          />
-          <Reveal>
-            <div className="flex justify-center items-center gap-4 w-11 mt-12">
-              <ContactIcons />
-            </div>
-          </Reveal>
-        </div>
+      <div className="absolute top-14">
+        <Reveal>
+          <h1 className="text-4xl font-bold text-primary mb-6">Contact</h1>
+        </Reveal>
       </div>
+
+      <ContactForm
+        name={t("name")}
+        email={t("email")}
+        message={t("message")}
+        send={t("send")}
+        thankMessage={t("message_sent")}
+      />
 
       <div className="absolute w-full h-14 bg-white/85 dark:bg-slate-800/80 backdrop-blur-lg bottom-0 flex justify-center items-center text-slate-600 dark:text-white">
         Viet Anh - 2024
+      </div>
+
+      <div className="absolute bottom-20">
+        <Reveal>
+          <div className="flex justify-center items-center gap-4 w-11 mt-12">
+            <ContactIcons />
+          </div>
+        </Reveal>
       </div>
     </div>
   );
