@@ -20,7 +20,7 @@ export default function Experience() {
   const t = useTranslations("Experience");
   return (
     <div className="w-full bg-slate-50 dark:bg-slate-800 flex justify-center">
-      <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0">
+      <div className="py-14 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0">
         <Reveal>
           <div className="text-4xl font-bold dark:text-white text-black/50 dark:text-state-50 mb-6">
             Experience

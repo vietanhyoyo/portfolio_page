@@ -58,7 +58,7 @@ export default function Start() {
       <div className="h-screen bg-white/90 dark:bg-slate-800/95 flex justify-center w-full">
         <div className="flex justify-center flex-col mx-4 mb:mx-0 m-auto max-w-7xl">
           <div className="flex md:flex-row flex-col justify-between items-center">
-            <div className="flex flex-col md:w-[80%]">
+            <div className="flex flex-col md:w-[80%] text-center md:text-start">
               <Reveal>
                 <p className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-4 dark:text-white text-slate-700">
                   {t("hello")}

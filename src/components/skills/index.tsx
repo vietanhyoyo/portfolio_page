@@ -16,14 +16,14 @@ export default function Skills() {
   const t = useTranslations("Skill");
   return (
     <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-10">
-      <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
+      <div className="py-12 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
         <Reveal>
           <h1 className="text-4xl font-bold dark:text-white text-slate-800 m-6">
             Skills
           </h1>
         </Reveal>
         <Reveal>
-          <div className="flex gap-4 mt-8 w-full justify-center flex-wrap">
+          <div className="flex gap-4 mt-10 w-full justify-center flex-wrap">
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}
