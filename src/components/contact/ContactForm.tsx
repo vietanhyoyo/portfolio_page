@@ -48,14 +48,14 @@ export default function ContactForm({
   return (
     <div
       className={cn(
-        "absolute top-36 py-10 max-w-7xl md:w-1/3 min-w-[360px] md:min-w-[520px] px-4 flex justify-center flex-col items-center rounded-xl",
+        "absolute top-36 py-6 max-w-7xl md:w-1/3 min-w-[360px] md:min-w-[520px] px-4 flex justify-center flex-col items-center rounded-xl",
         "bg-white/85 dark:bg-slate-800/90 backdrop-blur-lg"
       )}
     >
       <div className="relative w-full">
         <div
           className={cn(
-            "absolute top-0 right-0 transform -translate-y-14 text-slate-800 dark:text-white flex justify-center border-2 rounded-full px-4 gap-2 cursor-pointer",
+            "absolute top-0 right-0 transform -translate-y-10 text-slate-800 dark:text-white flex justify-center border-2 rounded-full px-4 gap-2 cursor-pointer",
             "bg-white/80 dark:bg-slate-800/90 backdrop-blur-md"
           )}
           onClick={() => {
