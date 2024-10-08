@@ -63,6 +63,9 @@
     "email": "Email",
     "message": "Message",
     "send": "Send",
-    "message_sent": "Thank you! Your message has been sent."
+    "message_sent": "Thank you! Your message has been sent.",
+    "message_note_form": "You can open this form to send message for me.",
+    "button_close": "Close form",
+    "button_open": "Open form"
   }
 }

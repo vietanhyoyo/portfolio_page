@@ -29,10 +29,13 @@ export default function Contact() {
         message={t("message")}
         send={t("send")}
         thankMessage={t("message_sent")}
+        formNote={t("message_note_form")}
+        openBtnText={t("button_open")}
+        closeBtnText={t("button_close")}
       />
 
       <div className="absolute w-full h-14 bg-white/85 dark:bg-slate-800/80 backdrop-blur-lg bottom-0 flex justify-center items-center text-slate-600 dark:text-white">
-        Viet Anh - 2024
+        ©vietanh - 2024
       </div>
 
       <div className="absolute bottom-20">

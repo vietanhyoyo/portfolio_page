@@ -12,6 +12,9 @@ type ContactFormProps = {
   message: string;
   send: string;
   thankMessage: string;
+  formNote: string;
+  openBtnText: string;
+  closeBtnText: string;
 };
 
 export default function ContactForm({
@@ -20,6 +23,9 @@ export default function ContactForm({
   message,
   send,
   thankMessage,
+  formNote,
+  openBtnText,
+  closeBtnText
 }: ContactFormProps) {
   const {
     register,
@@ -62,7 +68,7 @@ export default function ContactForm({
             setOpen(!open);
           }}
         >
-          <span>{open ? "Close form" : "Open form"}</span>
+          <span>{open ? closeBtnText : openBtnText}</span>
           {open ? (
             <X width={24} height={24} />
           ) : (
@@ -150,7 +156,7 @@ export default function ContactForm({
         ) : (
           <Reveal>
             <span className="text-slate-700 dark:text-white">
-              You can open form to send message for me.
+              {formNote}
             </span>
           </Reveal>
         )}

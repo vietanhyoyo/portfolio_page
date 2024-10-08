@@ -63,6 +63,9 @@
     "email": "Email",
     "message": "Tin nhắn",
     "send": "Gửi",
-    "message_sent": "Cảm ơn! Tin nhắn của bạn đã được gửi."
+    "message_sent": "Cảm ơn! Tin nhắn của bạn đã được gửi.",
+    "message_note_form": "Bạn có thể mở form để gửi tin nhắn cho tôi.",
+    "button_close": "Đóng form",
+    "button_open": "Mở form"
   }
 }
