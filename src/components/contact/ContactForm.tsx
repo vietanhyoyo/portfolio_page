@@ -48,7 +48,7 @@ export default function ContactForm({
   return (
     <div
       className={cn(
-        "absolute top-36 py-10 max-w-7xl md:w-1/3 min-w-[380px] md:min-w-[520px] px-4 flex justify-center flex-col items-center rounded-xl",
+        "absolute top-36 py-10 max-w-7xl md:w-1/3 min-w-[360px] md:min-w-[520px] px-4 flex justify-center flex-col items-center rounded-xl",
         "bg-white/85 dark:bg-slate-800/90 backdrop-blur-lg"
       )}
     >
