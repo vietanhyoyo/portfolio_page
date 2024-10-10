@@ -101,7 +101,7 @@ const AudioPlayer: React.FC = () => {
         <div className="absolute w-full flex justify-center -translate-y-1/2">
           <div
             className={cn(
-              "flex items-center bg-card/90 p-2 rounded-full shadow-md gap-4 w-96 backdrop-blur-2xl",
+              "flex items-center bg-card/90 p-2 rounded-full shadow-md gap-4 w-80 md:w-96 backdrop-blur-2xl",
               "border-2 border-slate-200/10",
               "transition-all duration-300 hover:shadow-[0_2px_10px_rgba(14,165,233,0.6)] hover:shadow-sky-500/50"
             )}
