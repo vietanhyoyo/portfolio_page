@@ -5,6 +5,7 @@ import { X, ChevronDown } from "lucide-react";
 import emailjs from "emailjs-com";
 import Reveal from "../animation/Reveal";
 import { cn } from "@/lib/utils";
+import LoadingDots from "../loading";
 
 type ContactFormProps = {
   name: string;
@@ -25,7 +26,7 @@ export default function ContactForm({
   thankMessage,
   formNote,
   openBtnText,
-  closeBtnText
+  closeBtnText,
 }: ContactFormProps) {
   const {
     register,
@@ -33,20 +34,23 @@ export default function ContactForm({
     formState: { errors },
   } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
 
   // You need to configure EmailJS with your service ID, template ID, and user ID
   const onSubmit = (data: any) => {
-    console.log(data);
+    setIsLoading(true);
     emailjs
       .send("service_mj1wd1c", "template_ez2mgpj", data, "xLjfcOTwPF2B_hJDe")
       .then(
         (response) => {
+          setIsLoading(false);
           console.log("SUCCESS!", response.status, response.text);
           setIsSubmitted(true);
         },
         (err) => {
+          setIsLoading(false);
           console.error("FAILED...", err);
         }
       );
@@ -83,10 +87,8 @@ export default function ContactForm({
               </Reveal>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="w-full w-max-96"
-            >
+            isLoading ? <div className="flex justify-center"><LoadingDots /></div> :
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full w-max-96">
               <Reveal>
                 <div className="mb-4">
                   <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
@@ -155,9 +157,7 @@ export default function ContactForm({
           )
         ) : (
           <Reveal>
-            <span className="text-slate-700 dark:text-white">
-              {formNote}
-            </span>
+            <span className="text-slate-700 dark:text-white">{formNote}</span>
           </Reveal>
         )}
       </div>

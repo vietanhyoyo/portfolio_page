@@ -77,6 +77,11 @@ const config: Config = {
           "shadow-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "slide-up": "slide-up 0.5s ease-out",
         "slide-down": "slide-down 0.5s ease-out",
+        "bounce": 'bounce 1s infinite',
+      },
+      animationDelay: {
+        '200': '0.2s',
+        '400': '0.4s',
       },
       keyframes: {
         "slide-up": {
