@@ -3,6 +3,7 @@ import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
 import Start from "@/components/start";
+import AudioPlayer from "@/components/audio/AudioPlayer"
 
 type Props = {
   params: { locale: string };
@@ -14,6 +15,7 @@ export default function Portfolio({ params: { locale } }: Props) {
       <section id="home" className="w-full">
         <Start />
       </section>
+      <AudioPlayer />
       <section id="skills" className="w-full">
         <Skills />
       </section>
