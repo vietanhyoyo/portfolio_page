@@ -21,10 +21,23 @@ const AudioPlayer: React.FC = () => {
     if (progressBar.current) {
       progressBar.current.max = seconds.toString();
     }
-  }, [
-    audioPlayer?.current?.onloadedmetadata,
-    audioPlayer?.current?.readyState,
-  ]);
+
+    // Thêm sự kiện để lắng nghe khi nhạc phát hết
+    const audio = audioPlayer.current;
+    const handleEnded = () => {
+      setIsPlaying(false); // Đặt lại trạng thái về không phát
+    };
+    if (audio) {
+      audio.addEventListener("ended", handleEnded);
+    }
+
+    // Dọn dẹp sự kiện khi component unmount
+    return () => {
+      if (audio) {
+        audio.removeEventListener("ended", handleEnded);
+      }
+    };
+  }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState]);
 
   const calculateTime = (secs: number): string => {
     const minutes = Math.floor(secs / 60);
@@ -108,7 +121,7 @@ const AudioPlayer: React.FC = () => {
           >
             <audio
               ref={audioPlayer}
-              src="/audios/how_sweet.mp3"
+              src="/audios/thang_dien.mp3"
               preload="metadata"
             ></audio>
             <button
@@ -139,11 +152,10 @@ const AudioPlayer: React.FC = () => {
             <div className="relative flex items-center">
               <button
                 onClick={() => setShowVolumeSlider(!showVolumeSlider)}
-                className="ml-2 text-slate-800 dark:text-white"
+                className=" text-slate-800 mr-2 dark:text-white"
               >
                 <Volume2 size={20} />
               </button>
-              {/* Hiển thị thanh trượt âm lượng khi nhấn nút */}
               {showVolumeSlider && (
                 <div className="absolute bottom-full mb-2 w-6 bg-card p-1 translate-x-1 rounded shadow-lg">
                   <input
