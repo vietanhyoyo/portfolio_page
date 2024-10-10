@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const AudioPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -98,15 +99,21 @@ const AudioPlayer: React.FC = () => {
       ></div>
       <div className="relative w-full">
         <div className="absolute w-full flex justify-center -translate-y-1/2">
-          <div className="flex items-center bg-card/90 p-2 rounded-full shadow-md gap-4 w-96 backdrop-blur-2xl">
+          <div
+            className={cn(
+              "flex items-center bg-card/90 p-2 rounded-full shadow-md gap-4 w-96 backdrop-blur-2xl",
+              "border-2 border-slate-200/10",
+              "transition-all duration-300 hover:shadow-[0_2px_10px_rgba(14,165,233,0.6)] hover:shadow-sky-500/50"
+            )}
+          >
             <audio
               ref={audioPlayer}
-              src="/audios/chill_melody.mp3"
+              src="/audios/how_sweet.mp3"
               preload="metadata"
             ></audio>
             <button
               onClick={togglePlayPause}
-              className="bg-primary text-white p-2 rounded-full"
+              className="bg-primary text-white p-2 rounded-full hover:bg-primary/90"
             >
               {isPlaying ? <Pause size={20} /> : <Play size={20} />}
             </button>
@@ -147,11 +154,13 @@ const AudioPlayer: React.FC = () => {
                     min="0"
                     max="1"
                     className="volume-slider-vertical"
-                    style={{
-                      "--progress-bar-color": "#0ea5e9",
-                      writingMode: "vertical-lr",
-                      transform: "rotate(180deg)",
-                    } as React.CSSProperties} // Điều chỉnh hướng trượt
+                    style={
+                      {
+                        "--progress-bar-color": "#0ea5e9",
+                        writingMode: "vertical-lr",
+                        transform: "rotate(180deg)",
+                      } as React.CSSProperties
+                    }
                   />
                 </div>
               )}
