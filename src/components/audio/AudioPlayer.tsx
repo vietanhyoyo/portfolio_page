@@ -121,7 +121,7 @@ const AudioPlayer: React.FC = () => {
           >
             <audio
               ref={audioPlayer}
-              src="/audios/thang_dien.mp3"
+              src="/audios/cupid.mp3"
               preload="metadata"
             ></audio>
             <button

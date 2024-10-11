@@ -39,7 +39,7 @@
     "responsibility_2-1": "Vị trí Sub-lead quản lý thành viên dự án, thực hiện review code, phân task, hỗ trợ về tech cho member. Tham gia viết API và code giao diện theo Figma. Xử lý trình phát video.",
     "responsibility_2-2": "Tham gia cải thiện hiệu suất App, tích hợp Google Map vào việc tìm kiếm các khu vực cây trồng bị bệnh, xử lý dữ liệu phân tích trên UI. Thiết kế UI mới trên Figma để update UI mới cho App.",
     "responsibility_2-3": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend.",
-    "responsibility_2-4": "Tham gia viết API bằng Nest.js framework.",
+    "responsibility_2-4": "Tham gia viết API bằng Nest.js framework và cấu hình kết nối mysql cho source.",
     "responsibility_2-5": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend.",
     "responsibility_3-1": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend."
   },

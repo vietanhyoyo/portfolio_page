@@ -39,7 +39,7 @@
     "responsibility_2-1": "Sub-lead managing progress, code review, task allocation, and providing technical support. Participated in writing APIs and developing the UI on Figma. Handle the video playback.",
     "responsibility_2-2": "I participate in improving the application, integrate Google Map into searching for diseased crop areas, process analytical data on UI. I design a new UI with Figma to upgrade the UI for the app.",
     "responsibility_2-3": "I build the UI on the Figma design and integrate API.",
-    "responsibility_2-4": "I participate in writing API using Nest.js framework.",
+    "responsibility_2-4": "I participate in writing API using Nest.js framework and configuring mysql into source code.",
     "responsibility_2-5": "I build the UI on the Figma design and integrate API.",
     "responsibility_3-1": "I build the interface based on the Figma design and integrate API."
   },
