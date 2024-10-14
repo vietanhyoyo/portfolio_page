@@ -41,7 +41,7 @@ export default function SettingButton({ locale, className }: SettingButtonProps)
 
       <div
         onClick={toggleModeToggle}
-        className="shadow-lg dark:shadow-primary/50 bg-primary p-3 z-50 cursor-pointer hover:bg-primary/80"
+        className="shadow-lg dark:shadow-primary/50 bg-primary p-3 z-50 cursor-pointer hover:bg-primary/80 text-white"
         style={{ borderRadius: "99px", borderBottomRightRadius: "30px" }}
       >
         <Settings className={"animate-spin-slow"} width={34} height={34} />
