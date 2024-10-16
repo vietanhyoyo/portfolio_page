@@ -26,7 +26,7 @@ const Reveal: React.FC<Props> = ({
     }
   }, [isInView, mainControls, slideControls]);
   return (
-    <div ref={ref} style={{ width, position: "relative" }}>
+    <div ref={ref} style={{ width, position: "relative" }} className={className}>
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 75 },
