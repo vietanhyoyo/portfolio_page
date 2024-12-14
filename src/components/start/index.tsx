@@ -102,11 +102,11 @@ export default function Start() {
             <div className="flex justify-center md:justify-end items-end text-right dark:text-white w-[90%] md:w-[44%]">
               <Reveal className="md:ml-20">
                 <Image
-                  width={1500}
-                  height={1500}
-                  src="/images/character.png"
+                  width={1800}
+                  height={1800}
+                  src="/images/character3.png"
                   alt="character"
-                  className="-mt-20"
+                  // className="-mt-20"
                 />
               </Reveal>
             </div>
