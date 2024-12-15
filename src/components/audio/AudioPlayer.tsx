@@ -105,11 +105,11 @@ const AudioPlayer: React.FC = () => {
 
   return (
     <>
-      <div
+      {/* <div
         onClick={startPlaying}
         style={{ display: showPlayButton ? "block" : "none" }}
         className="top-0 fixed left-0 transform bg-primary/0 w-full h-screen"
-      ></div>
+      ></div> */}
       <div className="relative w-full">
         <div className="absolute w-full flex justify-center -translate-y-1/2">
           <div
@@ -121,7 +121,7 @@ const AudioPlayer: React.FC = () => {
           >
             <audio
               ref={audioPlayer}
-              src="/audios/next_level.mp3"
+              src="/audios/whiplash.mp3"
               preload="metadata"
             ></audio>
             <button
