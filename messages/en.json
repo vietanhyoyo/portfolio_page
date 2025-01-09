@@ -4,7 +4,7 @@
     "my_name": "My name is Viet Anh",
     "i_am_a_developer": "I'm a developer",
     "i_am_a_ui/ux_designer": "I'm a designer",
-    "resume_content": "I am a developer with 2 years of experience in creating a complete mobile apps and websites. In addition to the ability to write code, I also have UI/UX design skills for web systems and apps. This skill has helped me supplement my frontend knowledge, thereby improving my work efficiency and helping the company a lot. I am eager to work in a modern environment where I can contribute with my burning passion for technology.",
+    "resume_content": "I am a developer with 3 years of experience in creating a complete mobile apps and websites. In addition to the ability to write code, I also have UI/UX design skills for web systems and apps. This skill has helped me supplement my frontend knowledge, thereby improving my work efficiency and helping the company a lot. I am eager to work in a modern environment where I can contribute with my burning passion for technology.",
     "hire_me": "Hire Me",
     "download_cv": "Download CV"
   },
@@ -35,7 +35,7 @@
     "responsibility": "Responsibility",
     "design_figma_on_platform": "Design figma on platform",
     "responsibility_1-1": "Receiving requests from the BA to design the user interface, then presenting the interface to the client for feedback and making adjustments if necessary.",
-    "responsibility_1-2": "Receive requests from clients, then design websites and mobile applications, conduct demos, and gather feedback from the clients.",
+    "responsibility_1-2": "Designed user interfaces for a mobile application, ensuring a user-friendly experience. Translated Figma designs into functional interfaces using Flutter. Integrated APIs to implement core features of the application.",
     "responsibility_2-1": "Sub-lead managing progress, code review, task allocation, and providing technical support. Participated in writing APIs and developing the UI on Figma. Handle the video playback.",
     "responsibility_2-2": "I participate in improving the application, integrate Google Map into searching for diseased crop areas, process analytical data on UI. I design a new UI with Figma to upgrade the UI for the app.",
     "responsibility_2-3": "I build the UI on the Figma design and integrate API.",

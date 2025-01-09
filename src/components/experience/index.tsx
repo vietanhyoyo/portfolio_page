@@ -31,7 +31,7 @@ export default function Experience() {
         </Reveal>
         <div className="w-full mb-5 flex flex-col gap-14">
           <div className="leading-7">
-            <CompanyInfo role="UI/UX designer" company="VNPT">
+            <CompanyInfo role="UI/UX designer - Developer" company="VNPT">
               <svg
                 width="27"
                 height="29"
@@ -65,14 +65,15 @@ export default function Experience() {
               <ProjectItem
                 title={t("project_name_1-2")}
                 descriptions={[
-                  `- ${t("design_figma_on_platform")}: Mobile app & website`,
+                  `- ${t("team_menbers")}: 5`,
+                  `- ${t("technologies")}: Flutter, Figma`,
                   `- ${t("responsibility")}: ${t("responsibility_1-2")}`,
                 ]}
               />
             </div>
           </div>
           <div className="leading-7">
-            <CompanyInfo role="Junior Developer" company="VHEC">
+            <CompanyInfo role="Front-end Developer" company="VHEC">
               <svg
                 width="24"
                 height="32"

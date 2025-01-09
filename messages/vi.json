@@ -4,7 +4,7 @@
     "my_name": "Tên tôi là Việt Anh",
     "i_am_a_developer": "Tôi là developer",
     "i_am_a_ui/ux_designer": "Tôi là designer",
-    "resume_content": "Tôi là một lập trình viên có 2 năm kinh nghiệm trong việc tạo ra các ứng dụng di động và trang web hoàn chỉnh. Ngoài khả năng viết code, tôi còn có kỹ năng thiết kế UI/UX cho các hệ thống và ứng dụng web. Kỹ năng này đã giúp tôi bổ sung kiến ​​thức về frontend, qua đó nâng cao hiệu quả công việc và giúp ích rất nhiều cho công ty. Tôi mong muốn được làm việc trong một môi trường hiện đại, nơi tôi có thể cống hiến hết mình với niềm đam mê công nghệ cháy bỏng của mình.",
+    "resume_content": "Tôi là một lập trình viên có 3 năm kinh nghiệm trong việc tạo ra các ứng dụng di động và trang web hoàn chỉnh. Ngoài khả năng viết code, tôi còn có kỹ năng thiết kế UI/UX cho các hệ thống và ứng dụng web. Kỹ năng này đã giúp tôi bổ sung kiến ​​thức về frontend, qua đó nâng cao hiệu quả công việc và giúp ích rất nhiều cho công ty. Tôi mong muốn được làm việc trong một môi trường hiện đại, nơi tôi có thể cống hiến hết mình với niềm đam mê công nghệ cháy bỏng của mình.",
     "hire_me": "Tuyển dụng tôi",
     "download_cv": "Tải CV"
   },
@@ -35,7 +35,7 @@
     "responsibility": "Trách nhiệm",
     "design_figma_on_platform": "Thiết kế figma với nền tảng",
     "responsibility_1-1": "Nhận yêu cầu từ BA để thiết kế giao diện người dùng, sau đó trình bày giao diện đến khách hàng, thực hiện chỉnh sửa điều chỉnh khi có phản hồi.",
-    "responsibility_1-2": "Nhận yêu cầu từ khách hàng, thiết kế web và mobile app, demo giao diện và chỉnh sửa phải hồi từ khách hàng.",
+    "responsibility_1-2": "Thiết kế giao diện người dùng trên ứng dụng điện thoại, đảm bảo trải nghiệm người dùng thân thiện và tối ưu hóa luồng hoạt động của ứng dụng. Chuyển đổi các thiết kế từ Figma thành các giao diện chức năng trên ứng dụng bằng Flutter. Tích hợp API để thực hiện các chức năng chính của ứng dụng, đảm bảo hoạt động mượt mà và chính xác.",
     "responsibility_2-1": "Vị trí Sub-lead quản lý thành viên dự án, thực hiện review code, phân task, hỗ trợ về tech cho member. Tham gia viết API và code giao diện theo Figma. Xử lý trình phát video.",
     "responsibility_2-2": "Tham gia cải thiện hiệu suất App, tích hợp Google Map vào việc tìm kiếm các khu vực cây trồng bị bệnh, xử lý dữ liệu phân tích trên UI. Thiết kế UI mới trên Figma để update UI mới cho App.",
     "responsibility_2-3": "Xây dựng UI theo thiết kế Figma và tích hợp API từ backend.",
