@@ -104,7 +104,7 @@ export default function Start() {
                 <Image
                   width={1800}
                   height={1800}
-                  src="/images/character3.png"
+                  src="/images/character2.png"
                   alt="character"
                   // className="-mt-20"
                 />
