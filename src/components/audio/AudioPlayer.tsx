@@ -140,11 +140,13 @@ const AudioPlayer: React.FC = () => {
                 style={
                   {
                     "--progress-bar-color": "#0ea5e9",
-                    background: `linear-gradient(to right, var(--progress-bar-color) 0%, var(--progress-bar-color) ${
-                      (currentTime / duration) * 100
-                    }%, #CBD5E0 ${
-                      (currentTime / duration) * 100
-                    }%, #CBD5E0 100%)`,
+                    background: currentTime > 0
+                      ? `linear-gradient(to right, var(--progress-bar-color) 0%, var(--progress-bar-color) ${
+                          (currentTime / duration) * 100
+                        }%, #CBD5E0 ${
+                          (currentTime / duration) * 100
+                        }%, #CBD5E0 100%)`
+                      : "#CBD5E0",
                   } as React.CSSProperties
                 }
               />
@@ -152,12 +154,15 @@ const AudioPlayer: React.FC = () => {
             <div className="relative flex items-center">
               <button
                 onClick={() => setShowVolumeSlider(!showVolumeSlider)}
-                className=" text-slate-800 mr-2 dark:text-white"
+                className="text-slate-800 mr-2 dark:text-white"
               >
                 <Volume2 size={20} />
               </button>
               {showVolumeSlider && (
-                <div className="absolute bottom-full mb-2 w-6 bg-card p-1 translate-x-1 rounded shadow-lg">
+                <div
+                  className="absolute right-[12px] bottom-full mb-2 w-6 bg-card p-1 translate-x-1 rounded shadow-lg"
+                  onMouseLeave={() => setShowVolumeSlider(false)}
+                >
                   <input
                     type="range"
                     step="0.01"
