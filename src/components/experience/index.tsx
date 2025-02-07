@@ -58,16 +58,25 @@ export default function Experience() {
               <ProjectItem
                 title={t("project_name_1-1")}
                 descriptions={[
-                  `- ${t("design_figma_on_platform")}: Website`,
+                  `- ${t("team_menbers")}: 5+`,
+                  `- ${t("technologies")}: Vue.js, Java Spring Boot, Figma`,
                   `- ${t("responsibility")}: ${t("responsibility_1-1")}`,
                 ]}
               />
               <ProjectItem
                 title={t("project_name_1-2")}
                 descriptions={[
+                  `- ${t("team_menbers")}: 4`,
+                  `- ${t("technologies")}: Vue.js, Nest.js, Figma`,
+                  `- ${t("responsibility")}: ${t("responsibility_1-2")}`,
+                ]}
+              />
+              <ProjectItem
+                title={t("project_name_1-3")}
+                descriptions={[
                   `- ${t("team_menbers")}: 5`,
                   `- ${t("technologies")}: Flutter, Figma`,
-                  `- ${t("responsibility")}: ${t("responsibility_1-2")}`,
+                  `- ${t("responsibility")}: ${t("responsibility_1-3")}`,
                 ]}
               />
             </div>

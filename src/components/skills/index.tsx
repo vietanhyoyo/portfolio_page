@@ -3,6 +3,7 @@ import ReactImg from "@/../public/images/skills/react.png";
 import FigmaImg from "@/../public/images/skills/figma.png";
 import NodeImg from "@/../public/images/skills/node.png";
 import GitImg from "@/../public/images/skills/git.png";
+import JavaImg from "@/../public/images/skills/java.png";
 import RubyImg from "@/../public/images/skills/ruby.png";
 import VueImg from "@/../public/images/skills/vue.png";
 import DockerImg from "@/../public/images/skills/docker.png";
@@ -56,7 +57,7 @@ export default function Skills() {
               title="Vue"
               iconSrc={VueImg}
               content={t("vue")}
-              starCount={2}
+              starCount={3}
               color="#41B782"
             />
             <SkillCard
@@ -74,11 +75,11 @@ export default function Skills() {
               color="#089CEC"
             />
             <SkillCard
-              title="Ruby"
-              iconSrc={RubyImg}
-              content={t("ruby")}
+              title="Java"
+              iconSrc={JavaImg}
+              content={t("java")}
               starCount={1}
-              color="#AF1305"
+              color="#E76F00"
             />
           </div>
         </Reveal>
