@@ -90,7 +90,7 @@ export default function Start() {
                 <Image
                   width={1800}
                   height={1800}
-                  src='/images/character2.png'
+                  src='/images/character4.png'
                   alt='character'
                 />
               </Reveal>
