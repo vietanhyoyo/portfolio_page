@@ -1,6 +1,7 @@
 import MailIcon from "@/../public/images/icons/mail.svg"
 import BehanceIcon from "@/../public/images/icons/behance.svg"
 import PhoneIcon from "@/../public/images/icons/phone.svg"
+import DownloadIcon from "@/../public/images/icons/download.svg"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import TypingText from "./TypingText"
@@ -11,6 +12,8 @@ import { GridBackground } from "./GridBackground"
 
 export default function Start() {
   const t = useTranslations("Index")
+  const cvPdfUrl =
+    "https://drive.google.com/uc?export=download&id=1wznAFTFhvHQe4Ltd7oJhO20nt8-9CW-J"
 
   const renderIcon = (iconSrc: any, info: string, href?: string) => (
     <div className='relative group'>
@@ -71,6 +74,7 @@ export default function Start() {
               </Reveal>
               <Reveal>
                 <div className='flex justify-center md:justify-start items-center flex-row gap-4 mt-8'>
+                  {renderIcon(DownloadIcon, `${t("download_cv")} PDF`, cvPdfUrl)}
                   {renderIcon(
                     MailIcon,
                     "vanhyoyo@gmail.com",
