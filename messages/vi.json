@@ -4,7 +4,7 @@
     "my_name": "Tên tôi là Việt Anh",
     "i_am_a_developer": "Tôi là developer",
     "i_am_a_ui/ux_designer": "Tôi là designer",
-    "resume_content": "Tôi là một lập trình viên có 3 năm kinh nghiệm trong việc tạo ra các ứng dụng di động và trang web hoàn chỉnh. Ngoài khả năng viết code, tôi còn có kỹ năng thiết kế UI/UX cho các hệ thống và ứng dụng web. Kỹ năng này đã giúp tôi bổ sung kiến ​​thức về frontend, qua đó nâng cao hiệu quả công việc và giúp ích rất nhiều cho công ty. Tôi mong muốn được làm việc trong một môi trường hiện đại, nơi tôi có thể cống hiến hết mình với niềm đam mê công nghệ cháy bỏng của mình.",
+    "resume_content": "Kỹ sư phần mềm với hơn 4 năm kinh nghiệm phát triển Web/App và nền tảng vững chắc trong thiết kế UI/UX. Thành thạo trong việc quản lý toàn bộ vòng đời sản phẩm, từ nghiên cứu người dùng, thiết kế wireframe đến lập trình. Cách tiếp cận đa lĩnh vực của tôi giúp tối ưu quy trình làm việc và tạo ra các sản phẩm chất lượng cao, cân bằng giữa chức năng mượt mà và tính thẩm mỹ vượt trội.",
     "hire_me": "Tuyển dụng tôi",
     "download_cv": "Tải CV"
   },
@@ -13,11 +13,11 @@
     "react": "Next.js, Tailwind, MUI, SEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language",
     "figma": "Kiến thức về UI/UX, thành thạo figma thiết kế Web và Mobile App",
     "node": "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule",
-    "vue": "Sử dụng Vue.js mức độ trung bình, ứng dụng thư viện Element-plus và VueX",
+    "vue": "Vuex, Pinia, Element-plus, Vuetify, Nuxt.js",
     "database": "MySQL, Mongo db, Postgres, SQL Server",
     "docker": "Có thể cấu hình docker để deploy website, CI/CD bằng Gitlab-runner, dùng Nginx để triển khai server",
-    "ruby": "Tôi có thể viết API cơ bản, cấu hình swagger",
-    "java": "Tôi có thể viết API cơ bản, Java Spring Boot, triển khai Authenticate"
+    "ruby": "Tôi có thể viết API cơ bản, cấu hình swagger, làm việc với nghiệp vụ chuyển khoản",
+    "java": "Kỹ năng dự source base, làm việc với microservice, Java Spring Boot, Authenticate"
   },
   "Experience": {
     "time_1": "Tháng 3/2024 - Hiện tại",

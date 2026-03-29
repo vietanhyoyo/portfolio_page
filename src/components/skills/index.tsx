@@ -61,6 +61,13 @@ export default function Skills() {
               color="#41B782"
             />
             <SkillCard
+              title="Java"
+              iconSrc={JavaImg}
+              content={t("java")}
+              starCount={2}
+              color="#E76F00"
+            />
+            <SkillCard
               title="Database"
               iconSrc={DatabseImg}
               content={t("database")}
@@ -71,15 +78,8 @@ export default function Skills() {
               title="Docker"
               iconSrc={DockerImg}
               content={t("docker")}
-              starCount={1}
+              starCount={2}
               color="#089CEC"
-            />
-            <SkillCard
-              title="Java"
-              iconSrc={JavaImg}
-              content={t("java")}
-              starCount={1}
-              color="#E76F00"
             />
           </div>
         </Reveal>

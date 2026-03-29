@@ -13,7 +13,7 @@ import { GridBackground } from "./GridBackground"
 export default function Start() {
   const t = useTranslations("Index")
   const cvPdfUrl =
-    "https://drive.google.com/uc?export=download&id=1wznAFTFhvHQe4Ltd7oJhO20nt8-9CW-J"
+    "https://drive.google.com/file/d/1i6rEUjqV-nUN3W9KuQUWEJvukAr1Njg3/view?usp=drive_link"
 
   const renderIcon = (iconSrc: any, info: string, href?: string) => (
     <div className='relative group'>

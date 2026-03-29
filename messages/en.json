@@ -4,7 +4,7 @@
     "my_name": "My name is Viet Anh",
     "i_am_a_developer": "I'm a developer",
     "i_am_a_ui/ux_designer": "I'm a designer",
-    "resume_content": "I am a developer with 3 years of experience in creating a complete mobile apps and websites. In addition to the ability to write code, I also have UI/UX design skills for web systems and apps. This skill has helped me supplement my frontend knowledge, thereby improving my work efficiency and helping the company a lot. I am eager to work in a modern environment where I can contribute with my burning passion for technology.",
+    "resume_content": "Software Engineer with 4+ years of experience in Web/App development and a strong background in UI/UX design. Skilled in managing the full product cycle-from user research and wireframing to coding. My multidisciplinary approach ensures optimized workflows and high-quality products that balance seamless functionality with superior aesthetics.",
     "hire_me": "Hire Me",
     "download_cv": "Download CV"
   },
@@ -13,11 +13,11 @@
     "react": "Next.js, Tailwind, MUI, SEO, HTML/CSS, Bootstrap, Shadcn-ui, Dark-mode, multi language",
     "figma": "Knowledge about UI/UX, Proficient in figma, Web, Mobile App",
     "node": "Nest.js, Socket, API, Crawl Data, Authenticate, Swagger, Schedule",
-    "vue": "I can use Vue.js at an intermediate level, Element-plus, VueX",
+    "vue": "Vuex, Pinia, Element-plus, Vuetify, Nuxt.js",
     "database": "MySQL, Mongo db, Postgres, SQL Server",
     "docker": "I can use docker to run the project, deploy, CI/CD with Gitlab-runner, use Nginx to public server",
-    "ruby": "I can create a basic api, write swagger file",
-    "java": "I can create a basic api, Java Spring Boot, Role, Authenticate, Token."
+    "ruby": "I can create a base api, Swagger, implementing secure payment/transaction flows",
+    "java": "I can create a base api, working with microservice, Java Spring Boot, Authenticate, Token."
   },
   "Experience": {
     "time_1": "March 2024 - Present",
