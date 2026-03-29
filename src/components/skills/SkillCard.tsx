@@ -19,7 +19,7 @@ const SkillCard: React.FC<SkillCardProps> = ({
 }) => {
   const totalStars = 3;
   return (
-    <div className="prespective group">
+    <div className="prespective group shrink-0">
       <div className="group-hover:rotate-y-180 duration-500 preserve-3d w-[308px] h-[360px] relative">
         <div
           className={cn(

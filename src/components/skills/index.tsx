@@ -10,21 +10,22 @@ import DockerImg from "@/../public/images/skills/docker.png";
 import DatabseImg from "@/../public/images/skills/database.png";
 
 import SkillCard from "./SkillCard";
+import SkillsScroll from "./SkillsScroll";
 import Reveal from "../animation/Reveal";
 import { useTranslations } from "next-intl";
 
 export default function Skills() {
   const t = useTranslations("Skill");
   return (
-    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-10">
-      <div className="py-14 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
+    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-20 overflow-visible">
+      <div className="py-14 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center overflow-visible" style={{ perspective: '1000px' }}>
         <Reveal>
           <h1 className="text-4xl font-bold dark:text-white text-slate-800 m-8">
             Skills
           </h1>
         </Reveal>
         <Reveal>
-          <div className="flex gap-4 mt-10 w-full justify-center flex-wrap">
+          <SkillsScroll>
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}
@@ -81,7 +82,14 @@ export default function Skills() {
               starCount={2}
               color="#089CEC"
             />
-          </div>
+            <SkillCard
+              title="Ruby"
+              iconSrc={RubyImg}
+              content={t("ruby")}
+              starCount={2}
+              color="#CC342D"
+            />
+          </SkillsScroll>
         </Reveal>
       </div>
     </div>

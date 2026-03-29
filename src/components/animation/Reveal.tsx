@@ -55,7 +55,7 @@ const Reveal: React.FC<Props> = ({
           borderRadius: 10,
           zIndex: 20,
         }}
-        className="bg-primary"
+        className="bg-primary pointer-events-none"
       ></motion.div>
     </div>
   );
