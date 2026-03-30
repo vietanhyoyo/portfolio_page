@@ -1,32 +1,43 @@
-import { Divide } from "lucide-react";
 import Reveal from "../animation/Reveal";
-import TechTag from "../tag/TechTag";
+
+type DetailItem =
+  | {
+      type: "text";
+      content: string;
+    }
+  | {
+      type: "bullets";
+      items: string[];
+    };
 
 const ProjectItem = ({
   title,
-  // technicals,
   descriptions,
 }: {
   title: string;
-  // technicals: string[];
-  descriptions: string[];
+  descriptions: DetailItem[];
 }) => (
   <Reveal>
     <div className="mt-3 flex text-slate-800/80">
       <div>
         <div className="text-md font-semibold dark:text-slate-50/90">
           {title}
-          {/* <div className="inline ml-2">
-            {technicals.map((item, index) => {
-              return <TechTag key={index}>{item}</TechTag>;
-            })}
-          </div> */}
         </div>
         <div className="pt-1 dark:text-slate-50/70">
           {descriptions.map((item, index) => (
-            <p key={index} className="text-base ">
-              {item}
-            </p>
+            item.type === "text" ? (
+              <p key={index} className="text-base">
+                {item.content}
+              </p>
+            ) : (
+              <ul key={index} className="pl-6">
+                {item.items.map((bullet, bulletIndex) => (
+                  <li key={bulletIndex} className="text-base list-disc">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )
           ))}
         </div>
       </div>
