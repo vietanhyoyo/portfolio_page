@@ -9,7 +9,6 @@ const AudioPlayer: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState<boolean>(false);
-  const [showPlayButton, setShowPlayButton] = useState<boolean>(true);
 
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const progressBar = useRef<HTMLInputElement>(null);
@@ -35,6 +34,9 @@ const AudioPlayer: React.FC = () => {
     return () => {
       if (audio) {
         audio.removeEventListener("ended", handleEnded);
+      }
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
   }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState]);
@@ -78,9 +80,12 @@ const AudioPlayer: React.FC = () => {
 
   const changePlayerCurrentTime = (): void => {
     if (progressBar.current) {
+      const percentage = duration > 0
+        ? (Number(progressBar.current.value) / duration) * 100
+        : 0;
       progressBar.current.style.setProperty(
         "--seek-before-width",
-        `${(Number(progressBar.current.value) / duration) * 100}%`
+        `${percentage}%`
       );
       setCurrentTime(Number(progressBar.current.value));
     }
@@ -94,29 +99,15 @@ const AudioPlayer: React.FC = () => {
     }
   };
 
-  const startPlaying = (): void => {
-    setShowPlayButton(false);
-    if (!isPlaying) {
-      setIsPlaying(true);
-      audioPlayer.current?.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    }
-  };
-
   return (
     <>
-      {/* <div
-        onClick={startPlaying}
-        style={{ display: showPlayButton ? "block" : "none" }}
-        className="top-0 fixed left-0 transform bg-primary/0 w-full h-screen"
-      ></div> */}
-      <div className="relative w-full">
-        <div className="absolute w-full flex justify-center -translate-y-1/2">
+      <div className="relative z-50 w-full pointer-events-none">
+        <div className="absolute z-50 flex w-full -translate-y-1/2 justify-center">
           <div
             className={cn(
-              "flex items-center bg-card/90 p-2 rounded-full shadow-md gap-4 w-80 md:w-96 backdrop-blur-2xl",
-              "border-2 border-slate-200/10",
-              "transition-all duration-300 hover:shadow-[0_2px_10px_rgba(14,165,233,0.6)] hover:shadow-sky-500/50"
+              "pointer-events-auto",
+              "flex items-center gap-3 rounded-full border border-sky-100/70 bg-card/95 px-4 py-3 shadow-[0_10px_30px_rgba(14,165,233,0.18)] backdrop-blur-2xl",
+              "w-[min(92vw,34rem)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(14,165,233,0.26)]"
             )}
           >
             <audio
@@ -126,65 +117,120 @@ const AudioPlayer: React.FC = () => {
             ></audio>
             <button
               onClick={togglePlayPause}
-              className="bg-primary text-white p-2 rounded-full hover:bg-primary/90"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-[0_8px_18px_rgba(14,165,233,0.35)] transition hover:scale-[1.02] hover:bg-primary/90 active:scale-[0.98]"
+              aria-label={isPlaying ? "Pause audio" : "Play audio"}
             >
-              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+              {isPlaying ? <Pause size={22} /> : <Play size={22} className="ml-0.5" />}
             </button>
-            <div className="w-full relative">
+            <div className="relative flex flex-1 items-center">
               <input
                 type="range"
                 ref={progressBar}
                 defaultValue="0"
                 onChange={changeRange}
-                className="w-full appearance-none bg-gray-300 h-1 mb-3 rounded-full outline-none"
+                className="player-slider player-progress my-0 h-10 w-full cursor-pointer appearance-none bg-transparent align-middle"
                 style={
                   {
                     "--progress-bar-color": "#0ea5e9",
-                    background: currentTime > 0
+                    background: duration > 0
                       ? `linear-gradient(to right, var(--progress-bar-color) 0%, var(--progress-bar-color) ${
                           (currentTime / duration) * 100
-                        }%, #CBD5E0 ${
+                        }%, #D7E3F1 ${
                           (currentTime / duration) * 100
-                        }%, #CBD5E0 100%)`
-                      : "#CBD5E0",
+                        }%, #D7E3F1 100%)`
+                      : "#D7E3F1",
                   } as React.CSSProperties
                 }
               />
             </div>
-            <div className="relative flex items-center">
+            <div className="relative flex shrink-0 items-center">
               <button
                 onClick={() => setShowVolumeSlider(!showVolumeSlider)}
-                className="text-slate-800 mr-2 dark:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition hover:bg-sky-50 hover:text-primary dark:text-white dark:hover:bg-slate-800"
+                aria-label="Toggle volume"
               >
-                <Volume2 size={20} />
+                <Volume2 size={22} />
               </button>
               {showVolumeSlider && (
                 <div
-                  className="absolute right-[12px] bottom-full mb-2 w-6 bg-card p-1 translate-x-1 rounded shadow-lg"
+                  className="absolute bottom-full right-0 z-50 mb-3 w-40 rounded-2xl border border-sky-200 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.24)]"
                   onMouseLeave={() => setShowVolumeSlider(false)}
                 >
-                  <input
-                    type="range"
-                    step="0.01"
-                    onChange={changeVolume}
-                    value={volume}
-                    min="0"
-                    max="1"
-                    className="volume-slider-vertical"
-                    style={
-                      {
-                        "--progress-bar-color": "#0ea5e9",
-                        writingMode: "vertical-lr",
-                        transform: "rotate(180deg)",
-                      } as React.CSSProperties
-                    }
-                  />
+                  <div className="flex items-center gap-3">
+                    <Volume2 size={18} className="shrink-0 text-primary" />
+                    <input
+                      type="range"
+                      step="0.01"
+                      onChange={changeVolume}
+                      value={volume}
+                      min="0"
+                      max="1"
+                      className="player-slider h-10 w-full cursor-pointer appearance-none bg-transparent"
+                      style={
+                        {
+                          "--progress-bar-color": "#0ea5e9",
+                          background: `linear-gradient(to right, var(--progress-bar-color) 0%, var(--progress-bar-color) ${
+                            volume * 100
+                          }%, #D7E3F1 ${volume * 100}%, #D7E3F1 100%)`,
+                        } as React.CSSProperties
+                      }
+                    />
+                  </div>
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .player-slider {
+          border-radius: 9999px;
+          background-repeat: no-repeat;
+        }
+
+        .player-slider::-webkit-slider-runnable-track {
+          height: 8px;
+          border-radius: 9999px;
+          background: transparent;
+        }
+
+        .player-slider::-moz-range-track {
+          height: 8px;
+          border-radius: 9999px;
+          background: transparent;
+        }
+
+        .player-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          margin-top: -7px;
+          height: 22px;
+          width: 14px;
+          border-radius: 9999px;
+          border: 3px solid #ffffff;
+          background: #0ea5e9;
+          box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+        }
+
+        .player-slider::-moz-range-thumb {
+          height: 22px;
+          width: 14px;
+          border-radius: 9999px;
+          border: 3px solid #ffffff;
+          background: #0ea5e9;
+          box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+        }
+
+        .player-progress::-webkit-slider-thumb {
+          height: 22px;
+          width: 14px;
+        }
+
+        .player-progress::-moz-range-thumb {
+          height: 22px;
+          width: 14px;
+        }
+      `}</style>
     </>
   );
 };
