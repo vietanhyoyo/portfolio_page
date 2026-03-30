@@ -1,7 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2 } from "lucide-react";
+import { Play, Pause, Volume2, ListMusic } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const tracks = [
+  { file: "cupid.mp3", label: "Cupid" },
+  { file: "how_sweet.mp3", label: "How Sweet" },
+  { file: "next_level.mp3", label: "Next Level" },
+  { file: "odoriko.mp3", label: "Odoriko" },
+  { file: "thang_dien.mp3", label: "Thang Dien" },
+  { file: "whiplash.mp3", label: "Whiplash" },
+];
 
 const AudioPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -9,45 +18,42 @@ const AudioPlayer: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState<boolean>(false);
+  const [showPlaylist, setShowPlaylist] = useState<boolean>(false);
+  const [currentTrack, setCurrentTrack] = useState(tracks[3]);
 
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const progressBar = useRef<HTMLInputElement>(null);
   const animationRef = useRef<number>();
 
   useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current?.duration || 0);
-    setDuration(seconds);
-    if (progressBar.current) {
-      progressBar.current.max = seconds.toString();
-    }
-
-    // Thêm sự kiện để lắng nghe khi nhạc phát hết
     const audio = audioPlayer.current;
-    const handleEnded = () => {
-      setIsPlaying(false); // Đặt lại trạng thái về không phát
-    };
-    if (audio) {
-      audio.addEventListener("ended", handleEnded);
-    }
+    if (!audio) return;
 
-    // Dọn dẹp sự kiện khi component unmount
-    return () => {
-      if (audio) {
-        audio.removeEventListener("ended", handleEnded);
+    const syncMetadata = () => {
+      const seconds = Math.floor(audio.duration || 0);
+      setDuration(seconds);
+      setCurrentTime(audio.currentTime || 0);
+      if (progressBar.current) {
+        progressBar.current.max = seconds.toString();
+        progressBar.current.value = audio.currentTime.toString();
       }
+      changePlayerCurrentTime();
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+    };
+    audio.addEventListener("loadedmetadata", syncMetadata);
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("loadedmetadata", syncMetadata);
+      audio.removeEventListener("ended", handleEnded);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState]);
-
-  const calculateTime = (secs: number): string => {
-    const minutes = Math.floor(secs / 60);
-    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const seconds = Math.floor(secs % 60);
-    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    return `${returnedMinutes}:${returnedSeconds}`;
-  };
+  }, []);
 
   const togglePlayPause = (): void => {
     const prevValue = isPlaying;
@@ -60,6 +66,41 @@ const AudioPlayer: React.FC = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+    }
+  };
+
+  const playSelectedTrack = async (trackFile: string): Promise<void> => {
+    const nextTrack = tracks.find((track) => track.file === trackFile);
+    if (!audioPlayer.current || !nextTrack) return;
+
+    const audio = audioPlayer.current;
+
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
+    audio.pause();
+    setCurrentTrack(nextTrack);
+    setCurrentTime(0);
+    setDuration(0);
+    setShowPlaylist(false);
+    setIsPlaying(true);
+
+    audio.src = `/audios/${nextTrack.file}`;
+    audio.currentTime = 0;
+    audio.volume = volume;
+
+    if (progressBar.current) {
+      progressBar.current.value = "0";
+      progressBar.current.max = "0";
+      progressBar.current.style.setProperty("--seek-before-width", "0%");
+    }
+
+    try {
+      await audio.play();
+      animationRef.current = requestAnimationFrame(whilePlaying);
+    } catch {
+      setIsPlaying(false);
     }
   };
 
@@ -106,15 +147,51 @@ const AudioPlayer: React.FC = () => {
           <div
             className={cn(
               "pointer-events-auto",
-              "flex items-center gap-3 rounded-full border border-sky-100/70 bg-card/95 px-4 py-3 shadow-[0_10px_30px_rgba(14,165,233,0.18)] backdrop-blur-2xl",
+              "relative flex items-center gap-3 rounded-full border border-sky-100/70 bg-card/95 px-4 py-3 shadow-[0_10px_30px_rgba(14,165,233,0.18)] backdrop-blur-2xl",
               "w-[min(92vw,34rem)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(14,165,233,0.26)]"
             )}
           >
             <audio
               ref={audioPlayer}
-              src="/audios/odoriko.mp3"
+              src={`/audios/${currentTrack.file}`}
               preload="metadata"
             ></audio>
+            <div className="relative flex shrink-0 items-center">
+              <button
+                onClick={() => {
+                  setShowPlaylist((prev) => !prev);
+                  setShowVolumeSlider(false);
+                }}
+                className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition hover:bg-sky-50 hover:text-primary dark:text-white dark:hover:bg-slate-800"
+                aria-label="Open playlist"
+              >
+                <ListMusic size={22} />
+              </button>
+              {showPlaylist && (
+                <div className="absolute bottom-full left-0 z-50 mb-3 w-52 overflow-hidden rounded-2xl border border-sky-200 bg-white p-2 shadow-[0_18px_45px_rgba(15,23,42,0.24)]">
+                  <div className="max-h-64 overflow-y-auto">
+                    {tracks.map((track) => {
+                      const active = track.file === currentTrack.file;
+                      return (
+                        <button
+                          key={track.file}
+                          onClick={() => void playSelectedTrack(track.file)}
+                          className={cn(
+                            "flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition",
+                            active
+                              ? "bg-sky-50 font-semibold text-primary"
+                              : "text-slate-700 hover:bg-slate-50"
+                          )}
+                        >
+                          <span className="truncate">{track.label}</span>
+                          {active && <span className="ml-3 text-xs">Playing</span>}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
             <button
               onClick={togglePlayPause}
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-[0_8px_18px_rgba(14,165,233,0.35)] transition hover:scale-[1.02] hover:bg-primary/90 active:scale-[0.98]"
@@ -145,7 +222,10 @@ const AudioPlayer: React.FC = () => {
             </div>
             <div className="relative flex shrink-0 items-center">
               <button
-                onClick={() => setShowVolumeSlider(!showVolumeSlider)}
+                onClick={() => {
+                  setShowVolumeSlider((prev) => !prev);
+                  setShowPlaylist(false);
+                }}
                 className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition hover:bg-sky-50 hover:text-primary dark:text-white dark:hover:bg-slate-800"
                 aria-label="Toggle volume"
               >
