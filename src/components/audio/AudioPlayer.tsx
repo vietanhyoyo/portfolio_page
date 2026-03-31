@@ -5,11 +5,8 @@ import { cn } from "@/lib/utils";
 
 const tracks = [
   { file: "cupid.mp3", label: "Cupid" },
-  { file: "how_sweet.mp3", label: "How Sweet" },
-  { file: "next_level.mp3", label: "Next Level" },
   { file: "odoriko.mp3", label: "Odoriko" },
   { file: "thang_dien.mp3", label: "Thang Dien" },
-  { file: "whiplash.mp3", label: "Whiplash" },
 ];
 
 const AudioPlayer: React.FC = () => {
@@ -19,15 +16,18 @@ const AudioPlayer: React.FC = () => {
   const [volume, setVolume] = useState<number>(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState<boolean>(false);
   const [showPlaylist, setShowPlaylist] = useState<boolean>(false);
-  const [currentTrack, setCurrentTrack] = useState(tracks[3]);
+  const [currentTrack, setCurrentTrack] = useState<(typeof tracks)[number] | null>(
+    tracks[0] ?? null
+  );
 
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const progressBar = useRef<HTMLInputElement>(null);
   const animationRef = useRef<number>();
+  const hasMountedTrackRef = useRef(false);
 
   useEffect(() => {
     const audio = audioPlayer.current;
-    if (!audio) return;
+    if (!audio || !currentTrack) return;
 
     const syncMetadata = () => {
       const seconds = Math.floor(audio.duration || 0);
@@ -55,7 +55,45 @@ const AudioPlayer: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const audio = audioPlayer.current;
+    if (!audio) return;
+
+    if (!hasMountedTrackRef.current) {
+      hasMountedTrackRef.current = true;
+      return;
+    }
+
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.volume = volume;
+    audio.load();
+
+    if (progressBar.current) {
+      progressBar.current.value = "0";
+      progressBar.current.max = "0";
+      progressBar.current.style.setProperty("--seek-before-width", "0%");
+    }
+
+    const startSelectedTrack = async () => {
+      try {
+        await audio.play();
+        animationRef.current = requestAnimationFrame(whilePlaying);
+      } catch {
+        setIsPlaying(false);
+      }
+    };
+
+    void startSelectedTrack();
+  }, [currentTrack, volume]);
+
   const togglePlayPause = (): void => {
+    if (!currentTrack) return;
+
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
     if (!prevValue) {
@@ -71,36 +109,25 @@ const AudioPlayer: React.FC = () => {
 
   const playSelectedTrack = async (trackFile: string): Promise<void> => {
     const nextTrack = tracks.find((track) => track.file === trackFile);
-    if (!audioPlayer.current || !nextTrack) return;
-
-    const audio = audioPlayer.current;
+    if (!nextTrack) return;
 
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
     }
-
-    audio.pause();
-    setCurrentTrack(nextTrack);
     setCurrentTime(0);
     setDuration(0);
     setShowPlaylist(false);
     setIsPlaying(true);
 
-    audio.src = `/audios/${nextTrack.file}`;
-    audio.currentTime = 0;
-    audio.volume = volume;
+    if (nextTrack.file === currentTrack?.file) {
+      const audio = audioPlayer.current;
+      if (!audio) return;
 
-    if (progressBar.current) {
-      progressBar.current.value = "0";
-      progressBar.current.max = "0";
-      progressBar.current.style.setProperty("--seek-before-width", "0%");
-    }
-
-    try {
-      await audio.play();
+      audio.currentTime = 0;
+      void audio.play();
       animationRef.current = requestAnimationFrame(whilePlaying);
-    } catch {
-      setIsPlaying(false);
+    } else {
+      setCurrentTrack(nextTrack);
     }
   };
 
@@ -140,10 +167,14 @@ const AudioPlayer: React.FC = () => {
     }
   };
 
+  if (!currentTrack) {
+    return null;
+  }
+
   return (
     <>
-      <div className="relative z-50 w-full pointer-events-none">
-        <div className="absolute z-50 flex w-full -translate-y-1/2 justify-center">
+      <div className="relative z-10 w-full pointer-events-none">
+        <div className="absolute z-20 flex w-full -translate-y-1/2 justify-center">
           <div
             className={cn(
               "pointer-events-auto",
@@ -184,7 +215,13 @@ const AudioPlayer: React.FC = () => {
                           )}
                         >
                           <span className="truncate">{track.label}</span>
-                          {active && <span className="ml-3 text-xs">Playing</span>}
+                          {active && (
+                            <Play
+                              size={14}
+                              className="ml-3 shrink-0 fill-current"
+                              aria-hidden="true"
+                            />
+                          )}
                         </button>
                       );
                     })}
