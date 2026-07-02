@@ -65,7 +65,7 @@ export default function Header({ params: { locale } }: Props) {
               href={href}
               key={href}
               onClick={(e) => handleScrollToSection(e, href)}
-              className="text-slate-800/75 text-base md:text-lg dark:text-white hover:text-primary dark:hover:text-primary"
+              className="inline-block text-slate-800/75 text-base md:text-lg dark:text-white transition-all duration-500 ease-out hover:scale-105 hover:font-bold hover:text-primary dark:hover:text-primary"
             >
               {text}
             </Link>

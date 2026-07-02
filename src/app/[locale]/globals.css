@@ -31,3 +31,75 @@ body {
     text-wrap: balance;
   }
 }
+
+.start-orbit-ring {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+  animation: start-orbit-spin 1.4s linear infinite paused;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.start-orbit-ring-outer {
+  inset: -5px;
+  padding: 2px;
+  filter: blur(3px);
+  box-shadow:
+    0 0 10px 2px rgba(56, 189, 248, 0.8),
+    0 0 22px 5px rgba(14, 165, 233, 0.45),
+    0 0 34px 8px rgba(37, 99, 235, 0.28);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #38bdf8 70deg,
+    #ffffff 120deg,
+    transparent 180deg,
+    #2563eb 250deg,
+    transparent 320deg
+  );
+}
+
+.start-orbit-ring-inner {
+  inset: -2px;
+  padding: 1px;
+  animation-duration: 950ms;
+  animation-direction: reverse;
+  filter: blur(2px) drop-shadow(0 0 8px rgba(147, 197, 253, 0.9));
+  box-shadow:
+    0 0 8px rgba(147, 197, 253, 0.65),
+    0 0 14px rgba(14, 165, 233, 0.38);
+  background: conic-gradient(
+    from 180deg,
+    #ffffff 0deg,
+    transparent 80deg,
+    #93c5fd 145deg,
+    transparent 220deg,
+    #0ea5e9 300deg,
+    transparent 360deg
+  );
+}
+
+.start-orbit-button:is(:hover, :focus-visible) .start-orbit-ring {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.start-orbit-button:is(:hover, :focus-visible) {
+  box-shadow:
+    0 0 12px rgba(56, 189, 248, 0.7),
+    0 0 28px rgba(14, 165, 233, 0.45),
+    0 0 48px rgba(37, 99, 235, 0.28);
+}
+
+@keyframes start-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

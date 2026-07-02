@@ -9,6 +9,7 @@ import Reveal from "../animation/Reveal"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { GridBackground } from "./GridBackground"
+import OrbitIconButton from "../button/OrbitIconButton"
 
 export default function Start() {
   const t = useTranslations("Index")
@@ -17,27 +18,17 @@ export default function Start() {
 
   const renderIcon = (iconSrc: any, info: string, href?: string) => (
     <div className='relative group'>
-      {href ? (
-        <Link
-          href={href}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='bg-primary w-9 h-9 grid place-items-center rounded-full hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700'
-        >
-          <Image src={iconSrc} alt='svg-icon' width={20} height={20} />
-        </Link>
-      ) : (
-        <button className='bg-primary w-9 h-9 grid place-items-center rounded-full hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] focus:ring-4 dark:focus:ring-gray-700'>
-          <Image src={iconSrc} alt='svg-icon' width={20} height={20} />
-        </button>
-      )}
+      <OrbitIconButton href={href} icon={iconSrc} />
 
       <div
         className={cn(
           "absolute z-10",
           "top-10 right-1/2 transform translate-x-1/2",
           "md:top-12 md:right-auto md:left-0 md:-translate-x-1",
-          "bg-gray-700 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          "bg-gray-700 text-white text-xs rounded py-1 px-2",
+          "pointer-events-none translate-y-1 scale-95 opacity-0",
+          "transition-all duration-500 ease-out",
+          "group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100"
         )}
       >
         {href ? (
