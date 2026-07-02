@@ -3,6 +3,7 @@ import { Settings } from "lucide-react";
 import ModeToggle from "./ModeToggle";
 import { useState } from "react";
 import LanguageButton from "./LanguageButton";
+import AudioToggle from "./AudioToggle";
 
 type SettingButtonProps = {
   className?: string;
@@ -26,6 +27,7 @@ export default function SettingButton({ locale, className }: SettingButtonProps)
       setShowModeToggle(true);
     }
   };
+
   return (
     <div className="fixed bottom-2 md:bottom-6 right-2 md:right-6 flex flex-col gap-4 items-center w-auto z-50">
       {showModeToggle && (
@@ -33,6 +35,7 @@ export default function SettingButton({ locale, className }: SettingButtonProps)
           className={animatingOut ? "animate-slide-down" : "animate-slide-up"}
         >
           <div className="flex flex-col gap-4">
+            <AudioToggle />
             <ModeToggle />
             <LanguageButton locale={locale} />
           </div>

@@ -18,6 +18,12 @@ type ContactFormProps = {
   closeBtnText: string;
 };
 
+const inputClassName =
+  "flex h-10 w-full rounded-2xl border border-input bg-background px-4 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30";
+
+const textareaClassName =
+  "flex min-h-[120px] w-full rounded-2xl border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30";
+
 export default function ContactForm({
   name,
   email,
@@ -96,11 +102,15 @@ export default function ContactForm({
                   </label>
                   <input
                     type="text"
-                    className="bg-white/70 dark:bg-slate-800/80 shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline"
+                    className={cn(
+                      inputClassName,
+                      errors.from_name &&
+                        "border-destructive focus-visible:ring-destructive"
+                    )}
                     {...register("from_name", { required: true })}
                   />
-                  {errors.name && (
-                    <p className="text-red-500 text-xs italic">
+                  {errors.from_name && (
+                    <p className="text-destructive text-xs italic mt-1">
                       Please enter your name.
                     </p>
                   )}
@@ -114,11 +124,15 @@ export default function ContactForm({
                   </label>
                   <input
                     type="email"
-                    className="bg-white/70 dark:bg-slate-800/80 shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline"
+                    className={cn(
+                      inputClassName,
+                      errors.email &&
+                        "border-destructive focus-visible:ring-destructive"
+                    )}
                     {...register("email", { required: true })}
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-xs italic">
+                    <p className="text-destructive text-xs italic mt-1">
                       Please enter your email.
                     </p>
                   )}
@@ -132,11 +146,15 @@ export default function ContactForm({
                   </label>
                   <textarea
                     rows={5}
-                    className="bg-white/70 dark:bg-slate-800/80 shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline"
+                    className={cn(
+                      textareaClassName,
+                      errors.message &&
+                        "border-destructive focus-visible:ring-destructive"
+                    )}
                     {...register("message", { required: true })}
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-xs italic">
+                    <p className="text-destructive text-xs italic mt-1">
                       Please enter your message.
                     </p>
                   )}

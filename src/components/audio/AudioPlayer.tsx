@@ -3,6 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2, ListMusic } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import {
+  AUDIO_CONTROL_EVENT,
+  AUDIO_STATE_EVENT,
+  AUDIO_STATE_REQUEST_EVENT,
+  type AudioControlDetail,
+} from "@/lib/audioPlayerEvents";
 import type { AudioTrack } from "@/types/audio";
 
 type AudioPlayerProps = {
@@ -31,6 +37,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const sourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
 
+  const dispatchAudioState = (playing: boolean) => {
+    window.dispatchEvent(
+      new CustomEvent(AUDIO_STATE_EVENT, {
+        detail: { isPlaying: playing },
+      })
+    );
+  };
+
   useEffect(() => {
     const audio = audioPlayer.current;
     if (!audio || !currentTrack) return;
@@ -46,15 +60,80 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
       changePlayerCurrentTime();
     };
 
+    const startProgressAnimation = () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      animationRef.current = requestAnimationFrame(whilePlaying);
+    };
+
+    const stopProgressAnimation = () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+
+    const handlePlay = () => {
+      setIsPlaying(true);
+      dispatchAudioState(true);
+      startProgressAnimation();
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+      dispatchAudioState(false);
+      stopProgressAnimation();
+    };
+
     const handleEnded = () => {
       setIsPlaying(false);
+      dispatchAudioState(false);
+      stopProgressAnimation();
     };
+
+    const handleControl = (event: Event) => {
+      const { action } = (event as CustomEvent<AudioControlDetail>).detail;
+
+      if (action === "pause" || (action === "toggle" && !audio.paused)) {
+        audio.pause();
+        return;
+      }
+
+      if (action === "play" || (action === "toggle" && audio.paused)) {
+        void audioContextRef.current?.resume();
+        void audio.play().catch(() => {
+          setIsPlaying(false);
+          dispatchAudioState(false);
+        });
+      }
+    };
+
+    const handleStateRequest = () => {
+      dispatchAudioState(!audio.paused);
+    };
+
     audio.addEventListener("loadedmetadata", syncMetadata);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("playing", handlePlay);
+    audio.addEventListener("pause", handlePause);
     audio.addEventListener("ended", handleEnded);
+    window.addEventListener(AUDIO_CONTROL_EVENT, handleControl);
+    window.addEventListener(AUDIO_STATE_REQUEST_EVENT, handleStateRequest);
+
+    if (!audio.paused) {
+      handlePlay();
+    } else {
+      dispatchAudioState(false);
+    }
 
     return () => {
       audio.removeEventListener("loadedmetadata", syncMetadata);
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("playing", handlePlay);
+      audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("ended", handleEnded);
+      window.removeEventListener(AUDIO_CONTROL_EVENT, handleControl);
+      window.removeEventListener(AUDIO_STATE_REQUEST_EVENT, handleStateRequest);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -196,7 +275,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
       try {
         await audioContextRef.current?.resume();
         await audio.play();
-        animationRef.current = requestAnimationFrame(whilePlaying);
       } catch {
         setIsPlaying(false);
       }
@@ -214,17 +292,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
   const togglePlayPause = (): void => {
     if (!currentTrack) return;
 
-    const prevValue = isPlaying;
-    setIsPlaying(!prevValue);
-    if (!prevValue) {
+    const audio = audioPlayer.current;
+    if (!audio) return;
+
+    if (audio.paused) {
       void audioContextRef.current?.resume();
-      audioPlayer.current?.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
+      void audio.play().catch(() => {
+        setIsPlaying(false);
+        dispatchAudioState(false);
+      });
     } else {
-      audioPlayer.current?.pause();
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      audio.pause();
     }
   };
 
@@ -246,8 +324,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
       audio.currentTime = 0;
       void audioContextRef.current?.resume();
-      void audio.play();
-      animationRef.current = requestAnimationFrame(whilePlaying);
+      void audio.play().catch(() => {
+        setIsPlaying(false);
+        dispatchAudioState(false);
+      });
     } else {
       setCurrentTrack(nextTrack);
     }
