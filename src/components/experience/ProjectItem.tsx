@@ -10,19 +10,10 @@ type DetailItem =
       items: string[];
     };
 
-const ProjectItem = ({
-  title,
-  descriptions,
-}: {
-  title: string;
-  descriptions: DetailItem[];
-}) => (
+const ProjectItem = ({ descriptions }: { descriptions: DetailItem[] }) => (
   <Reveal>
     <div className="mt-3 flex text-slate-800/80">
       <div>
-        <div className="text-md font-semibold dark:text-slate-50/90">
-          {title}
-        </div>
         <div className="pt-1 dark:text-slate-50/70">
           {descriptions.map((item, index) => (
             item.type === "text" ? (
