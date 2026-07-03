@@ -139,96 +139,95 @@ export default function ContactForm({
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="w-full w-max-96">
-                <Reveal>
-                  <div className="mb-4">
-                    <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
-                      {name}
-                    </label>
-                    <input
-                      type="text"
-                      disabled={!open}
-                      className={cn(
-                        inputClassName,
-                        errors.from_name &&
-                          "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
-                      )}
-                      {...register("from_name", { required: true })}
-                    />
-                    {errors.from_name && (
-                      <p className="text-destructive text-xs italic mt-1">
-                        Please enter your name.
-                      </p>
-                    )}
-                  </div>
-                </Reveal>
 
-                <Reveal>
-                  <div className="mb-4">
-                    <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
-                      {email}
-                    </label>
-                    <input
-                      type="email"
-                      disabled={!open}
-                      className={cn(
-                        inputClassName,
-                        errors.email &&
-                          "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
-                      )}
-                      {...register("email", { required: true })}
-                    />
-                    {errors.email && (
-                      <p className="text-destructive text-xs italic mt-1">
-                        Please enter your email.
-                      </p>
+                <div className="mb-4">
+                  <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
+                    {name}
+                  </label>
+                  <input
+                    type="text"
+                    disabled={!open}
+                    className={cn(
+                      inputClassName,
+                      errors.from_name &&
+                      "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
                     )}
-                  </div>
-                </Reveal>
+                    {...register("from_name", { required: true })}
+                  />
+                  {errors.from_name && (
+                    <p className="text-destructive text-xs italic mt-1">
+                      Please enter your name.
+                    </p>
+                  )}
+                </div>
 
-                <Reveal>
-                  <div className="mb-4">
-                    <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
-                      {message}
-                    </label>
-                    <textarea
-                      rows={5}
-                      disabled={!open}
-                      className={cn(
-                        textareaClassName,
-                        errors.message &&
-                          "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
-                      )}
-                      {...register("message", { required: true })}
-                    />
-                    {errors.message && (
-                      <p className="text-destructive text-xs italic mt-1">
-                        Please enter your message.
-                      </p>
+
+                <div className="mb-4">
+                  <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
+                    {email}
+                  </label>
+                  <input
+                    type="email"
+                    disabled={!open}
+                    className={cn(
+                      inputClassName,
+                      errors.email &&
+                      "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
                     )}
-                  </div>
-                </Reveal>
+                    {...register("email", { required: true })}
+                  />
+                  {errors.email && (
+                    <p className="text-destructive text-xs italic mt-1">
+                      Please enter your email.
+                    </p>
+                  )}
+                </div>
 
-                <Reveal>
-                  <div className="flex items-center justify-center">
-                    <button
-                      type="submit"
-                      disabled={!open}
-                      className="group/send relative flex h-[42px] min-w-[96px] cursor-pointer items-center justify-center overflow-hidden rounded-full border-0 bg-primary px-5 font-bold text-white transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
-                      aria-label={send}
+
+
+                <div className="mb-4">
+                  <label className="block text-slate-700 dark:text-white text-sm font-bold mb-2">
+                    {message}
+                  </label>
+                  <textarea
+                    rows={5}
+                    disabled={!open}
+                    className={cn(
+                      textareaClassName,
+                      errors.message &&
+                      "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
+                    )}
+                    {...register("message", { required: true })}
+                  />
+                  {errors.message && (
+                    <p className="text-destructive text-xs italic mt-1">
+                      Please enter your message.
+                    </p>
+                  )}
+                </div>
+
+
+
+                <div className="flex items-center justify-center">
+                  <button
+                    type="submit"
+                    disabled={!open}
+                    className="group/send relative flex h-[42px] min-w-[96px] cursor-pointer items-center justify-center overflow-hidden rounded-full border-0 bg-primary px-5 font-bold text-white transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
+                    aria-label={send}
+                  >
+                    <span className="sr-only">{send}</span>
+                    <span aria-hidden="true" className="flex overflow-hidden">
+                      {renderAnimatedButtonText(send, "down")}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="absolute flex overflow-hidden"
                     >
-                      <span className="sr-only">{send}</span>
-                      <span aria-hidden="true" className="flex overflow-hidden">
-                        {renderAnimatedButtonText(send, "down")}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="absolute flex overflow-hidden"
-                      >
-                        {renderAnimatedButtonText(send, "in")}
-                      </span>
-                    </button>
-                  </div>
-                </Reveal>
+                      {renderAnimatedButtonText(send, "in")}
+                    </span>
+                  </button>
+                </div>
+
               </form>
             )}
           </div>
