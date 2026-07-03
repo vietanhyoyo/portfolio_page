@@ -98,6 +98,86 @@ body {
     0 0 48px rgba(37, 99, 235, 0.28);
 }
 
+.project-see-more {
+  position: relative;
+  display: inline-block;
+  width: 9.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: middle;
+  outline: none;
+}
+
+.project-see-more .circle {
+  position: relative;
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  border-radius: 9999px;
+  background: hsl(var(--primary));
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.project-see-more .circle .icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.project-see-more .circle .icon.arrow {
+  left: 0.52rem;
+  width: 0.95rem;
+  height: 0.125rem;
+  background: none;
+}
+
+.project-see-more .circle .icon.arrow::before {
+  position: absolute;
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  content: "";
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+.project-see-more .button-text {
+  position: absolute;
+  inset: 0;
+  margin: 0 0 0 1.55rem;
+  padding: 0.52rem 0;
+  color: hsl(var(--primary));
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.project-see-more:is(:hover, :focus-visible) .circle {
+  width: 100%;
+}
+
+.project-see-more:is(:hover, :focus-visible) .circle .icon.arrow {
+  background: #fff;
+  transform: translate(0.85rem, 0);
+}
+
+.project-see-more:is(:hover, :focus-visible) .button-text {
+  color: #fff;
+}
+
 @keyframes start-orbit-spin {
   to {
     transform: rotate(360deg);

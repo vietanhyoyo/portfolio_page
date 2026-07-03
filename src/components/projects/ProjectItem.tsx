@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import TechTag from "../tag/TechTag";
 import { useState } from "react";
@@ -43,9 +43,8 @@ const ProjectItem = ({
     >
       <div
         className={cn(
-          `flex flex-col items-center bg-card backdrop-blur-2xl ${className} rounded-lg md:rounded-2xl p-4 text-slate-800 select-none w-[290px] md:w-[440px]`,
-          show ? "pointer-events-auto" : "pointer-events-none"
-          // show ? "select-text" : "select-none"
+          "flex min-h-[500px] w-[290px] select-none flex-col items-center overflow-hidden rounded-lg border border-slate-200/80 bg-white/90 p-4 text-slate-900 shadow-[0_24px_70px_rgba(15,23,42,0.18)] backdrop-blur-2xl transition-colors duration-500 dark:border-white/10 dark:bg-slate-900/95 dark:text-white dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)] md:min-h-[560px] md:w-[374px] md:rounded-2xl",
+          className
         )}
       >
         <div
@@ -56,19 +55,19 @@ const ProjectItem = ({
           {image}
         </div>
         <div className="h-full flex flex-col justify-center pt-6 w-full">
-          <h4 className="text-1xl dark:text-slate-400 text-primary md:text-base text-sm">
+          <h4 className="text-1xl text-sky-600 dark:text-sky-300 md:text-base text-sm">
             {subTitle}
           </h4>
-          <h3 className="md:text-2xl text-xl font-semibold dark:text-white mb-2 mt-1">
+          <h3 className="md:text-2xl text-xl font-semibold text-slate-950 dark:text-white mb-2 mt-1">
             {title}
           </h3>
-          <p className="dark:text-white flex-1 my-1 md:text-base text-sm">{content}</p>
+          <p className="flex-1 my-1 text-slate-700 dark:text-slate-100 md:text-base text-sm">{content}</p>
           {link != null && (
-            <Link href={link} className="text-primary hover:text-blue-800 line-clamp-1">
+            <Link href={link} className="text-sky-600 hover:text-sky-700 dark:text-sky-300 dark:hover:text-sky-200 line-clamp-1">
               {link}
             </Link>
           )}
-          <div className="flex mt-4">
+          <div className="flex flex-wrap gap-1 mt-4">
             {technicals.map((item, index) => (
               <TechTag key={index}>{item}</TechTag>
             ))}

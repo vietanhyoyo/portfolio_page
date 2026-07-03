@@ -1,7 +1,7 @@
 const TechTag = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="dark:bg-slate-800/80 bg-white border-2 inline-flex p-1 mr-1 rounded items-center max-w-max dark:border-slate-600">
-      <span className="text-xs dark:text-slate-50">{children}</span>
+    <div className="inline-flex max-w-max items-center rounded border border-sky-100 bg-sky-50/90 p-1 backdrop-blur dark:border-white/10 dark:bg-white/10">
+      <span className="text-xs text-sky-800 dark:text-slate-100">{children}</span>
     </div>
   );
 };

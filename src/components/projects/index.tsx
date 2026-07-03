@@ -1,28 +1,21 @@
 import Link from "next/link";
 import Reveal from "../animation/Reveal";
-import OutlineButton from "../button/OutlineButton";
-import { v4 as uuidv4 } from "uuid";
 import ProjectItem from "./ProjectItem";
-import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-
-// Dynamically import the AnimateCarousel with SSR disabled
-const AnimateCarousel = dynamic(() => import("./AnimateCarousel"), {
-  ssr: false,
-});
+import AnimateCarousel from "./AnimateCarousel";
 
 export default function Projects() {
   const t = useTranslations("Projects");
   const slides = [
     {
-      key: uuidv4(),
+      key: "project-7",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/211948513?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -37,13 +30,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-1",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/132863579?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -58,13 +51,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-2",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/209349691?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -79,13 +72,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-3",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -101,13 +94,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-4",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/198626625?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -122,13 +115,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-5",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -145,13 +138,13 @@ export default function Projects() {
       ),
     },
     {
-      key: uuidv4(),
+      key: "project-6",
       content: (
         <ProjectItem
           image={
             <iframe
               src="https://www.behance.net/embed/project/133727469?ilo0=1"
-              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              className={cn("md:w-[343px] md:h-[269px]", "w-[256px] h-[178px]")}
               allowFullScreen
               scrolling="no"
               allow="clipboard-write"
@@ -168,27 +161,35 @@ export default function Projects() {
   ];
 
   return (
-    <div className="w-full bg-slate-50 dark:bg-slate-800 flex justify-center">
-      <div className="py-10 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center">
-        <Reveal>
-          <h1 className="text-4xl font-bold dark:text-white text-primary mb-6">
+    <div className="relative flex min-h-screen w-full overflow-hidden bg-sky-50 text-slate-950 transition-colors duration-500 dark:bg-[#07111f] dark:text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(14,165,233,0.2),transparent_28%)] dark:bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.16),transparent_28%)]" />
+      <div className="relative z-10 flex min-h-screen w-full flex-col items-center">
+        <Reveal className="pt-8 md:pt-10">
+          <h1 className="text-4xl font-bold text-primary md:text-5xl">
             Projects
           </h1>
         </Reveal>
-        <Reveal>
-          <div className="py-32 relative">
-            <AnimateCarousel cards={slides} offset={2} showArrows={false} />
-          </div>
-        </Reveal>
 
-        <div className="mt-12">
-          <Reveal>
-            <Link href="https://www.behance.net/vitanhbi4" target="_blank">
-              <OutlineButton>{t("button_see_more")}</OutlineButton>
-            </Link>
-          </Reveal>
+        <div className="relative flex w-full flex-1 flex-col items-center pb-8 md:pb-10">
+          <AnimateCarousel cards={slides} offset={2} showArrows={true} />
+
+          <div className="mt-8 flex justify-center md:mt-6">
+            <Reveal>
+              <Link
+                href="https://www.behance.net/vitanhbi4"
+                target="_blank"
+                rel="noreferrer"
+                className="project-see-more"
+              >
+                <span className="circle" aria-hidden="true">
+                  <span className="icon arrow" />
+                </span>
+                <span className="button-text">{t("button_see_more")}</span>
+              </Link>
+            </Reveal>
           </div>
         </div>
       </div>
+    </div>
   );
 }
