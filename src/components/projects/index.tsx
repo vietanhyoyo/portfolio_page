@@ -21,9 +21,31 @@ export default function Projects() {
         <ProjectItem
           image={
             <iframe
+              src="https://www.behance.net/embed/project/211948513?ilo0=1"
+              className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              allowFullScreen
+              scrolling="no"
+              allow="clipboard-write"
+            ></iframe>
+          }
+          gap={40}
+          subTitle="Website"
+          title={t("name_7")}
+          technicals={["figma", "reactjs", "nodejs", "postgresql"]}
+          content={t("detail_7")}
+        />
+      ),
+    },
+    {
+      key: uuidv4(),
+      content: (
+        <ProjectItem
+          image={
+            <iframe
               src="https://www.behance.net/embed/project/132863579?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
             ></iframe>
           }
@@ -44,6 +66,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/209349691?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
             ></iframe>
           }
@@ -63,6 +86,8 @@ export default function Projects() {
             <iframe
               src="https://www.behance.net/embed/project/193127651?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
             ></iframe>
           }
@@ -84,6 +109,7 @@ export default function Projects() {
               src="https://www.behance.net/embed/project/198626625?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
               allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
             ></iframe>
           }
@@ -103,6 +129,8 @@ export default function Projects() {
             <iframe
               src="https://www.behance.net/embed/project/132632753?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
               style={{ borderRadius: "0px" }}
             ></iframe>
@@ -124,6 +152,8 @@ export default function Projects() {
             <iframe
               src="https://www.behance.net/embed/project/133727469?ilo0=1"
               className={cn("md:w-[404px] md:h-[316px]", "w-[256px] h-[178px]")}
+              allowFullScreen
+              scrolling="no"
               allow="clipboard-write"
             ></iframe>
           }
