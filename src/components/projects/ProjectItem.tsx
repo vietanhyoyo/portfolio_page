@@ -1,8 +1,6 @@
 "use client";
 import Link from "next/link";
 import TechTag from "../tag/TechTag";
-import { useState } from "react";
-import { useSpring, animated } from "react-spring";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -27,34 +25,30 @@ const ProjectItem = ({
   link,
   className,
 }: Props) => {
-  const [show, setShown] = useState(false);
-
-  const props3 = useSpring({
-    transform: show ? "scale(1.03)" : "scale(1)",
-    boxShadow: show
-      ? "0 20px 25px rgb(0 0 0 / 25%)"
-      : "0 2px 10px rgb(0 0 0 / 8%)",
-  });
   return (
-    <animated.div
-      style={props3}
-      onMouseEnter={() => setShown(true)}
-      onMouseLeave={() => setShown(false)}
-    >
+    <div className="group relative transition-transform duration-200 ease-out hover:scale-[1.03]">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-3 -z-10 rounded-[28px] bg-sky-400/0 blur-2xl transition-[opacity,transform,background-color] duration-300 group-hover:scale-105 group-hover:bg-sky-400/45 group-hover:opacity-100 dark:group-hover:bg-cyan-400/35"
+      />
       <div
         className={cn(
-          "flex min-h-[500px] w-[290px] select-none flex-col items-center overflow-hidden rounded-lg border border-slate-200/80 bg-white/90 p-4 text-slate-900 shadow-[0_24px_70px_rgba(15,23,42,0.18)] backdrop-blur-2xl transition-colors duration-500 dark:border-white/10 dark:bg-slate-900/95 dark:text-white dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)] md:min-h-[560px] md:w-[374px] md:rounded-2xl",
+          "relative isolate z-10 flex min-h-[500px] w-[290px] select-none flex-col items-center overflow-hidden rounded-lg border border-slate-200/80 bg-transparent p-4 text-slate-900 shadow-[0_2px_10px_rgb(0_0_0_/_8%)] transition-[border-color,box-shadow] duration-300 group-hover:border-sky-300/80 group-hover:shadow-[0_22px_45px_rgba(14,165,233,0.28)] dark:border-white/10 dark:text-white dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)] dark:group-hover:border-cyan-300/40 dark:group-hover:shadow-[0_22px_55px_rgba(34,211,238,0.22)] md:min-h-[560px] md:w-[374px] md:rounded-2xl",
           className
         )}
       >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] bg-white/80 backdrop-blur-lg [backdrop-filter:blur(24px)_saturate(160%)] [-webkit-backdrop-filter:blur(24px)_saturate(160%)] dark:bg-slate-900/80"
+        />
         <div
           className={cn(
-            "rounded-lg md:rounded-2xl overflow-x-hidden pointer-events-none",
+            "relative z-10 rounded-lg md:rounded-2xl overflow-x-hidden pointer-events-none",
           )}
         >
           {image}
         </div>
-        <div className="h-full flex flex-col justify-center pt-6 w-full">
+        <div className="relative z-10 h-full flex flex-col justify-center pt-6 w-full">
           <h4 className="text-1xl text-sky-600 dark:text-sky-300 md:text-base text-sm">
             {subTitle}
           </h4>
@@ -74,7 +68,7 @@ const ProjectItem = ({
           </div>
         </div>
       </div>
-    </animated.div>
+    </div>
   );
 };
 

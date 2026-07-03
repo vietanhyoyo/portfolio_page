@@ -1,20 +1,29 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { PointerEvent } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import CarouselArrowButton from "../button/CarouselArrowButton";
 import { cn } from "@/lib/utils";
 
 type AnimateCarouselProps = {
   cards: CardType[];
   className?: string;
+  heading?: React.ReactNode;
   offset: number;
   showArrows: boolean;
 };
 
 type CardType = {
   key: string;
-  content: React.ReactNode;
+  content:
+    | React.ReactNode
+    | ((state: {
+        isActive: boolean;
+        isVisible: boolean;
+        shouldLoadMedia: boolean;
+        distance: number;
+        onMediaLoad: () => void;
+      }) => React.ReactNode);
 };
 
 const AUTO_ROTATE_MS = 3000;
@@ -37,6 +46,7 @@ const getSignedDistance = (
 export default function AnimateCarousel({
   cards,
   className,
+  heading,
   offset,
   showArrows,
 }: AnimateCarouselProps) {
@@ -44,12 +54,19 @@ export default function AnimateCarousel({
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(1280);
+  const [loadedMediaKeys, setLoadedMediaKeys] = useState<Set<string>>(
+    () => new Set()
+  );
   const dragStartX = useRef<number | null>(null);
   const ignoreClickRef = useRef(false);
 
   const totalCards = cards.length;
   const visibleRange = useMemo(
-    () => Math.min(Math.max(offset + 2, 4), Math.max(totalCards - 1, 1)),
+    () =>
+      Math.min(
+        Math.max(offset, 1),
+        Math.max(Math.floor(totalCards / 2), 1)
+      ),
     [offset, totalCards]
   );
 
@@ -79,15 +96,33 @@ export default function AnimateCarousel({
     [totalCards]
   );
 
+  const markMediaAsLoaded = useCallback((key: string) => {
+    setLoadedMediaKeys((currentKeys) => {
+      if (currentKeys.has(key)) return currentKeys;
+
+      const nextKeys = new Set(currentKeys);
+      nextKeys.add(key);
+      return nextKeys;
+    });
+  }, []);
+
   useEffect(() => {
+    let frameId = 0;
+
     const updateViewportWidth = () => {
-      setViewportWidth(window.innerWidth);
+      window.cancelAnimationFrame(frameId);
+      frameId = window.requestAnimationFrame(() => {
+        setViewportWidth(window.innerWidth);
+      });
     };
 
     updateViewportWidth();
     window.addEventListener("resize", updateViewportWidth);
 
-    return () => window.removeEventListener("resize", updateViewportWidth);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener("resize", updateViewportWidth);
+    };
   }, []);
 
   useEffect(() => {
@@ -138,7 +173,7 @@ export default function AnimateCarousel({
   return (
     <div
       className={cn(
-        "relative flex min-h-[840px] w-full flex-1 flex-col items-center justify-center overflow-hidden py-6 md:min-h-[840px]",
+        "relative flex min-h-[720px] w-full flex-1 flex-col items-center justify-start overflow-hidden pb-2 pt-8 md:min-h-[760px] md:pb-3 md:pt-10",
         className
       )}
       onMouseEnter={() => setIsPaused(true)}
@@ -146,9 +181,11 @@ export default function AnimateCarousel({
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
     >
+      {heading}
+
       <div
         className={cn(
-          "relative z-10 h-[700px] w-full select-none outline-none [perspective:1400px] md:h-[min(82svh,840px)] lg:[perspective:1800px]",
+          "relative z-10 mt-2 h-[620px] w-full select-none outline-none [perspective:1400px] md:h-[min(72svh,760px)] lg:[perspective:1800px]",
           isDragging ? "cursor-grabbing" : "cursor-grab"
         )}
         role="region"
@@ -174,22 +211,39 @@ export default function AnimateCarousel({
             const absDistance = Math.abs(distance);
             const isActive = distance === 0;
             const isVisible = absDistance <= visibleRange;
+            const isMediaLoaded = loadedMediaKeys.has(card.key);
+            const shouldKeepMounted = isVisible || isMediaLoaded;
+
+            if (!shouldKeepMounted) return null;
+
             const scale = Math.max(0.66, 1 - absDistance * 0.085);
             const opacity = isVisible
               ? Math.max(0.26, 1 - absDistance * 0.18)
               : 0;
-            const blur = isActive ? 0 : Math.min(8, absDistance * 1.8);
-            const brightness = Math.max(0.5, 1 - absDistance * 0.13);
             const x = distance * layout.cardStep;
             const y = absDistance * layout.cardDrop + Math.max(absDistance - 1, 0) * 14;
             const z = absDistance * -layout.cardDepth;
+            const backgroundBlur = isActive
+              ? "none"
+              : `blur(${Math.min(absDistance * 3, 6)}px)`;
+            const shouldLoadMedia = isVisible || isMediaLoaded;
+            const content =
+              typeof card.content === "function"
+                ? card.content({
+                    isActive,
+                    isVisible,
+                    shouldLoadMedia,
+                    distance,
+                    onMediaLoad: () => markMediaAsLoaded(card.key),
+                  })
+                : card.content;
 
             return (
               <div
                 key={card.key}
-                className="absolute left-1/2 top-1/2 flex items-center justify-center transition-[opacity,filter,transform] duration-300 ease-out [backface-visibility:hidden] [transform-style:preserve-3d]"
+                className="absolute left-1/2 top-1/2 flex items-center justify-center transition-[filter,opacity,transform] duration-300 ease-out [backface-visibility:hidden] [transform-style:preserve-3d] will-change-transform"
                 style={{
-                  filter: `blur(${blur}px) brightness(${brightness}) saturate(${brightness})`,
+                  filter: backgroundBlur,
                   opacity,
                   transform: `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, ${z}px) rotateY(${
                     distance * -layout.rotateY
@@ -212,7 +266,7 @@ export default function AnimateCarousel({
                   }
                 }}
               >
-                {card.content}
+                {content}
               </div>
             );
           })}
@@ -221,14 +275,11 @@ export default function AnimateCarousel({
 
       {showArrows && (
         <div className="absolute inset-x-0 bottom-2 z-20 flex items-center justify-center gap-4 px-4 md:bottom-4">
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center rounded-full border border-slate-300/80 bg-white/75 text-slate-700 shadow-lg backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+          <CarouselArrowButton
+            direction="left"
             aria-label="Previous project"
             onClick={() => rotate(-1)}
-          >
-            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-          </button>
+          />
           <div className="flex items-center gap-2">
             {cards.map((card, index) => (
               <button
@@ -245,14 +296,11 @@ export default function AnimateCarousel({
               />
             ))}
           </div>
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center rounded-full border border-slate-300/80 bg-white/75 text-slate-700 shadow-lg backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+          <CarouselArrowButton
+            direction="right"
             aria-label="Next project"
             onClick={() => rotate(1)}
-          >
-            <ChevronRight className="h-5 w-5" aria-hidden="true" />
-          </button>
+          />
         </div>
       )}
     </div>

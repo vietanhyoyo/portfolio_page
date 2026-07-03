@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useState, ReactNode, Children, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import CarouselArrowButton from "../button/CarouselArrowButton";
 
 type SkillsScrollProps = {
   children: ReactNode;
+  title?: ReactNode;
 };
 
-export default function SkillsScroll({ children }: SkillsScrollProps) {
+export default function SkillsScroll({ children, title }: SkillsScrollProps) {
   const scrollViewportRef = useRef<HTMLDivElement>(null);
   const totalItems = Children.count(children);
   const [isDragging, setIsDragging] = useState(false);
@@ -110,7 +111,7 @@ export default function SkillsScroll({ children }: SkillsScrollProps) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-visible">
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
@@ -120,13 +121,14 @@ export default function SkillsScroll({ children }: SkillsScrollProps) {
           scrollbar-width: none;
         }
       `}</style>
+      {title}
       <div
         ref={scrollViewportRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className="mt-10 w-full overflow-x-auto cursor-grab active:cursor-grabbing scroll-smooth scrollbar-hide"
+        className="-mb-12 w-full overflow-x-auto cursor-grab active:cursor-grabbing scroll-smooth scrollbar-hide px-10 pb-12 pt-8"
         style={{ 
           scrollBehavior: "smooth", 
           maxWidth: "100vw",
@@ -142,7 +144,7 @@ export default function SkillsScroll({ children }: SkillsScrollProps) {
           `
         }} />
         <div
-          className="flex shrink-0 gap-4 px-8 pt-10 pb-12"
+          className="flex shrink-0 gap-4 px-8 pt-8 pb-12"
           style={{
             perspective: "1200px",
             width: `${Math.max(totalItems * 320 + Math.max(totalItems - 1, 0) * 16 + 64, 1400)}px`,
@@ -154,21 +156,15 @@ export default function SkillsScroll({ children }: SkillsScrollProps) {
       </div>
 
       <div className="relative z-[80] pointer-events-auto mb-6 flex justify-center items-center gap-4">
-        <button
-          type="button"
+        <CarouselArrowButton
+          direction="left"
           onClick={() => {
             scrollByViewport("left");
           }}
           disabled={!canScrollLeft}
-          className={`pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-sm transition ${
-            canScrollLeft
-              ? 'border-slate-500 bg-white text-slate-800 hover:bg-slate-100 dark:border-slate-400 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 cursor-pointer'
-              : 'border-slate-300 bg-slate-100 text-slate-400 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-500 cursor-not-allowed opacity-50'
-          }`}
+          className="pointer-events-auto"
           aria-label="Scroll skills left"
-        >
-          <ChevronLeft size={18} />
-        </button>
+        />
 
         {/* Dots Navigation */}
         <div className="flex justify-center items-center gap-2">
@@ -186,21 +182,15 @@ export default function SkillsScroll({ children }: SkillsScrollProps) {
           ))}
         </div>
 
-        <button
-          type="button"
+        <CarouselArrowButton
+          direction="right"
           onClick={() => {
             scrollByViewport("right");
           }}
           disabled={!canScrollRight}
-          className={`pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-sm transition ${
-            canScrollRight
-              ? 'border-primary bg-primary text-white hover:bg-primary/90 cursor-pointer'
-              : 'border-slate-300 bg-slate-100 text-slate-400 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-500 cursor-not-allowed opacity-50'
-          }`}
+          className="pointer-events-auto"
           aria-label="Scroll skills right"
-        >
-          <ChevronRight size={18} />
-        </button>
+        />
       </div>
     </div>
   );

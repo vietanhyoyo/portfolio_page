@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { X, ChevronDown } from "lucide-react";
+import { X, ChevronDown, Send } from "lucide-react";
 import emailjs from "emailjs-com";
 import Reveal from "../animation/Reveal";
 import { cn } from "@/lib/utils";
@@ -23,22 +23,6 @@ const inputClassName =
 
 const textareaClassName =
   "flex min-h-[120px] w-full rounded-2xl border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30 dark:hover:border-ring dark:focus-visible:border-ring dark:focus-visible:ring-ring";
-
-const renderAnimatedButtonText = (text: string, direction: "down" | "in") =>
-  Array.from(text).map((character, index) => (
-    <span
-      key={`${direction}-${character}-${index}`}
-      className={cn(
-        "inline-block whitespace-pre transition-transform ease-out",
-        direction === "down"
-          ? "group-hover/send:translate-y-[1.2em]"
-          : "-translate-y-[1.2em] group-hover/send:translate-y-0"
-      )}
-      style={{ transitionDuration: `${200 + index * 100}ms` }}
-    >
-      {character}
-    </span>
-  ));
 
 export default function ContactForm({
   name,
@@ -212,19 +196,13 @@ export default function ContactForm({
                   <button
                     type="submit"
                     disabled={!open}
-                    className="group/send relative flex h-[42px] min-w-[96px] cursor-pointer items-center justify-center overflow-hidden rounded-full border-0 bg-primary px-5 font-bold text-white transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="contact-send-button focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-50"
                     aria-label={send}
                   >
-                    <span className="sr-only">{send}</span>
-                    <span aria-hidden="true" className="flex overflow-hidden">
-                      {renderAnimatedButtonText(send, "down")}
+                    <span className="svg-wrapper" aria-hidden="true">
+                      <Send className="h-[1.15em] w-[1.15em]" />
                     </span>
-                    <span
-                      aria-hidden="true"
-                      className="absolute flex overflow-hidden"
-                    >
-                      {renderAnimatedButtonText(send, "in")}
-                    </span>
+                    <span>{send}</span>
                   </button>
                 </div>
 

@@ -20,12 +20,13 @@ export default function Skills() {
     <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-20 overflow-visible">
       <div className="py-14 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center overflow-visible" style={{ perspective: '1000px' }}>
         <Reveal>
-          <h1 className="text-4xl font-bold dark:text-white text-slate-800 m-8">
-            Skills
-          </h1>
-        </Reveal>
-        <Reveal>
-          <SkillsScroll>
+          <SkillsScroll
+            title={
+              <h1 className="text-4xl font-bold dark:text-white text-slate-800 mt-8 mb-0 text-center">
+                Skills
+              </h1>
+            }
+          >
             <SkillCard
               title="Flutter"
               iconSrc={FlutterImg}

@@ -9,6 +9,7 @@ export default function Experience() {
   const experienceConfigs = [
     {
       id: "1-1",
+      clientCountryCode: "jp",
       responsibilityKeys: [
         "responsibility_1-1_a",
         "responsibility_1-1_b",
@@ -19,6 +20,7 @@ export default function Experience() {
     },
     {
       id: "1-2",
+      clientCountryCode: "jp",
       includeFullProjectLifecycle: true,
       responsibilityKeys: [
         "responsibility_1-2_a",
@@ -28,6 +30,7 @@ export default function Experience() {
     },
     {
       id: "2-1",
+      clientCountryCode: "vn",
       responsibilityKeys: [
         "responsibility_2-1_a",
         "responsibility_2-1_b",
@@ -36,6 +39,7 @@ export default function Experience() {
     },
     {
       id: "2-2",
+      clientCountryCode: "vn",
       responsibilityKeys: [
         "responsibility_2-2_a",
         "responsibility_2-2_b",
@@ -44,6 +48,7 @@ export default function Experience() {
     },
     {
       id: "2-3",
+      clientCountryCode: "vn",
       responsibilityKeys: [
         "responsibility_2-3_a",
         "responsibility_2-3_b",
@@ -51,6 +56,7 @@ export default function Experience() {
     },
     {
       id: "2-4",
+      clientCountryCode: "vn",
       responsibilityKeys: [
         "responsibility_2-4_a",
         "responsibility_2-4_b",
@@ -58,6 +64,7 @@ export default function Experience() {
     },
     {
       id: "3-1",
+      clientCountryCode: "jp",
       responsibilityKeys: [
         "responsibility_3-1_a",
         "responsibility_3-1_b",
@@ -65,6 +72,7 @@ export default function Experience() {
     },
     {
       id: "3-2",
+      clientCountryCode: "eu",
       responsibilityKeys: [
         "responsibility_3-2_a",
         "responsibility_3-2_b",
@@ -74,6 +82,7 @@ export default function Experience() {
     },
     {
       id: "3-3",
+      clientCountryCode: "jp",
       responsibilityKeys: [
         "responsibility_3-3_a",
         "responsibility_3-3_b",
@@ -81,6 +90,7 @@ export default function Experience() {
     },
     {
       id: "3-4",
+      clientCountryCode: "vn",
       responsibilityKeys: [
         "responsibility_3-4_a",
         "responsibility_3-4_b",
@@ -89,7 +99,10 @@ export default function Experience() {
   ]
 
   const experiences = experienceConfigs.map((experience) => ({
+    id: experience.id,
     projectName: t(`project_name_${experience.id}`),
+    clientName: t(`client_${experience.id}`),
+    clientCountryCode: experience.clientCountryCode,
     time: t(`time_${experience.id}`),
     descriptions: [
       {
@@ -120,10 +133,18 @@ export default function Experience() {
   }))
 
   return (
-    <div className='w-full bg-slate-50 dark:bg-slate-800 flex justify-center'>
-      <div className='py-14 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0'>
+    <div className='relative isolate w-full overflow-hidden bg-slate-50 dark:bg-slate-800/80 flex justify-center'>
+      <div
+        aria-hidden="true"
+        className='experience-aurora pointer-events-none absolute inset-0 z-0'
+      >
+        {Array.from({ length: 7 }, (_, index) => (
+          <span key={index} className='experience-aurora-shape' />
+        ))}
+      </div>
+      <div className='relative z-10 py-14 max-w-7xl h-full w-full flex justify-center flex-col px-6 xl:px-0'>
         <Reveal>
-          <div className='text-4xl font-bold dark:text-white text-black/50 dark:text-state-50 mb-6'>
+          <div className='text-4xl font-bold text-primary mb-6'>
             {t("title")}
           </div>
         </Reveal>
@@ -132,8 +153,12 @@ export default function Experience() {
         </Reveal>
         <div className='w-full mb-5 flex flex-col gap-12'>
           {experiences.map((experience) => (
-            <div key={experience.projectName} className='leading-7'>
-              <CompanyInfo projectName={experience.projectName} />
+            <div key={experience.id} className='leading-7'>
+              <CompanyInfo
+                projectName={experience.projectName}
+                clientName={experience.clientName}
+                clientCountryCode={experience.clientCountryCode}
+              />
               <div className='border-l-2 border-black/30 dark:border-primary pl-7 mt-3'>
                 <Reveal>
                   <p className='text-black/50 dark:text-primary'>

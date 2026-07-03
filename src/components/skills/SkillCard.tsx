@@ -27,7 +27,10 @@ const SkillCard: React.FC<SkillCardProps> = ({
             "dark:bg-slate-900/40 bg-slate-100/80",
             "text-slate-800/80 dark:text-white",
             "backface-hidden",
-            "dark:shadow-primary/10 dark:shadow-2xl"
+            "transition-[filter,background-color,box-shadow] duration-500",
+            "dark:shadow-primary/10 dark:shadow-2xl",
+            "group-hover:brightness-110 group-hover:saturate-125",
+            "group-hover:shadow-[0_0_44px_rgba(59,130,246,0.48)] dark:group-hover:shadow-[0_0_52px_rgba(96,165,250,0.54)]"
           )}
         >
           <div className="relative w-[80px] h-[80px] flex items-center justify-center ">
@@ -55,7 +58,9 @@ const SkillCard: React.FC<SkillCardProps> = ({
                 key={index}
                 className={cn(
                   "h-6 w-6",
-                  index < starCount ? "stroke-primary" : "stroke-slate-400"
+                  index < starCount
+                    ? "fill-primary stroke-primary"
+                    : "fill-transparent stroke-slate-400"
                 )}
               />
             ))}
@@ -66,9 +71,15 @@ const SkillCard: React.FC<SkillCardProps> = ({
             "absolute h-full shadow-lg p-6 gap-4 rounded-3xl flex justify-center items-center flex-col",
             "text-white",
             "rotate-y-180 backface-hidden",
-            "dark:shadow-primary/10 dark:shadow-2xl"
+            "transition-[filter,box-shadow] duration-500",
+            "dark:shadow-primary/10 dark:shadow-2xl",
+            "group-hover:brightness-125 group-hover:saturate-125",
+            "group-hover:shadow-[0_0_44px_var(--skill-glow-color)]"
           )}
-          style={{backgroundColor: color}}
+          style={{
+            backgroundColor: color,
+            "--skill-glow-color": `${color}66`,
+          } as React.CSSProperties}
         >
           <div className="relative w-[80px] h-[80px] flex items-center justify-center bg-white dark:bg-white/80 rounded-full">
             <div
@@ -95,7 +106,9 @@ const SkillCard: React.FC<SkillCardProps> = ({
                 key={index}
                 className={cn(
                   "h-6 w-6",
-                  index < starCount ? "stroke-white" : "stroke-slate-200/50"
+                  index < starCount
+                    ? "fill-white stroke-white"
+                    : "fill-transparent stroke-slate-200/50"
                 )}
               />
             ))}
