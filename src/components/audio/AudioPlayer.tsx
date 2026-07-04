@@ -375,21 +375,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
   return (
     <>
-      <div className="relative z-10 w-full pointer-events-none">
-        <div className="absolute z-20 flex w-full -translate-y-1/2 justify-center">
-          <div className="relative pointer-events-auto flex w-[min(92vw,34rem)] items-center justify-center">
+      <div className="relative z-10 flex h-full w-full items-start justify-center pointer-events-none">
+        <div className="relative z-20 flex w-full justify-center">
+          <div className="relative pointer-events-auto flex w-full max-w-[28rem] items-center justify-center">
             <canvas
               ref={visualizerCanvasRef}
               className={cn(
-                "absolute bottom-full mb-3 h-[72px] w-1/3 min-w-[140px] max-w-[220px] transition-all duration-300",
+                "absolute bottom-full left-1/2 mb-3 h-[56px] w-1/2 min-w-[120px] max-w-[200px] -translate-x-1/2 transition-all duration-300",
                 isPlaying ? "opacity-100" : "pointer-events-none opacity-0"
               )}
               aria-hidden="true"
             />
             <div
               className={cn(
-                "relative flex items-center gap-3 rounded-full border border-sky-100/70 bg-card/95 px-4 py-3 shadow-[0_10px_30px_rgba(14,165,233,0.18)] backdrop-blur-2xl",
-                "w-full transition-all duration-300 hover:shadow-[0_12px_36px_rgba(14,165,233,0.26)]"
+                "relative flex items-center gap-2 rounded-full border border-white/70 bg-white/95 px-3 py-2 shadow-[0_10px_24px_rgba(0,68,130,0.22)] backdrop-blur-xl",
+                "w-full transition-all duration-300 hover:shadow-[0_12px_28px_rgba(0,68,130,0.28)]"
               )}
             >
             <audio
@@ -403,10 +403,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                   setShowPlaylist((prev) => !prev);
                   setShowVolumeSlider(false);
                 }}
-                className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition hover:bg-sky-50 hover:text-primary dark:text-white dark:hover:bg-slate-800"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary"
                 aria-label="Open playlist"
               >
-                <ListMusic size={22} />
+                <ListMusic size={18} />
               </button>
               {showPlaylist && (
                 <div className="absolute bottom-full left-0 z-50 mb-3 w-52 overflow-hidden rounded-2xl border border-sky-200 bg-white p-2 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]">
@@ -441,10 +441,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
             </div>
             <button
               onClick={togglePlayPause}
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-[0_8px_18px_rgba(14,165,233,0.35)] transition hover:scale-[1.02] hover:bg-primary/90 active:scale-[0.98]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-[0_8px_16px_rgba(0,68,130,0.28)] transition hover:scale-[1.02] hover:bg-primary/90 active:scale-[0.98]"
               aria-label={isPlaying ? "Pause audio" : "Play audio"}
             >
-              {isPlaying ? <Pause size={22} /> : <Play size={22} className="ml-0.5" />}
+              {isPlaying ? <Pause size={18} /> : <Play size={18} className="ml-0.5" />}
             </button>
             <div className="relative flex flex-1 items-center">
               <input
@@ -452,7 +452,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                 ref={progressBar}
                 defaultValue="0"
                 onChange={changeRange}
-                className="player-slider player-progress my-0 h-10 w-full cursor-pointer appearance-none bg-transparent align-middle"
+                className="player-slider player-progress my-0 h-8 w-full cursor-pointer appearance-none bg-transparent align-middle"
                 style={
                   {
                     "--progress-bar-color": "#0ea5e9",
@@ -473,14 +473,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                   setShowVolumeSlider((prev) => !prev);
                   setShowPlaylist(false);
                 }}
-                className="flex h-11 w-11 items-center justify-center rounded-full text-slate-700 transition hover:bg-sky-50 hover:text-primary dark:text-white dark:hover:bg-slate-800"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary"
                 aria-label="Toggle volume"
               >
-                <Volume2 size={22} />
+                <Volume2 size={18} />
               </button>
               {showVolumeSlider && (
                 <div
-                  className="absolute bottom-full right-0 z-50 mb-3 w-40 rounded-2xl border border-sky-200 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
+                  className="absolute bottom-full right-0 z-50 mb-3 w-36 rounded-2xl border border-sky-200 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
                   onMouseLeave={() => setShowVolumeSlider(false)}
                 >
                   <div className="flex items-center gap-3">
@@ -495,7 +495,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                       value={volume}
                       min="0"
                       max="1"
-                      className="player-slider h-10 w-full cursor-pointer appearance-none bg-transparent"
+                      className="player-slider h-8 w-full cursor-pointer appearance-none bg-transparent"
                       style={
                         {
                           "--progress-bar-color": "#0ea5e9",

@@ -3,7 +3,6 @@ import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
 import Start from "@/components/start";
-import AudioPlayer from "@/components/audio/AudioPlayer";
 import { getAudioTracks } from "@/lib/audioTracks";
 
 type Props = {
@@ -16,9 +15,8 @@ export default async function Portfolio({ params: { locale } }: Props) {
   return (
     <main className="w-full">
       <section id="home" className="w-full">
-        <Start />
+        <Start tracks={tracks} />
       </section>
-      <AudioPlayer tracks={tracks} />
       <section id="skills" className="w-full">
         <Skills />
       </section>

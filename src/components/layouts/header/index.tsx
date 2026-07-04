@@ -51,30 +51,40 @@ export default function Header({ params: { locale } }: Props) {
 
   return (
     <header
-      className={`py-1 md:py-2 fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+      className={`fixed left-0 top-0 z-50 w-full px-4 py-3 transition-all duration-300 md:py-4 ${
         isScrolled
-          ? "bg-white/70 shadow-[0_8px_9px_-4px_rgba(59,113,202,0.1),0_4px_18px_0_rgba(59,113,202,0.1)] dark:bg-slate-900/90 backdrop-blur-lg"
-          : "bg-transparent"
+          ? "-translate-y-2"
+          : "translate-y-1"
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center max-w-7xl px-6 xl:px-0">
-        <h1 className="text-primary text-3xl font-bold">{"<A>"}</h1>
-        <nav className="md:space-x-12 space-x-6 hidden 2sm:block">
+      <div
+        className={`relative isolate mx-auto flex w-full max-w-5xl items-center justify-between rounded-full border px-5 py-3 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 md:px-8 ${
+          isScrolled
+            ? "border-white/45 bg-white/25 shadow-[0_18px_55px_rgba(14,116,144,0.22),inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-20px_34px_rgba(255,255,255,0.08)] dark:border-white/15 dark:bg-slate-950/45 dark:shadow-[0_18px_55px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-20px_34px_rgba(255,255,255,0.04)]"
+            : "border-white/35 bg-white/15 shadow-[0_16px_45px_rgba(14,116,144,0.14),inset_0_1px_0_rgba(255,255,255,0.58),inset_0_-18px_32px_rgba(255,255,255,0.06)] dark:border-white/10 dark:bg-slate-950/30 dark:shadow-[0_16px_45px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.14),inset_0_-18px_32px_rgba(255,255,255,0.03)]"
+        } before:pointer-events-none before:absolute before:inset-x-10 before:top-0 before:h-6 before:rounded-full before:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.34),rgba(255,255,255,0)_68%)] before:blur-sm before:content-[''] after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:bg-[linear-gradient(120deg,rgba(255,255,255,0.34),rgba(255,255,255,0.05)_38%,rgba(14,165,233,0.16)_72%,rgba(255,255,255,0.12))] after:content-['']`}
+      >
+        <h1 className="relative z-10 text-2xl font-bold text-primary md:text-3xl">
+          {"<A>"}
+        </h1>
+        <nav className="relative z-10 hidden space-x-6 2sm:block md:space-x-10">
           {navLinks.map(({ href, text }) => (
             <Link
               href={href}
               key={href}
               onClick={(e) => handleScrollToSection(e, href)}
-              className="inline-block text-slate-800/75 text-base md:text-lg dark:text-white transition-all duration-500 ease-out hover:scale-105 hover:font-bold hover:text-primary dark:hover:text-primary"
+              className="relative inline-block origin-center rounded-full px-3 py-1.5 text-base font-medium text-slate-800/75 transition-all duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:scale-75 before:rounded-full before:border before:border-white/25 before:bg-white/0 before:opacity-0 before:shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] before:transition-all before:duration-300 hover:scale-x-110 hover:scale-y-105 hover:text-primary hover:before:scale-100 hover:before:bg-white/35 hover:before:opacity-100 hover:before:shadow-[0_10px_24px_rgba(14,116,144,0.16),inset_0_1px_0_rgba(255,255,255,0.7)] active:scale-x-105 active:scale-y-95 dark:text-white/85 dark:hover:text-primary dark:hover:before:border-white/10 dark:hover:before:bg-white/10 md:text-lg"
             >
               {text}
             </Link>
           ))}
         </nav>
-        <Drawer
-          handleScrollToSection={handleScrollToSection}
-          navLinks={navLinks}
-        />
+        <div className="relative z-10">
+          <Drawer
+            handleScrollToSection={handleScrollToSection}
+            navLinks={navLinks}
+          />
+        </div>
       </div>
     </header>
   );
