@@ -1,122 +1,124 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+"use client";
+
+import { animate } from "animejs";
 import { Star } from "lucide-react";
+import Image from "next/image";
+import type { CSSProperties, FocusEvent, PointerEvent } from "react";
+import { cn } from "@/lib/utils";
 
 type SkillCardProps = {
   title: string;
-  content?: string;
-  iconSrc: any;
-  starCount?: number;
-  color?: string;
+  content: string;
+  iconSrc: string;
+  starCount: number;
+  color: string;
+  index: number;
 };
 
-const SkillCard: React.FC<SkillCardProps> = ({
+export default function SkillCard({
   title,
   content,
   iconSrc,
-  starCount = 0,
+  starCount,
   color,
-}) => {
-  const totalStars = 3;
+  index,
+}: SkillCardProps) {
+  const settle = (target: HTMLElement) => {
+    animate(target, {
+      rotateX: 0,
+      rotateY: 0,
+      translateY: 0,
+      scale: 1,
+      duration: 540,
+      ease: "out(4)",
+    });
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    animate(event.currentTarget, {
+      rotateX: y * -5,
+      rotateY: x * 6,
+      translateY: -5,
+      scale: 1.01,
+      duration: 260,
+      ease: "out(3)",
+    });
+  };
+
+  const handleBlur = (event: FocusEvent<HTMLElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      settle(event.currentTarget);
+    }
+  };
+
   return (
-    <div className="prespective group shrink-0">
-      <div className="group-hover:rotate-y-180 duration-500 preserve-3d w-[308px] h-[360px] relative">
-        <div
-          className={cn(
-            "absolute h-full shadow-lg p-6 gap-4 rounded-3xl flex justify-center items-center flex-col",
-            "dark:bg-slate-900/40 bg-slate-100/80",
-            "text-slate-800/80 dark:text-white",
-            "backface-hidden",
-            "transition-[filter,background-color,box-shadow] duration-500",
-            "dark:shadow-primary/10 dark:shadow-2xl",
-            "group-hover:brightness-110 group-hover:saturate-125",
-            "group-hover:shadow-[0_0_44px_rgba(59,130,246,0.48)] dark:group-hover:shadow-[0_0_52px_rgba(96,165,250,0.54)]"
-          )}
-        >
-          <div className="relative w-[80px] h-[80px] flex items-center justify-center ">
-            <div
-              className={cn(
-                "absolute inset-0 w-[80px] h-[80px] rounded-full border-2 border-dashed animate-spin-slow-6",
-                "border-slate-300 dark:border-slate-500"
-              )}
-            ></div>
-            <Image
-              src={iconSrc}
-              alt={title}
-              style={{ height: "34px", width: "auto" }}
-              className="relative z-10"
-            />
+    <article
+      data-skill-card
+      tabIndex={0}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={(event) => settle(event.currentTarget)}
+      onFocus={(event) =>
+        animate(event.currentTarget, {
+          translateY: -5,
+          scale: 1.01,
+          duration: 300,
+          ease: "out(3)",
+        })
+      }
+      onBlur={handleBlur}
+      className={cn(
+        "soft-glass-card layout-card preserve-3d group relative min-h-[310px] overflow-hidden p-6 outline-none",
+        "transition-[border-color,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary/60",
+      )}
+      style={
+        {
+          "--skill-accent": color,
+          borderColor: `${color}35`,
+        } as CSSProperties
+      }
+    >
+      <div
+        aria-hidden="true"
+        className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-35"
+        style={{ backgroundColor: color }}
+      />
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="flex items-start justify-between gap-4">
+          <div
+            className="layout-card-inner grid h-16 w-16 place-items-center border bg-white/75 shadow-lg dark:bg-slate-950/55"
+            style={{ borderColor: `${color}45`, boxShadow: `0 16px 34px ${color}20` }}
+          >
+            <Image src={iconSrc} alt={title} width={38} height={38} className="h-9 w-9 object-contain" />
           </div>
-
-          <h3 className="text-3xl font-semibold">{title}</h3>
-          <div className="flex flex-col justify-center h-20">
-            <p className="text-center dark:text-slate-400">{content}</p>
-          </div>
-          <div className="flex gap-4">
-            {Array.from({ length: totalStars }, (_, index) => (
-              <Star
-                key={index}
-                className={cn(
-                  "h-6 w-6",
-                  index < starCount
-                    ? "fill-primary stroke-primary"
-                    : "fill-transparent stroke-slate-400"
-                )}
-              />
-            ))}
-          </div>
+          <span className="text-xs font-bold tracking-[0.22em] text-slate-400 dark:text-slate-500">
+            {String(index + 1).padStart(2, "0")}
+          </span>
         </div>
-        <div
-          className={cn(
-            "absolute h-full shadow-lg p-6 gap-4 rounded-3xl flex justify-center items-center flex-col",
-            "text-white",
-            "rotate-y-180 backface-hidden",
-            "transition-[filter,box-shadow] duration-500",
-            "dark:shadow-primary/10 dark:shadow-2xl",
-            "group-hover:brightness-125 group-hover:saturate-125",
-            "group-hover:shadow-[0_0_44px_var(--skill-glow-color)]"
-          )}
-          style={{
-            backgroundColor: color,
-            "--skill-glow-color": `${color}66`,
-          } as React.CSSProperties}
-        >
-          <div className="relative w-[80px] h-[80px] flex items-center justify-center bg-white dark:bg-white/80 rounded-full">
-            <div
-              className={cn(
-                "absolute inset-0 w-[80px] h-[80px] rounded-full border-2 border-dashed animate-spin-slow-6",
-                "border-slate-300 dark:border-slate-500/50"
-              )}
-            ></div>
-            <Image
-              src={iconSrc}
-              alt={title}
-              style={{ height: "34px", width: "auto" }}
-              className="relative z-10"
-            />
-          </div>
 
-          <h3 className="text-3xl font-semibold">{title}</h3>
-          <div className="flex flex-col justify-center h-20">
-            <p className="text-center">{content}</p>
-          </div>
-          <div className="flex gap-4">
-            {Array.from({ length: totalStars }, (_, index) => (
+        <h3 className="mt-7 text-2xl font-bold text-slate-900 dark:text-white">{title}</h3>
+        <p className="mt-3 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{content}</p>
+
+        <div className="mt-6 flex items-center justify-between border-t border-slate-200/70 pt-4 dark:border-white/10">
+          <div className="flex gap-1.5" aria-label={`${starCount} of 3 stars`}>
+            {Array.from({ length: 3 }, (_, starIndex) => (
               <Star
-                key={index}
+                key={starIndex}
                 className={cn(
-                  "h-6 w-6",
-                  index < starCount
-                    ? "fill-white stroke-white"
-                    : "fill-transparent stroke-slate-200/50"
+                  "h-4 w-4",
+                  starIndex < starCount
+                    ? "fill-primary stroke-primary"
+                    : "fill-transparent stroke-slate-300 dark:stroke-slate-600",
                 )}
               />
             ))}
           </div>
+          <span className="h-2 w-10 rounded-full" style={{ backgroundColor: color }} aria-hidden="true" />
         </div>
       </div>
-    </div>
+    </article>
   );
-};
-
-export default SkillCard;
+}

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Reveal from "../animation/Reveal";
 import { useTranslations } from "next-intl";
 import ProjectsCarousel from "./ProjectsCarousel";
 
@@ -68,26 +67,25 @@ export default function Projects() {
   ];
 
   return (
-    <div className="relative flex min-h-screen w-full overflow-hidden bg-sky-50 text-slate-950 transition-colors duration-500 dark:bg-[#07111f] dark:text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(14,165,233,0.2),transparent_28%)] dark:bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.16),transparent_28%)]" />
-      <div className="relative z-10 flex min-h-screen w-full flex-col items-center">
-        <div className="relative flex w-full flex-1 flex-col items-center pb-8 md:pb-10">
+    <div className="section-shell min-h-screen py-24 text-slate-950 dark:text-white sm:py-28">
+      <div aria-hidden="true" className="ambient-glow absolute left-1/2 top-0 h-[44rem] w-[min(88rem,140vw)] -translate-x-1/2 opacity-80" />
+      <div aria-hidden="true" className="ambient-glow absolute -left-[24rem] top-1/2 h-[48rem] w-[48rem] opacity-50" />
+      <div className="section-container">
+        <div className="relative w-full">
           <ProjectsCarousel heading="Projects" slides={slides} />
 
-          <div className="mt-8 flex justify-center md:mt-6">
-            <Reveal>
-              <Link
-                href="https://www.behance.net/vitanhbi4"
-                target="_blank"
-                rel="noreferrer"
-                className="project-see-more"
-              >
-                <span className="circle" aria-hidden="true">
-                  <span className="icon arrow" />
-                </span>
-                <span className="button-text">{t("button_see_more")}</span>
-              </Link>
-            </Reveal>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="https://www.behance.net/vitanhbi4"
+              target="_blank"
+              rel="noreferrer"
+              className="project-see-more"
+            >
+              <span className="circle" aria-hidden="true">
+                <span className="icon arrow" />
+              </span>
+              <span className="button-text">{t("button_see_more")}</span>
+            </Link>
           </div>
         </div>
       </div>

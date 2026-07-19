@@ -2,16 +2,18 @@ import Header from "@/components/layouts/header";
 import SettingButton from "@/components/setting/SettingButton";
 import { cn } from "@/lib/utils";
 
-export default function Layout({
+export default async function Layout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
   return (
     <div className={cn(locale === "en" ? "font-english" : "font-roboto", "relative w-full")}>
-      <Header params={{ locale: locale }} />
+      <Header />
       <div className="w-full">{children}</div>
       <SettingButton locale={locale} />
     </div>

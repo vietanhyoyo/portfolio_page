@@ -2,7 +2,6 @@ import type { Config } from "tailwindcss"
 
 const svgToDataUri = require("mini-svg-data-uri")
 
-const colors = require("tailwindcss/colors")
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette")
@@ -25,8 +24,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        english: ["ui-sans-serif", "Rubik"],
-        roboto: ["Roboto", "sans-serif"],
+        english: ["var(--font-rubik)", "ui-sans-serif", "sans-serif"],
+        roboto: ["var(--font-roboto)", "ui-sans-serif", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

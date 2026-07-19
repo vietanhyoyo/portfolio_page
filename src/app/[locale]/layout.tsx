@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto, Rubik } from "next/font/google";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layouts/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-roboto",
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  variable: "--font-rubik",
+});
 
 export const metadata: Metadata = {
   title: "BuiVietAnh - Resume",
@@ -12,22 +20,26 @@ export const metadata: Metadata = {
 
 export default function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  return <LocaleDocument params={params}>{children}</LocaleDocument>;
+}
+
+async function LocaleDocument({
+  children,
+  params,
+}: Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}>) {
+  const { locale } = await params;
+
   return (
-    <html lang={locale}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={inter.className}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${inter.className} ${roboto.variable} ${rubik.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

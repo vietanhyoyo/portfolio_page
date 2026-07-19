@@ -3,23 +3,23 @@ import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
 import Start from "@/components/start";
+import HeroSkillsGlobe from "@/components/start/HeroSkillsGlobe";
 import { getAudioTracks } from "@/lib/audioTracks";
 
-type Props = {
-  params: { locale: string };
-};
-
-export default async function Portfolio({ params: { locale } }: Props) {
+export default async function Portfolio() {
   const tracks = await getAudioTracks();
 
   return (
-    <main className="w-full">
-      <section id="home" className="w-full">
-        <Start tracks={tracks} />
-      </section>
-      <section id="skills" className="w-full">
-        <Skills />
-      </section>
+    <main className="portfolio-section-bg w-full">
+      <div className="relative isolate overflow-hidden">
+        <section id="home" className="relative z-10 w-full">
+          <Start tracks={tracks} />
+        </section>
+        <HeroSkillsGlobe />
+        <section id="skills" className="relative z-10 w-full">
+          <Skills />
+        </section>
+      </div>
       <section id="experience" className="w-full">
         <Experience />
       </section>

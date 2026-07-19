@@ -2,6 +2,7 @@
 
 import type { PointerEvent } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { animate } from "animejs";
 import CarouselArrowButton from "../button/CarouselArrowButton";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +27,6 @@ type CardType = {
       }) => React.ReactNode);
 };
 
-const AUTO_ROTATE_MS = 3000;
 const DRAG_THRESHOLD = 28;
 
 const getSignedDistance = (
@@ -51,7 +51,6 @@ export default function AnimateCarousel({
   showArrows,
 }: AnimateCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(1280);
   const [loadedMediaKeys, setLoadedMediaKeys] = useState<Set<string>>(
@@ -59,6 +58,7 @@ export default function AnimateCarousel({
   );
   const dragStartX = useRef<number | null>(null);
   const ignoreClickRef = useRef(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   const totalCards = cards.length;
   const visibleRange = useMemo(
@@ -126,16 +126,46 @@ export default function AnimateCarousel({
   }, []);
 
   useEffect(() => {
-    if (isPaused || isDragging || totalCards <= 1) return;
+    const activeCard = rootRef.current?.querySelector<HTMLElement>(
+      '[data-project-motion][data-active="true"]',
+    );
+    if (!activeCard) return;
 
-    const timer = window.setInterval(() => rotate(1), AUTO_ROTATE_MS);
-    return () => window.clearInterval(timer);
-  }, [isDragging, isPaused, rotate, totalCards]);
+    animate(activeCard, {
+      opacity: { from: 0.55 },
+      y: { from: 18 },
+      scale: { from: 0.96 },
+      duration: 520,
+      ease: "out(4)",
+    });
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const headingElement = rootRef.current?.querySelector<HTMLElement>(
+      "[data-project-heading]",
+    );
+    if (!headingElement) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        animate(headingElement, {
+          opacity: { from: 0 },
+          y: { from: 24 },
+          duration: 620,
+          ease: "out(4)",
+        });
+        observer.disconnect();
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(headingElement);
+    return () => observer.disconnect();
+  }, []);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     dragStartX.current = event.clientX;
     setIsDragging(true);
-    setIsPaused(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
@@ -155,7 +185,6 @@ export default function AnimateCarousel({
 
     dragStartX.current = null;
     setIsDragging(false);
-    setIsPaused(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
@@ -164,7 +193,6 @@ export default function AnimateCarousel({
   const handlePointerCancel = (event: PointerEvent<HTMLDivElement>) => {
     dragStartX.current = null;
     setIsDragging(false);
-    setIsPaused(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
@@ -176,10 +204,7 @@ export default function AnimateCarousel({
         "relative flex min-h-[720px] w-full flex-1 flex-col items-center justify-start overflow-hidden pb-2 pt-8 md:min-h-[760px] md:pb-3 md:pt-10",
         className
       )}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
+      ref={rootRef}
     >
       {heading}
 
@@ -266,7 +291,9 @@ export default function AnimateCarousel({
                   }
                 }}
               >
-                {content}
+                <div data-project-motion data-active={isActive ? "true" : "false"}>
+                  {content}
+                </div>
               </div>
             );
           })}

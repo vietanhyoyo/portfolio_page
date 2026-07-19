@@ -29,11 +29,11 @@ const ProjectItem = ({
     <div className="group relative transition-transform duration-200 ease-out hover:scale-[1.03]">
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-3 -z-10 rounded-[28px] bg-sky-400/0 blur-2xl transition-[opacity,transform,background-color] duration-300 group-hover:scale-105 group-hover:bg-sky-400/45 group-hover:opacity-100 dark:group-hover:bg-cyan-400/35"
+        className="layout-card pointer-events-none absolute inset-3 -z-10 bg-sky-400/0 blur-2xl transition-[opacity,transform,background-color] duration-300 group-hover:scale-105 group-hover:bg-sky-400/45 group-hover:opacity-100 dark:group-hover:bg-cyan-400/35"
       />
       <div
         className={cn(
-          "relative isolate z-10 flex min-h-[500px] w-[290px] select-none flex-col items-center overflow-hidden rounded-lg border border-slate-200/80 bg-transparent p-4 text-slate-900 shadow-[0_2px_10px_rgb(0_0_0_/_8%)] transition-[border-color,box-shadow] duration-300 group-hover:border-sky-300/80 group-hover:shadow-[0_22px_45px_rgba(14,165,233,0.28)] dark:border-white/10 dark:text-white dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)] dark:group-hover:border-cyan-300/40 dark:group-hover:shadow-[0_22px_55px_rgba(34,211,238,0.22)] md:min-h-[560px] md:w-[374px] md:rounded-2xl",
+          "layout-card relative isolate z-10 flex min-h-[500px] w-[290px] select-none flex-col items-center overflow-hidden border border-slate-200/80 bg-transparent p-4 text-slate-900 shadow-[0_2px_10px_rgb(0_0_0_/_8%)] transition-[border-color,box-shadow] duration-300 group-hover:border-sky-300/80 group-hover:shadow-[0_22px_45px_rgba(14,165,233,0.28)] dark:border-white/10 dark:text-white dark:shadow-[0_24px_70px_rgba(0,0,0,0.35)] dark:group-hover:border-cyan-300/40 dark:group-hover:shadow-[0_22px_55px_rgba(34,211,238,0.22)] md:min-h-[560px] md:w-[374px]",
           className
         )}
       >
@@ -43,7 +43,7 @@ const ProjectItem = ({
         />
         <div
           className={cn(
-            "relative z-10 rounded-lg md:rounded-2xl overflow-x-hidden pointer-events-none",
+            "layout-card-inner pointer-events-none relative z-10 overflow-x-hidden",
           )}
         >
           {image}

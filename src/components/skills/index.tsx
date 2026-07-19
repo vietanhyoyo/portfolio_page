@@ -1,98 +1,20 @@
-import FlutterImg from "@/../public/images/skills/flutter.png";
-import ReactImg from "@/../public/images/skills/react.png";
-import FigmaImg from "@/../public/images/skills/figma.png";
-import NodeImg from "@/../public/images/skills/node.png";
-import GitImg from "@/../public/images/skills/git.png";
-import JavaImg from "@/../public/images/skills/java.png";
-import RubyImg from "@/../public/images/skills/ruby.png";
-import VueImg from "@/../public/images/skills/vue.png";
-import DockerImg from "@/../public/images/skills/docker.png";
-import DatabseImg from "@/../public/images/skills/database.png";
-
-import SkillCard from "./SkillCard";
-import SkillsScroll from "./SkillsScroll";
-import Reveal from "../animation/Reveal";
 import { useTranslations } from "next-intl";
+import SkillsGrid, { type SkillItem } from "./SkillsGrid";
 
 export default function Skills() {
   const t = useTranslations("Skill");
-  return (
-    <div className="w-full bg-slate-200 dark:bg-slate-800 flex justify-center pb-20 overflow-visible">
-      <div className="py-14 max-w-7xl h-full w-full flex justify-center flex-col px-4 xl:px-0 items-center overflow-visible" style={{ perspective: '1000px' }}>
-        <Reveal>
-          <SkillsScroll
-            title={
-              <h1 className="text-4xl font-bold dark:text-white text-slate-800 mt-8 mb-0 text-center">
-                Skills
-              </h1>
-            }
-          >
-            <SkillCard
-              title="Flutter"
-              iconSrc={FlutterImg}
-              content={t("flutter")}
-              starCount={3}
-              color="#29B5F6"
-            />
-            <SkillCard
-              title="React"
-              iconSrc={ReactImg}
-              content={t("react")}
-              starCount={3}
-              color="#15bede"
-            />
-            <SkillCard
-              title="Figma"
-              iconSrc={FigmaImg}
-              content={t("figma")}
-              starCount={3}
-              color="#A25BFF"
-            />
-            <SkillCard
-              title="Node.js"
-              iconSrc={NodeImg}
-              content={t("node")}
-              starCount={3}
-              color="#60B147"
-            />
-            <SkillCard
-              title="Vue"
-              iconSrc={VueImg}
-              content={t("vue")}
-              starCount={3}
-              color="#41B782"
-            />
-            <SkillCard
-              title="Java"
-              iconSrc={JavaImg}
-              content={t("java")}
-              starCount={2}
-              color="#E76F00"
-            />
-            <SkillCard
-              title="Database"
-              iconSrc={DatabseImg}
-              content={t("database")}
-              starCount={2}
-              color="#006CF0"
-            />
-            <SkillCard
-              title="Docker"
-              iconSrc={DockerImg}
-              content={t("docker")}
-              starCount={2}
-              color="#089CEC"
-            />
-            <SkillCard
-              title="Ruby"
-              iconSrc={RubyImg}
-              content={t("ruby")}
-              starCount={2}
-              color="#CC342D"
-            />
-          </SkillsScroll>
-        </Reveal>
-      </div>
-    </div>
-  );
+
+  const skills: SkillItem[] = [
+    { title: "Flutter", iconSrc: "/images/skills/flutter.png", content: t("flutter"), starCount: 3, color: "#29B5F6" },
+    { title: "React", iconSrc: "/images/skills/react.png", content: t("react"), starCount: 3, color: "#15BEDE" },
+    { title: "Figma", iconSrc: "/images/skills/figma.png", content: t("figma"), starCount: 3, color: "#A25BFF" },
+    { title: "Node.js", iconSrc: "/images/skills/node.png", content: t("node"), starCount: 3, color: "#60B147" },
+    { title: "Vue", iconSrc: "/images/skills/vue.png", content: t("vue"), starCount: 3, color: "#41B782" },
+    { title: "Java", iconSrc: "/images/skills/java.png", content: t("java"), starCount: 2, color: "#E76F00" },
+    { title: "Database", iconSrc: "/images/skills/database.png", content: t("database"), starCount: 2, color: "#006CF0" },
+    { title: "Docker", iconSrc: "/images/skills/docker.png", content: t("docker"), starCount: 2, color: "#089CEC" },
+    { title: "Ruby", iconSrc: "/images/skills/ruby.png", content: t("ruby"), starCount: 2, color: "#CC342D" },
+  ];
+
+  return <SkillsGrid skills={skills} />;
 }

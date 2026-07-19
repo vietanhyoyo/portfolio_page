@@ -29,10 +29,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const progressBar = useRef<HTMLInputElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const hasMountedTrackRef = useRef(false);
   const visualizerCanvasRef = useRef<HTMLCanvasElement>(null);
-  const visualizerFrameRef = useRef<number>();
+  const visualizerFrameRef = useRef<number | undefined>(undefined);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const sourceNodeRef = useRef<MediaElementAudioSourceNode | null>(null);
@@ -47,7 +47,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
   useEffect(() => {
     const audio = audioPlayer.current;
-    if (!audio || !currentTrack) return;
+    if (!audio) return;
+
+    const updateProgress = () => {
+      const progress = progressBar.current;
+      if (!progress) return;
+
+      progress.value = audio.currentTime.toString();
+      const audioDuration = audio.duration || 0;
+      const percentage = audioDuration > 0
+        ? (audio.currentTime / audioDuration) * 100
+        : 0;
+      progress.style.setProperty("--seek-before-width", `${percentage}%`);
+      setCurrentTime(audio.currentTime);
+      animationRef.current = requestAnimationFrame(updateProgress);
+    };
 
     const syncMetadata = () => {
       const seconds = Math.floor(audio.duration || 0);
@@ -57,14 +71,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
         progressBar.current.max = seconds.toString();
         progressBar.current.value = audio.currentTime.toString();
       }
-      changePlayerCurrentTime();
+      const percentage = seconds > 0 ? (audio.currentTime / seconds) * 100 : 0;
+      progressBar.current?.style.setProperty(
+        "--seek-before-width",
+        `${percentage}%`,
+      );
     };
 
     const startProgressAnimation = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      animationRef.current = requestAnimationFrame(whilePlaying);
+      animationRef.current = requestAnimationFrame(updateProgress);
     };
 
     const stopProgressAnimation = () => {
@@ -231,7 +249,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
       }
 
       context.shadowBlur = 0;
-      visualizerFrameRef.current = requestAnimationFrame(drawVisualizer);
+      if (isPlaying) {
+        visualizerFrameRef.current = requestAnimationFrame(drawVisualizer);
+      } else {
+        visualizerFrameRef.current = undefined;
+      }
     };
 
     if (visualizerFrameRef.current) {
@@ -262,7 +284,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
     audio.pause();
     audio.currentTime = 0;
-    audio.volume = volume;
     audio.load();
 
     if (progressBar.current) {
@@ -333,31 +354,19 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
     }
   };
 
-  const whilePlaying = (): void => {
-    if (progressBar.current && audioPlayer.current) {
-      progressBar.current.value = audioPlayer.current.currentTime.toString();
-      changePlayerCurrentTime();
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    }
-  };
-
   const changeRange = (): void => {
     if (audioPlayer.current && progressBar.current) {
-      audioPlayer.current.currentTime = Number(progressBar.current.value);
-      changePlayerCurrentTime();
-    }
-  };
-
-  const changePlayerCurrentTime = (): void => {
-    if (progressBar.current) {
-      const percentage = duration > 0
-        ? (Number(progressBar.current.value) / duration) * 100
+      const nextTime = Number(progressBar.current.value);
+      const audioDuration = audioPlayer.current.duration || duration;
+      audioPlayer.current.currentTime = nextTime;
+      const percentage = audioDuration > 0
+        ? (nextTime / audioDuration) * 100
         : 0;
       progressBar.current.style.setProperty(
         "--seek-before-width",
         `${percentage}%`
       );
-      setCurrentTime(Number(progressBar.current.value));
+      setCurrentTime(nextTime);
     }
   };
 
@@ -375,21 +384,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
 
   return (
     <>
-      <div className="relative z-10 flex h-full w-full items-start justify-center pointer-events-none">
+      <div className="relative z-10 flex w-full items-center justify-center pointer-events-none">
         <div className="relative z-20 flex w-full justify-center">
-          <div className="relative pointer-events-auto flex w-full max-w-[28rem] items-center justify-center">
+          <div className="relative pointer-events-auto flex w-full max-w-[30rem] items-center justify-center">
             <canvas
               ref={visualizerCanvasRef}
               className={cn(
-                "absolute bottom-full left-1/2 mb-3 h-[56px] w-1/2 min-w-[120px] max-w-[200px] -translate-x-1/2 transition-all duration-300",
+                "absolute bottom-full left-1/2 mb-4 h-[54px] w-1/2 min-w-[120px] max-w-[210px] -translate-x-1/2 transition-all duration-300",
                 isPlaying ? "opacity-100" : "pointer-events-none opacity-0"
               )}
               aria-hidden="true"
             />
             <div
               className={cn(
-                "relative flex items-center gap-2 rounded-full border border-white/70 bg-white/95 px-3 py-2 shadow-[0_10px_24px_rgba(0,68,130,0.22)] backdrop-blur-xl",
-                "w-full transition-all duration-300 hover:shadow-[0_12px_28px_rgba(0,68,130,0.28)]"
+                "layout-card-inner relative flex items-center gap-2 border border-primary/10 bg-white/90 px-3 py-2 text-slate-700 shadow-[0_10px_24px_rgba(0,68,130,0.15)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 dark:text-slate-200",
+                "w-full transition-all duration-300 hover:border-primary/25 hover:shadow-[0_12px_30px_rgba(0,68,130,0.22)]"
               )}
             >
             <audio
@@ -403,13 +412,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                   setShowPlaylist((prev) => !prev);
                   setShowVolumeSlider(false);
                 }}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary dark:text-slate-300"
                 aria-label="Open playlist"
               >
                 <ListMusic size={18} />
               </button>
               {showPlaylist && (
-                <div className="absolute bottom-full left-0 z-50 mb-3 w-52 overflow-hidden rounded-2xl border border-sky-200 bg-white p-2 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]">
+                <div className="layout-card-inner absolute bottom-full left-0 z-50 mb-3 w-52 overflow-hidden border border-sky-200 bg-white p-2 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]">
                   <div className="max-h-64 overflow-y-auto">
                     {tracks.map((track) => {
                       const active = track.file === currentTrack.file;
@@ -418,7 +427,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                           key={track.file}
                           onClick={() => void playSelectedTrack(track.file)}
                           className={cn(
-                            "flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition",
+                            "flex w-full items-center justify-between rounded-[8px] px-3 py-2 text-left text-sm transition",
                             active
                               ? "bg-sky-50 font-semibold text-primary dark:bg-sky-500/15 dark:text-sky-300"
                               : "text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800/80"
@@ -473,14 +482,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ tracks }) => {
                   setShowVolumeSlider((prev) => !prev);
                   setShowPlaylist(false);
                 }}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-600 transition hover:bg-primary/10 hover:text-primary dark:text-slate-300"
                 aria-label="Toggle volume"
               >
                 <Volume2 size={18} />
               </button>
               {showVolumeSlider && (
                 <div
-                  className="absolute bottom-full right-0 z-50 mb-3 w-36 rounded-2xl border border-sky-200 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
+                  className="layout-card-inner absolute bottom-full right-0 z-50 mb-3 w-36 border border-sky-200 bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.24)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
                   onMouseLeave={() => setShowVolumeSlider(false)}
                 >
                   <div className="flex items-center gap-3">

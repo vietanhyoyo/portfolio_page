@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useRouter } from "../../hook/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import VietNamIcon from "@/../public/images/icons/vietnam.svg";
 import USAIcon from "@/../public/images/icons/usa.svg";
@@ -12,11 +11,13 @@ type Props = {
 
 export default function LanguageButton({ className, locale }: Props) {
   const router = useRouter();
-  const [selectedLanguage, setSelectedLanguage] = useState(locale);
+  const pathname = usePathname();
 
-  const changeLanguage = (locale: any) => {
-    router.replace("/portfolio", { locale: locale });
-    setSelectedLanguage(locale);
+  const changeLanguage = (nextLocale: "en" | "vi") => {
+    const nextPathname = pathname.match(/^\/(en|vi)(?=\/|$)/)
+      ? pathname.replace(/^\/(en|vi)(?=\/|$)/, `/${nextLocale}`)
+      : `/${nextLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
+    router.replace(nextPathname);
   };
 
   return (
@@ -24,20 +25,20 @@ export default function LanguageButton({ className, locale }: Props) {
       type="button"
       onClick={() => changeLanguage(locale === "en" ? "vi" : "en")}
       className={cn(
-        "w-12 h-12 flex justify-center place-items-center backdrop-blur-lg",
-        "bg-white/50 dark:bg-slate-100/15 rounded-full",
-        "dark:border-gray-600 p-2",
+        "grid h-11 w-11 place-items-center rounded-full p-2",
+        "bg-white/70 dark:bg-white/10",
         "uppercase leading-normal text-white",
         "transition duration-150 ease-in-out",
         "hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]",
         "focus:ring-4 dark:focus:ring-primary-600 focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none",
         "active:bg-primary-700",
-        "shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+        "shadow-sm",
+        className,
       )}
     >
       <Image
-        src={selectedLanguage === "en" ? USAIcon : VietNamIcon}
-        alt="svg-icon"
+        src={locale === "en" ? USAIcon : VietNamIcon}
+        alt={locale === "en" ? "Switch to Vietnamese" : "Switch to English"}
         width={20}
         height={20}
       />

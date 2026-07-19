@@ -1,9 +1,10 @@
 "use client";
 import { Settings } from "lucide-react";
 import ModeToggle from "./ModeToggle";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LanguageButton from "./LanguageButton";
 import AudioToggle from "./AudioToggle";
+import { cn } from "@/lib/utils";
 
 type SettingButtonProps = {
   className?: string;
@@ -11,44 +12,64 @@ type SettingButtonProps = {
 };
 
 export default function SettingButton({ locale, className }: SettingButtonProps) {
-  const [showModeToggle, setShowModeToggle] = useState(false);
-  const [animatingOut, setAnimatingOut] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleModeToggle = () => {
-    if (showModeToggle) {
-      // Trigger exit animation
-      setAnimatingOut(true);
-      setTimeout(() => {
-        setShowModeToggle(false);
-        setAnimatingOut(false);
-      }, 350); // Duration of the slide-down animation
-    } else {
-      // Show ModeToggle with slide-up animation
-      setShowModeToggle(true);
-    }
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setIsOpen(false);
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   return (
-    <div className="fixed bottom-2 md:bottom-6 right-2 md:right-6 flex flex-col gap-4 items-center w-auto z-50">
-      {showModeToggle && (
-        <div
-          className={animatingOut ? "animate-slide-down" : "animate-slide-up"}
-        >
-          <div className="flex flex-col gap-4">
-            <AudioToggle />
-            <ModeToggle />
-            <LanguageButton locale={locale} />
-          </div>
-        </div>
+    <div
+      ref={rootRef}
+      className={cn(
+        "pointer-events-none fixed bottom-3 right-3 z-[100] flex w-auto flex-col items-center gap-3 isolate md:bottom-6 md:right-6",
+        className,
       )}
-
+    >
       <div
-        onClick={toggleModeToggle}
-        className="shadow-lg dark:shadow-primary/50 bg-primary p-3 z-50 cursor-pointer hover:bg-primary/80 text-white"
-        style={{ borderRadius: "99px", borderBottomRightRadius: "30px" }}
+        id="portfolio-settings-menu"
+        aria-hidden={!isOpen}
+        className={cn(
+          "glass-surface pointer-events-auto flex origin-bottom flex-col gap-2 rounded-full p-2 shadow-[0_20px_55px_rgba(15,23,42,0.2)] transition-[opacity,transform] duration-200 ease-out dark:shadow-[0_24px_60px_rgba(0,0,0,0.45)]",
+          isOpen
+            ? "translate-y-0 scale-100 opacity-100"
+            : "pointer-events-none translate-y-3 scale-90 opacity-0",
+        )}
       >
-        <Settings className={"animate-spin-slow"} width={34} height={34} />
+        <AudioToggle />
+        <ModeToggle />
+        <LanguageButton locale={locale} />
       </div>
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        className="pointer-events-auto relative z-[101] grid h-14 w-14 place-items-center rounded-full bg-primary text-white shadow-[0_16px_36px_hsl(var(--primary)/0.38)] transition hover:scale-105 hover:bg-primary/90 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+        aria-controls="portfolio-settings-menu"
+        aria-expanded={isOpen}
+        aria-label="Settings"
+      >
+        <Settings
+          className={cn("transition-transform duration-300", isOpen && "rotate-90")}
+          width={26}
+          height={26}
+        />
+      </button>
     </div>
   );
 }

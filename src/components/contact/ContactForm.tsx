@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { X, ChevronDown, Send } from "lucide-react";
 import emailjs from "emailjs-com";
-import Reveal from "../animation/Reveal";
 import { cn } from "@/lib/utils";
 import LoadingDots from "../loading";
 
@@ -19,10 +18,10 @@ type ContactFormProps = {
 };
 
 const inputClassName =
-  "flex h-10 w-full rounded-2xl border border-input bg-background px-4 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30 dark:hover:border-ring dark:focus-visible:border-ring dark:focus-visible:ring-ring";
+  "layout-card-inner flex h-10 w-full border border-input bg-background px-4 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30 dark:hover:border-ring dark:focus-visible:border-ring dark:focus-visible:ring-ring";
 
 const textareaClassName =
-  "flex min-h-[120px] w-full rounded-2xl border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30 dark:hover:border-ring dark:focus-visible:border-ring dark:focus-visible:ring-ring";
+  "layout-card-inner flex min-h-[120px] w-full border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950/30 dark:hover:border-ring dark:focus-visible:border-ring dark:focus-visible:ring-ring";
 
 export default function ContactForm({
   name,
@@ -62,12 +61,7 @@ export default function ContactForm({
       );
   };
   return (
-    <div
-      className={cn(
-        "absolute top-36 py-6 max-w-7xl md:w-1/3 min-w-[360px] md:min-w-[520px] px-6 flex justify-center flex-col items-center rounded-3xl",
-        "bg-white/85 dark:bg-slate-800/90 backdrop-blur-lg"
-      )}
-    >
+    <div className="soft-glass-card layout-card mx-auto flex w-full max-w-[620px] flex-col items-center px-5 py-6 sm:px-8">
       <div className="relative w-full">
         <div
           className={cn(
@@ -95,9 +89,7 @@ export default function ContactForm({
           aria-hidden={open}
         >
           <div className="overflow-hidden">
-            <Reveal>
-              <span className="text-slate-700 dark:text-white">{formNote}</span>
-            </Reveal>
+            <span className="block py-2 text-center text-slate-700 dark:text-white">{formNote}</span>
           </div>
         </div>
 
@@ -113,9 +105,7 @@ export default function ContactForm({
           <div className="overflow-hidden">
             {isSubmitted ? (
               <div className="text-green-500 text-xl">
-                <Reveal>
-                  <p>{thankMessage}</p>
-                </Reveal>
+                <p>{thankMessage}</p>
               </div>
             ) : isLoading ? (
               <div className="flex justify-center">
